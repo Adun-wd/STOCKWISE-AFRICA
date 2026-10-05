@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Setup</title>
+
+  <!-- Google Fonts: Space Grotesk (heading) and Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="m-0 bg-white font-['Inter'] text-black">
+
+  <!--
+    The design is 440px x 956px.
+    "screen-wrapper" gets resized by app.js so the design scales down on small screens.
+  -->
+  <div id="screen-wrapper" class="mx-auto">
+
+    <div id="screen" class="relative h-[956px] w-[440px] origin-top-left overflow-hidden bg-white">
+
+      <!-- ========== BACK BUTTON ========== -->
+      <button
+        id="back-button"
+        type="button"
+        aria-label="Go back"
+        class="absolute top-[89px] left-[22px] flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-full border-0 bg-[#FAFAFA]"
+      >
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#143967" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M26 15H4.5" />
+          <path d="M14 5.5L4.5 15L14 24.5" />
+        </svg>
+      </button>
+
+      <!-- ========== HEADING ========== -->
+      <header class="absolute top-[139px] left-[calc(50%-154px+3px)] flex w-[308px] flex-col items-center gap-[13px]">
+        <h1 class="m-0 w-full text-center font-['Space_Grotesk'] text-[33px] leading-[38px] font-bold text-[#143967]">
+          Business Setup
+        </h1>
+        <p class="m-0 w-full text-center text-[17.5px] leading-[26px] text-black/80">
+          Tell us about your business
+        </p>
+      </header>
+
+      <!-- ========== FORM ========== -->
+      <form id="business-form" novalidate>
+
+        <!-- Fields sit in one column, 20px apart -->
+        <div class="absolute top-[257.5px] left-[18px] flex w-[404px] flex-col gap-[20px]">
+
+          <!-- RC-Number -->
+          <div class="flex flex-col gap-[8px]">
+            <label for="rc-number" class="text-[16px] leading-[24px]">RC-Number</label>
+            <input
+              id="rc-number"
+              type="text"
+              placeholder="Enter...."
+              class="h-[49px] w-full rounded-[5px] border-[1px] border-solid border-[#767779] bg-white pt-[14px] pr-[215px] pb-[15px] pl-[13px] text-[14.5px] leading-[21px] text-black placeholder:text-black/50 focus:outline-2 focus:outline-[#143967]"
+            />
+          </div>
+
+          <!-- Business type -->
+          <div class="flex flex-col">
+            <span class="text-[16px] leading-[24px]">Business type</span>
+            <div class="flex h-[50px] w-full items-center justify-between rounded-[10px] bg-[#FAFAFA] p-[4px]">
+              <!-- data-type holds the value we save. Pharmacy starts selected. -->
+              <button type="button" data-type="Pharmacy" class="type-button flex h-[42px] w-[93px] cursor-pointer items-center justify-center rounded-[10px] border-0 bg-[#D0E3FA] text-[16px] leading-[24px] font-medium text-black">
+                Pharmacy
+              </button>
+              <button type="button" data-type="Boutique" class="type-button flex h-[42px] w-[93px] cursor-pointer items-center justify-center rounded-[10px] border-0 bg-transparent text-[16px] leading-[24px] font-medium text-black">
+                Boutique
+              </button>
+              <button type="button" data-type="Others" class="type-button flex h-[42px] w-[93px] cursor-pointer items-center justify-center rounded-[10px] border-0 bg-transparent text-[16px] leading-[24px] font-medium text-black">
+                Others
+              </button>
+            </div>
+          </div>
+
+          <!-- Currency -->
+          <div class="flex flex-col gap-[8px]">
+            <label for="currency-button" class="text-[16px] leading-[24px]">Currency</label>
+            <div class="relative">
+              <!-- Hidden input stores the chosen currency value for app.js -->
+              <input type="hidden" id="currency" value="" />
+
+              <!-- Closed dropdown box (Figma "Frame 2") -->
+              <button
+                id="currency-button"
+                type="button"
+                class="flex h-[51px] w-full cursor-pointer flex-col items-start gap-[10px] rounded-[5px] border-[1px] border-solid border-[#143967] bg-white px-[9px] py-[14px] text-left"
+              >
+                <span class="flex w-full items-end justify-between">
+                  <span id="currency-label" class="text-[14.5px] leading-[21px] text-[#143967]/60">Select Option</span>
+                  <!-- Arrow: points down when closed, up when open -->
+                  <svg id="currency-arrow" class="h-[20px] w-[20px]" viewBox="0 0 20 20" fill="none" stroke="#143967" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 7.5L10 13.5L16 7.5" />
+                  </svg>
+                </span>
+              </button>
+
+              <!-- Dropdown list (hidden until the box is clicked) -->
+              <ul id="currency-list" hidden class="absolute top-[53px] right-0 z-10 m-0 grid w-[172px] list-none gap-[8px] p-0">
+                <li><button type="button" data-value="NGN" data-label="Nigerian Naira ₦" class="currency-option flex h-[36px] w-full cursor-pointer items-center justify-center rounded-[5px] border-0 bg-white text-[14.5px] text-[#143967] shadow-[0_1px_4px_rgba(0,0,0,0.15)]">Nigerian Naira ₦</button></li>
+                <li><button type="button" data-value="GHS" data-label="Ghanaian Cedi ₵" class="currency-option flex h-[36px] w-full cursor-pointer items-center justify-center rounded-[5px] border-0 bg-white text-[14.5px] text-[#143967] shadow-[0_1px_4px_rgba(0,0,0,0.15)]">Ghanaian Cedi ₵</button></li>
+                <li><button type="button" data-value="XAF" data-label="Cameroon francs FCFA" class="currency-option flex h-[36px] w-full cursor-pointer items-center justify-center rounded-[5px] border-0 bg-white text-[14.5px] text-[#143967] shadow-[0_1px_4px_rgba(0,0,0,0.15)]">Cameroon francs FCFA</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Business address -->
+          <div class="flex flex-col gap-[8px]">
+            <label for="address" class="text-[16px] leading-[24px]">Business address</label>
+            <input
+              id="address"
+              type="text"
+              value="4 Ganges close, Maitama"
+              class="h-[49px] w-full rounded-[5px] border-[1px] border-solid border-[#767779] bg-white pt-[14px] pr-[215px] pb-[15px] pl-[13px] text-[14.5px] leading-[21px] text-black/50 focus:text-black focus:outline-2 focus:outline-[#143967]"
+            />
+          </div>
+
+        </div>
+
+        <!-- ========== CONTINUE BUTTON ========== -->
+        <button
+          id="continue-button"
+          type="submit"
+          class="absolute top-[682.5px] left-[18px] h-[49px] w-[404px] cursor-pointer rounded-[5px] border-[1px] border-solid border-[#143967] bg-[#143967] text-[17.5px] leading-[26px] font-semibold text-white"
+        >
+          Continue
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="business.js"></script>
+</body>
+</html>
