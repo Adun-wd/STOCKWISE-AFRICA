@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Product</title>
+
+  <!-- Tailwind CSS (CDN version, no build step needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Space Grotesk + Inter, same as the rest of the app -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-white min-h-screen flex justify-center">
+
+  <!-- Keep the design at a max width of 440px, like the rest of the app -->
+  <main class="w-full max-w-[440px] pb-28 relative">
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="flex items-center justify-between px-5 pt-6 pb-4">
+      <button id="backButton" type="button" aria-label="Go back" class="w-4 h-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5" />
+          <path d="M12 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <h1 class="text-[14px] leading-[17px] font-bold text-black">Add New Product</h1>
+
+      <!-- Notifications bell + profile avatar. Not wired to anything yet. -->
+      <button type="button" aria-label="Notifications and profile" class="w-10 h-5 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 36" fill="none" class="w-full h-full">
+          <path d="M11.9977 8.40039C13.3057 8.40039 14.5333 8.73639 15.5917 9.32439C15.2872 9.59789 15.0315 9.92133 14.8357 10.2808C13.9578 9.8313 12.9852 9.59802 11.9989 9.60039C8.85132 9.60039 6.27492 11.9092 6.02292 14.8624L6.00612 15.1168L6.00012 15.3628V19.8004L5.95452 20.0308L4.79892 22.8064L19.1485 22.8088L19.2025 22.8064L18.0469 20.0308L18.0001 19.8004V15.6004C18.4213 15.6004 18.8257 15.5284 19.2001 15.3964V19.678L20.3101 22.3444C20.3365 22.4092 20.3577 22.476 20.3737 22.5448L20.3917 22.648L20.4025 22.8064C20.4011 23.0713 20.3121 23.3284 20.1493 23.5374C19.9865 23.7465 19.7591 23.8958 19.5025 23.962L19.3633 23.9944L19.2025 24.0064L15.0001 24.0052L14.9941 24.1984C14.9459 24.9597 14.6095 25.674 14.0533 26.1961C13.4971 26.7182 12.7629 27.0088 12.0001 27.0088C11.2373 27.0088 10.5031 26.7182 9.94694 26.1961C9.39076 25.674 9.05434 24.9597 9.00612 24.1984L9.00012 24.0052H4.80012C4.69478 24.0053 4.58987 23.9916 4.48812 23.9644L4.33812 23.914C4.09588 23.8119 3.89388 23.633 3.76315 23.405C3.63242 23.1769 3.5802 22.9122 3.61452 22.6516L3.64092 22.498L3.69132 22.3444L4.79892 19.6816L4.80012 15.352L4.80612 15.082C4.95252 11.3416 8.12412 8.40039 11.9977 8.40039ZM13.8001 24.0052H10.2001L10.2085 24.1744C10.2489 24.5899 10.4324 24.9785 10.7278 25.2736C11.0231 25.5687 11.4118 25.7519 11.8273 25.792L12.0001 25.8004C12.4474 25.8004 12.8786 25.6339 13.2098 25.3333C13.5411 25.0327 13.7485 24.6196 13.7917 24.1744L13.8001 24.0052ZM15.8485 10.9372C16.0285 10.5712 16.2997 10.2592 16.6321 10.0288C17.1121 9.69586 17.6971 9.54943 18.2773 9.61695C18.8576 9.68446 19.3933 9.96128 19.784 10.3955C20.1747 10.8298 20.3937 11.3916 20.3998 11.9757C20.4059 12.5599 20.1988 13.1262 19.8172 13.5685C19.4357 14.0108 18.9059 14.2988 18.3272 14.3784C17.7485 14.4581 17.1606 14.324 16.6737 14.0012C16.1869 13.6784 15.8344 13.1891 15.6825 12.625C15.5306 12.0609 15.5896 11.4608 15.8485 10.9372Z" fill="black"/>
+          <path d="M64.0926 28.0459C65.7083 26.102 66.832 23.7976 67.3686 21.3276C67.9053 18.8576 67.8392 16.2946 67.1759 13.8556C66.5126 11.4165 65.2716 9.17312 63.5579 7.31512C61.8442 5.45713 59.7081 4.03921 57.3306 3.18132C54.953 2.32343 52.4037 2.0508 49.8985 2.3865C47.3932 2.7222 45.0057 3.65635 42.9378 5.10993C40.8699 6.56351 39.1826 8.49375 38.0185 10.7374C36.8544 12.981 36.2478 15.472 36.25 17.9996C36.251 21.6741 37.5458 25.2308 39.9074 28.0459L39.8849 28.065C39.9636 28.1595 40.0536 28.2405 40.1346 28.3339C40.2359 28.4497 40.345 28.5589 40.4496 28.6714C40.7631 29.0141 41.0894 29.3404 41.4284 29.6501C41.5334 29.7431 41.6384 29.8339 41.7434 29.9224C42.1034 30.2336 42.4746 30.5269 42.8571 30.8021C42.9066 30.8359 42.9516 30.8797 43.0011 30.9146V30.9011C45.6359 32.7555 48.7792 33.7507 52.0011 33.7507C55.2231 33.7507 58.3663 32.7555 61.0011 30.9011V30.9146C61.0506 30.8797 61.0945 30.8359 61.1451 30.8021C61.5276 30.5261 61.8989 30.2329 62.2589 29.9224C62.3639 29.8331 62.4689 29.7424 62.5739 29.6501C62.9121 29.3404 63.2384 29.0141 63.5526 28.6714C63.6573 28.5589 63.7653 28.4497 63.8676 28.3339C63.9475 28.2405 64.0386 28.1595 64.1174 28.0639L64.0926 28.0459ZM52 8.99961C53.0013 8.99961 53.9801 9.29652 54.8126 9.85279C55.6451 10.4091 56.294 11.1997 56.6771 12.1248C57.0603 13.0498 57.1606 14.0677 56.9652 15.0498C56.7699 16.0318 56.2877 16.9338 55.5797 17.6418C54.8717 18.3498 53.9697 18.832 52.9877 19.0273C52.0056 19.2227 50.9877 19.1224 50.0627 18.7392C49.1376 18.3561 48.347 17.7072 47.7907 16.8747C47.2344 16.0422 46.9375 15.0634 46.9375 14.0621C46.9375 12.7194 47.4709 11.4318 48.4203 10.4824C49.3697 9.53298 50.6573 8.99961 52 8.99961ZM43.0079 28.0459C43.0274 26.5687 43.6277 25.1586 44.6789 24.1207C45.7301 23.0827 47.1477 22.5004 48.625 22.4996H55.375C56.8523 22.5004 58.2699 23.0827 59.3211 24.1207C60.3723 25.1586 60.9726 26.5687 60.9921 28.0459C58.5248 30.2692 55.3213 31.4997 52 31.4997C48.6787 31.4997 45.4752 30.2692 43.0079 28.0459Z" fill="#143967"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- ===================== FORM ===================== -->
+    <form id="productForm" class="flex flex-col gap-[10px] px-5">
+
+      <!-- ---------- SECTION 1: Basic Information ---------- -->
+      <section class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[15px]">
+
+        <!-- Section header: number badge + title + collapse chevron -->
+        <button type="button" class="section-toggle flex items-center justify-between w-full" data-target="section1Body">
+          <span class="flex items-center gap-[15px]">
+            <span class="w-[18px] h-[18px] rounded-full bg-[#143967] text-white text-[10px] font-bold flex items-center justify-center">1</span>
+            <span class="text-[12px] leading-[15px] font-bold text-[#143967]">Basic Information</span>
+          </span>
+          <svg class="section-chevron w-4 h-4 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+
+        <div id="section1Body" class="flex flex-col gap-[15px]">
+
+          <!-- Upload product image -->
+          <div class="border border-[#143967]/20 rounded-[5px] p-[10px] flex items-center gap-[15px]">
+            <!-- Image preview box: shows the camera icon until a file is chosen -->
+            <div id="imagePreviewBox" class="w-[100px] h-[80px] shrink-0 bg-[#143967]/[6%] flex items-center justify-center overflow-hidden">
+              <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7h3l2-2h6l2 2h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z" />
+                <circle cx="12" cy="13" r="3.5" />
+              </svg>
+            </div>
+
+            <div class="flex flex-col gap-[5px]">
+              <p class="text-[12px] leading-[15px] font-semibold text-[#143967]">Upload product image</p>
+              <p class="text-[12px] leading-[15px] font-medium text-[#143967]">JPG, PNG (Max 2MB)</p>
+              <button type="button" id="chooseFileButton" class="border border-[#143967]/20 rounded-[5px] px-[15px] py-[8px] text-[12px] font-bold text-[#143967] w-fit">
+                Choose file
+              </button>
+              <!-- The real file input stays hidden; the button above triggers it -->
+              <input type="file" id="productImageInput" accept="image/png, image/jpeg" class="hidden" />
+            </div>
+          </div>
+
+          <!-- Product name -->
+          <div class="flex flex-col gap-[5px]">
+            <label for="productName" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Product name *</label>
+            <input
+              type="text"
+              id="productName"
+              placeholder="Enter product name"
+              class="border border-[#143967] rounded-[5px] px-[10px] py-[15px] text-[12px] leading-[15px] text-[#143967] placeholder-[#143967]/40 focus:outline-none"
+            />
+          </div>
+
+          <!-- Category -->
+          <div class="flex flex-col gap-[5px]">
+            <label for="category" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Category *</label>
+            <div class="relative">
+              <select
+                id="category"
+                class="w-full appearance-none border border-[#143967] rounded-[5px] px-[10px] py-[15px] text-[12px] leading-[15px] text-[#143967]/40 focus:outline-none"
+              >
+                <option value="" selected disabled>Select category</option>
+                <option value="medications">Medications</option>
+                <option value="supplements">Supplements</option>
+                <option value="medical-devices">Medical Devices</option>
+                <option value="personal-care">Personal Care</option>
+                <option value="others">Others</option>
+              </select>
+              <svg class="w-4 h-4 absolute right-[10px] top-1/2 -translate-y-1/2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 10l5 5 5-5" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- SKU -->
+          <div class="flex flex-col gap-[5px]">
+            <label for="sku" class="text-[12px] leading-[15px] font-semibold text-[#143967]">SKU *</label>
+            <input
+              type="text"
+              id="sku"
+              placeholder="Enter SKU"
+              class="border border-[#143967] rounded-[5px] px-[10px] py-[15px] text-[12px] leading-[15px] text-[#143967] placeholder-[#143967]/40 focus:outline-none"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- SECTION 2: Pricing & Stock ---------- -->
+      <section class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[15px]">
+
+        <button type="button" class="section-toggle flex items-center justify-between w-full" data-target="section2Body">
+          <span class="flex items-center gap-[15px]">
+            <span class="w-[18px] h-[18px] rounded-full bg-[#143967] text-white text-[10px] font-bold flex items-center justify-center">2</span>
+            <span class="text-[12px] leading-[15px] font-bold text-[#143967]">Pricing &amp; Stock</span>
+          </span>
+          <svg class="section-chevron w-4 h-4 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+
+        <div id="section2Body" class="flex flex-col gap-[10px]">
+
+          <!-- Selling price + Cost price -->
+          <div class="grid grid-cols-2 gap-[10px]">
+            <div class="flex flex-col gap-[5px]">
+              <label for="sellingPrice" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Selling price *</label>
+              <div class="flex items-center gap-2 border border-[#143967] rounded-[5px] px-[10px] py-[15px]">
+                <span class="text-[12px] text-[#143967]/60">₦</span>
+                <input type="number" id="sellingPrice" placeholder="Enter selling price" class="w-full min-w-0 text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none bg-transparent" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <label for="costPrice" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Cost price (optional)</label>
+              <div class="flex items-center gap-2 border border-[#143967] rounded-[5px] px-[10px] py-[15px]">
+                <span class="text-[12px] text-[#143967]/60">₦</span>
+                <input type="number" id="costPrice" placeholder="Enter cost price" class="w-full min-w-0 text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none bg-transparent" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Current stock quantity + Reorder level -->
+          <div class="grid grid-cols-2 gap-[10px]">
+            <div class="flex flex-col gap-[5px]">
+              <label for="stockQuantity" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Current stock quantity*</label>
+              <input type="number" id="stockQuantity" placeholder="Enter quantity" class="border border-[#143967] rounded-[5px] px-[10px] py-[15px] text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none" />
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <label for="reorderLevel" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Reorder level (optional)</label>
+              <input type="number" id="reorderLevel" placeholder="Enter reorder level" class="border border-[#143967] rounded-[5px] px-[10px] py-[15px] text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- SECTION 3: Product Details ---------- -->
+      <section class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[15px]">
+
+        <button type="button" class="section-toggle flex items-center justify-between w-full" data-target="section3Body">
+          <span class="flex items-center gap-[15px]">
+            <span class="w-[18px] h-[18px] rounded-full bg-[#143967] text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            <span class="text-[12px] leading-[15px] font-bold text-[#143967]">Product Details</span>
+          </span>
+          <svg class="section-chevron w-4 h-4 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+
+        <div id="section3Body" class="flex flex-col gap-[10px]">
+
+          <!--
+            NOTE: in the reference design, the "Supplier" and "Batch number"
+            placeholders say "Enter selling price" / "Enter cost price" with
+            a ₦ sign — that looks like a copy-paste mistake from the Pricing
+            section rather than intentional. We've matched the image exactly
+            below, but you may want to flag this with your designer and
+            change the placeholders to "Enter supplier name" and
+            "Enter batch number" (with no ₦ symbol).
+          -->
+          <div class="grid grid-cols-2 gap-[10px]">
+            <div class="flex flex-col gap-[5px]">
+              <label for="supplier" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Supplier (optional)</label>
+              <div class="flex items-center gap-2 border border-[#143967] rounded-[5px] px-[10px] py-[15px]">
+                <span class="text-[12px] text-[#143967]/60">₦</span>
+                <input type="text" id="supplier" placeholder="Enter selling price" class="w-full min-w-0 text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none bg-transparent" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <label for="batchNumber" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Batch number (optional)</label>
+              <div class="flex items-center gap-2 border border-[#143967] rounded-[5px] px-[10px] py-[15px]">
+                <span class="text-[12px] text-[#143967]/60">₦</span>
+                <input type="text" id="batchNumber" placeholder="Enter cost price" class="w-full min-w-0 text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none bg-transparent" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Expiry date + Unit of measure -->
+          <div class="grid grid-cols-2 gap-[10px]">
+            <div class="flex flex-col gap-[5px]">
+              <label for="expiryDate" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Expiry date (optional)</label>
+              <div class="flex items-center gap-2 border border-[#143967] rounded-[5px] px-[10px] py-[15px]">
+                <svg class="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="1.5">
+                  <rect x="3" y="5" width="18" height="16" rx="2" />
+                  <path d="M3 10h18M8 3v4M16 3v4" />
+                </svg>
+                <!-- Plain text field for now, matching the "Select date" placeholder look.
+                     A real date-picker can be wired in later by your team. -->
+                <input type="text" id="expiryDate" placeholder="Select date" readonly class="w-full min-w-0 text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none bg-transparent cursor-pointer" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <label for="unitOfMeasure" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Unit of measure</label>
+              <div class="relative">
+                <select id="unitOfMeasure" class="w-full appearance-none border border-[#143967] rounded-[5px] px-[10px] py-[15px] text-[12px] text-[#143967]/40 focus:outline-none">
+                  <option value="" selected disabled>Select unit</option>
+                  <option value="piece">Piece</option>
+                  <option value="carton">Carton</option>
+                  <option value="pack">Pack</option>
+                  <option value="bottle">Bottle</option>
+                  <option value="sachet">Sachet</option>
+                </select>
+                <svg class="w-4 h-4 absolute right-[10px] top-1/2 -translate-y-1/2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 10l5 5 5-5" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="flex flex-col gap-[5px]">
+            <label for="description" class="text-[12px] leading-[15px] font-semibold text-[#143967]">Description (optional)</label>
+            <textarea
+              id="description"
+              rows="3"
+              placeholder="Enter product description..."
+              class="border border-[#143967] rounded-[5px] px-[15px] py-[10px] text-[12px] text-[#143967] placeholder-[#143967]/40 focus:outline-none resize-none"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- Need help? banner ---------- -->
+      <div class="bg-[#143967]/10 rounded-[7px] p-[15px] flex items-center gap-[15px]">
+        <svg class="w-7 h-7 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#143967" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.8.5 1.3V16h6v-.8c0-.5.1-1 .5-1.3A6 6 0 0 0 12 3z" />
+        </svg>
+        <div class="flex flex-col gap-[5px]">
+          <p class="text-[12px] leading-[15px] font-bold text-[#143967]">Need help?</p>
+          <p class="text-[10px] leading-[12px] font-medium text-[#143967]">Make sure all the details are correct before saving.</p>
+        </div>
+      </div>
+
+      <!-- ---------- Save button ---------- -->
+      <button
+        type="submit"
+        id="saveProductButton"
+        class="bg-[#143967] hover:bg-[#0f2c50] text-white font-bold text-[14px] leading-[17px] rounded-[5px] py-[10px] transition"
+      >
+        Save Product
+      </button>
+    </form>
+
+    <!-- ===================== BOTTOM NAV BAR ===================== -->
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] bg-white border-t border-black/10 flex items-center justify-between px-5 py-[10px]">
+
+      <button type="button" class="nav-item flex flex-col items-center justify-center gap-1 px-[15px] py-1 rounded-full bg-[#143967] text-white" data-active="true">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z" />
+        </svg>
+        <span class="text-[13.5px]">Home</span>
+      </button>
+
+      <button type="button" class="nav-item flex flex-col items-center justify-center gap-1 text-[#143967]">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="4" width="16" height="16" rx="2" />
+          <path d="M8 9h8M8 13h5" />
+        </svg>
+        <span class="text-[13.5px]">Inventory</span>
+      </button>
+
+      <button type="button" class="nav-item flex flex-col items-center justify-center gap-1 text-[#143967]">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="3" width="16" height="18" rx="2" />
+          <path d="M7 7h10M7 11h3M12 11h3M17 11h0M7 15h3M12 15h3M17 15h0" />
+        </svg>
+        <span class="text-[13.5px]">Sales</span>
+      </button>
+
+      <button type="button" class="nav-item flex flex-col items-center justify-center gap-1 text-[#143967]">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 10a6 6 0 0 1 12 0c0 3 1 4 1 5H5c0-1 1-2 1-5z" />
+          <path d="M10 18a2 2 0 0 0 4 0" />
+        </svg>
+        <span class="text-[13.5px]">Alerts</span>
+      </button>
+
+      <button type="button" class="nav-item flex flex-col items-center justify-center gap-1 text-[#143967]">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#143967">
+          <circle cx="4" cy="4" r="1.7" />
+          <circle cx="10" cy="4" r="1.7" />
+          <circle cx="16" cy="4" r="1.7" />
+          <circle cx="4" cy="10" r="1.7" />
+          <circle cx="10" cy="10" r="1.7" />
+          <circle cx="16" cy="10" r="1.7" />
+          <circle cx="4" cy="16" r="1.7" />
+          <circle cx="10" cy="16" r="1.7" />
+          <circle cx="16" cy="16" r="1.7" />
+        </svg>
+        <span class="text-[13.5px]">More</span>
+      </button>
+    </nav>
+  </main>
+
+  <script src="add.js"></script>
+</body>
+</html>
