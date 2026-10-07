@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product details | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (interface text) + Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (no other CSS file is used) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-white font-['Inter'] text-[#143967]">
+
+  <!-- Dark overlay behind the sidebar on tablet/mobile -->
+  <div id="sidebarOverlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR ================= -->
+  <!-- Hidden off-screen on tablet/mobile (-translate-x-full), always visible from lg (1024px) up -->
+  <aside id="sidebar"
+         class="fixed inset-y-0 left-0 z-40 flex w-[350px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto bg-[radial-gradient(50%_50%_at_50%_50%,rgba(20,57,103,0.068)_0%,rgba(20,57,103,0)_100%),linear-gradient(175.05deg,#143967_0.5%,#173D78_57.5%,#245EC2_99.56%)] px-[30px] py-[50px] text-white transition-transform duration-200 lg:translate-x-0">
+
+    <!-- Logo -->
+    <div class="flex items-center justify-between">
+      <a href="#" class="flex items-center gap-[15px]" aria-label="Stockwise Africa home">
+        <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+    </div>
+        <span class="font-['Space_Grotesk'] text-2xl font-medium">Stockwise Africa</span>
+      </a>
+      <!-- Close button (tablet/mobile only) -->
+      <button id="closeSidebarButton" type="button" aria-label="Close menu"
+              class="rounded p-1 transition duration-200 hover:bg-white/10 lg:hidden">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <!-- Main navigation -->
+    <nav class="mt-16 flex flex-col gap-[10px] lg:mt-[100px]" aria-label="Main navigation">
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+        Home
+      </a>
+
+      <!-- Active item -->
+      <a href="#" aria-current="page" class="flex h-[62px] items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-[#143967]">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M8 12h2M8 16h2M13 8h3M13 12h3M13 16h3"/></svg>
+        Inventory
+      </a>
+
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h3l2.5 12h11L21 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        Sales
+      </a>
+
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0112 0v5l2 2H4z"/><path d="M10 21h4"/></svg>
+        Alerts
+      </a>
+
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- Bottom navigation: pushed to the bottom with mt-auto -->
+    <nav class="mt-12 flex flex-col gap-[18px] lg:mt-auto" aria-label="Account navigation">
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+        Settings
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-[#E85363] transition duration-200 hover:bg-white/10">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H6a2 2 0 00-2 2v12a2 2 0 002 2h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg>
+        Logout
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <!-- lg:ml-[350px] leaves room for the sidebar on desktop -->
+  <main class="relative h-screen overflow-y-auto px-4 pt-5 sm:px-[30px] sm:pt-[35px] lg:ml-[350px]">
+    <div class="mx-auto max-w-[1318px]">
+
+      <!-- Header: menu button + search + notification + profile -->
+      <header class="flex items-center gap-3 sm:gap-[30px]">
+
+        <!-- Menu button (tablet/mobile only) -->
+        <button id="menuButton" type="button" aria-label="Open menu" aria-expanded="false"
+                class="shrink-0 rounded-[5px] p-1 transition duration-200 hover:bg-[#143967]/10 lg:hidden">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="flex h-[42px] min-w-0 max-w-[910px] flex-1 items-center gap-[10px] rounded-[5px] border border-[#143967]/50 px-[15px] py-[10px] focus-within:ring-2 focus-within:ring-[#143967]/40">
+          <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <span class="sr-only">Search products, categories or SKU</span>
+          <input id="searchInput" type="text" placeholder="Search products, categories or SKU..."
+                 class="w-full min-w-0 bg-transparent text-sm font-normal text-[#143967] placeholder:text-[#143967] focus:outline-none" />
+        </label>
+
+        <div class="ml-auto flex shrink-0 items-center justify-end gap-3 sm:gap-[30px]">
+          <!-- Notification -->
+          <button id="notificationButton" type="button" aria-label="View notifications"
+                  class="rounded-full p-0.5 text-[#143967] transition duration-200 hover:bg-[#143967]/10">
+            <svg class="h-7 w-7 sm:h-[35px] sm:w-[35px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0112 0v5l2 2H4z"/><path d="M10 21h4"/></svg>
+          </button>
+
+          <!-- Profile + dropdown -->
+          <div class="relative">
+            <button id="profileButton" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open profile menu"
+                    class="flex items-center gap-[10px] rounded-[5px] text-left transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-9 w-9 shrink-0 sm:h-10 sm:w-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-7.5 16.6C5.6 16.8 8.5 15.5 12 15.5s6.4 1.3 7.5 3.1A10 10 0 0012 2zm0 3.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7z"/></svg>
+              <!-- Name is hidden on small phones to save space -->
+              <span class="hidden flex-col sm:flex">
+                <span class="text-lg font-semibold leading-[22px]">John Doe</span>
+                <span class="text-sm font-semibold leading-[17px]">Owner</span>
+              </span>
+            </button>
+
+            <ul id="profileMenu" class="absolute right-0 top-full z-30 mt-2 hidden w-44 rounded-[5px] border border-[#143967]/20 bg-white py-1 text-sm font-semibold shadow-md">
+              <li class="px-4 py-2 sm:hidden">
+                <span class="block text-base font-semibold">John Doe</span>
+                <span class="block text-xs">Owner</span>
+              </li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-[#143967]/10">Profile</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-[#143967]/10">Settings</a></li>
+              <li><a href="#" class="block px-4 py-2 text-[#E85363] hover:bg-[#143967]/10">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Back + heading -->
+      <section class="mt-6 sm:mt-[30px]">
+        <button id="backButton" type="button"
+                class="flex items-center gap-[10px] rounded text-base font-medium transition duration-200 hover:opacity-70">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>
+          Back to Inventory
+        </button>
+        <h1 class="mt-[13px] font-['Space_Grotesk'] text-3xl font-bold leading-[46px] sm:text-4xl">Product details</h1>
+      </section>
+
+      <!-- Search message (shown by script.js when nothing matches) -->
+      <p id="noResults" class="mt-6 hidden rounded-[5px] bg-[#143967]/10 px-5 py-3 text-sm font-semibold">
+        No product, category or SKU matches your search.
+      </p>
+
+      <!-- Product card + quick actions.
+           Stacked on tablet/mobile, side by side from 2xl (1536px) up -->
+      <section id="productSection" class="mt-5 grid grid-cols-1 items-start gap-8 2xl:grid-cols-[1fr_328px] 2xl:gap-10">
+
+        <!-- Product card -->
+        <article id="productCard" class="min-h-[480px] rounded-[5px] border border-[#143967]/60">
+
+          <!-- Top part: image + summary (stacked on mobile/tablet, side by side on lg+) -->
+          <div class="flex flex-col gap-5 p-[10px] lg:flex-row lg:gap-[30px]">
+
+            <!-- Product image (placeholder shows if images.jpg is missing) -->
+            <div class="relative h-[200px] w-full shrink-0 overflow-hidden rounded-[5px] bg-[#143967]/10 lg:w-[230px]">
+              <img id="productImage" src="paracetamol.png" alt="Paracetamol 500mg tablets" class="h-full w-full object-cover" />
+              <div id="imagePlaceholder" class="absolute inset-0 hidden flex-col items-center justify-center gap-2 text-sm font-semibold">
+                <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>
+                Product image
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="flex min-w-0 flex-1 flex-col gap-5 lg:pr-[20px]">
+              <div>
+                <h2 class="font-['Space_Grotesk'] text-2xl font-bold leading-tight sm:text-4xl sm:leading-[46px]">Paracetamol 500mg</h2>
+                <div class="mt-[5px] flex items-center gap-[10px]">
+                  <span class="py-[5px] text-sm font-semibold">Tablet</span>
+                  <span class="h-5 w-px bg-[#143967]/20" aria-hidden="true"></span>
+                  <span class="rounded-[7px] bg-[#E4F8E7] px-[15px] py-[5px] text-sm font-semibold text-[#226F41]">In stock</span>
+                </div>
+              </div>
+
+              <hr class="border-[#143967]/40" />
+
+              <!-- Four stats: 2 columns on mobile, 4 on tablet, 2 on narrow desktop, 4 on wide desktop -->
+              <dl class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+                <div>
+                  <dt class="text-sm font-semibold">Current Stock</dt>
+                  <dd class="text-[28px] font-bold leading-[39px] sm:text-[32px]">48</dd>
+                  <dd class="text-sm font-semibold">units</dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-semibold">Reorder level</dt>
+                  <dd class="text-[28px] font-bold leading-[39px] sm:text-[32px]">10</dd>
+                  <dd class="text-sm font-semibold">units</dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-semibold">Selling Price</dt>
+                  <dd class="text-[28px] font-bold leading-[39px] sm:text-[32px]">₦1,200</dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-semibold">Cost Price</dt>
+                  <dd class="text-[28px] font-bold leading-[39px] sm:text-[32px]">₦800</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <!-- Full-width divider -->
+          <hr class="mt-[15px] border-[#143967]/60" />
+
+          <!-- Product information -->
+          <div class="p-[10px] pb-6 pt-[15px]">
+            <h3 class="font-['Space_Grotesk'] text-base font-bold leading-5">Product Information</h3>
+
+            <dl class="mt-[15px] grid grid-cols-2 gap-x-6 gap-y-[30px] lg:grid-cols-3 lg:gap-x-10">
+              <div>
+                <dt class="text-sm font-semibold">SKU</dt>
+                <dd class="mt-[5px] text-base font-semibold">SKU001</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Category</dt>
+                <dd class="mt-[5px] text-base font-semibold">Capsule</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Batch Number</dt>
+                <dd class="mt-[5px] text-base font-semibold">B12345</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Expiry date</dt>
+                <dd class="mt-[5px] text-base font-semibold">Feb 2027</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-semibold">Supplier</dt>
+                <dd class="mt-[5px] text-base font-semibold">ABC Pharma</dd>
+              </div>
+              <div class="col-span-2 lg:col-span-1">
+                <dt class="text-sm font-semibold">Description</dt>
+                <dd class="mt-[5px] max-w-[263px] text-base font-semibold leading-[19px]">
+                  Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- Quick actions -->
+        <section aria-labelledby="quickActionsHeading" class="flex w-full flex-col gap-[15px] 2xl:max-w-[328px]">
+          <h2 id="quickActionsHeading" class="font-['Space_Grotesk'] text-lg font-bold leading-[23px]">Quick actions</h2>
+
+          <!-- 1 column on mobile, 2 on tablet, 1 again when beside the card -->
+          <div class="grid grid-cols-1 gap-[9px] sm:grid-cols-2 2xl:grid-cols-1">
+            <button type="button" data-action="Record Sale" class="quick-action flex h-[52px] w-full items-center gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-base font-bold transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h3l2.5 12h11L21 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+              Record Sale
+            </button>
+            <button type="button" data-action="Add Stock" class="quick-action flex h-[52px] w-full items-center gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-base font-bold transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v8M8 12h8"/></svg>
+              Add Stock
+            </button>
+            <button type="button" data-action="Remove Stock" class="quick-action flex h-[52px] w-full items-center gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-base font-bold transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12h8"/></svg>
+              Remove Stock
+            </button>
+            <button type="button" data-action="Edit Product" class="quick-action flex h-[52px] w-full items-center gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-base font-bold transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2 2 0 013 3L8 19z"/><path d="M14 7l3 3"/></svg>
+              Edit Product
+            </button>
+            <button type="button" data-action="View Stock Inventory" class="quick-action flex h-[52px] w-full items-center gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-base font-bold transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg>
+              View Stock Inventory
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <!-- Recent activity -->
+      <section id="activitySection" class="mt-[30px] pb-[70px]" aria-labelledby="activityHeading">
+        <h2 id="activityHeading" class="font-['Space_Grotesk'] text-lg font-bold leading-[23px]">Recent activity</h2>
+
+        <!-- The table scrolls sideways on small screens -->
+        <div class="mt-[15px] overflow-x-auto rounded-[5px] border border-[#143967]/20">
+          <table class="w-full min-w-[640px] table-fixed text-left text-sm font-semibold">
+            <thead class="bg-[#143967]/10">
+              <tr class="h-[37px]">
+                <th scope="col" class="w-[28%] px-5 py-[10px] font-semibold sm:px-[30px]">Date</th>
+                <th scope="col" class="w-[28%] px-5 py-[10px] font-semibold sm:px-[30px]">Type</th>
+                <th scope="col" class="w-[20%] px-5 py-[10px] font-semibold sm:px-[30px]">Quantity</th>
+                <th scope="col" class="px-5 py-[10px] font-semibold sm:px-[30px]">Registered By</th>
+              </tr>
+            </thead>
+            <tbody id="activityBody">
+              <tr class="h-[70px] border-b border-[#143967]/10">
+                <td class="px-5 sm:px-[30px]">Aug 26, 10:24 AM</td>
+                <td class="px-5 sm:px-[30px]">Stock In</td>
+                <td class="px-5 sm:px-[30px]">72</td>
+                <td class="px-5 sm:px-[30px]">Owner</td>
+              </tr>
+              <tr class="h-[70px] border-b border-[#143967]/10">
+                <td class="px-5 sm:px-[30px]">Aug 26, 09:17 AM</td>
+                <td class="px-5 sm:px-[30px]">Sale</td>
+                <td class="px-5 sm:px-[30px]">12</td>
+                <td class="px-5 sm:px-[30px]">Store Manager</td>
+              </tr>
+              <tr class="h-[70px] border-b border-[#143967]/10">
+                <td class="px-5 sm:px-[30px]">Aug 25, 04:32 PM</td>
+                <td class="px-5 sm:px-[30px]">Stock Adjusted</td>
+                <td class="px-5 sm:px-[30px]">3</td>
+                <td class="px-5 sm:px-[30px]">Sales Attendant</td>
+              </tr>
+              <tr class="h-[70px] border-b border-[#143967]/10">
+                <td class="px-5 sm:px-[30px]">Aug 25, 02:10 PM</td>
+                <td class="px-5 sm:px-[30px]">Stock Out</td>
+                <td class="px-5 sm:px-[30px]">5</td>
+                <td class="px-5 sm:px-[30px]">Sales Attendant</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sync status: sticks to the bottom of the scrolling area -->
+    <footer class="sticky bottom-[10px] mx-auto flex h-10 max-w-[1318px] items-center justify-center gap-3 rounded-[5px] bg-[#E8F5E9] px-3 py-[10px] text-sm font-bold text-[#1B5E20] sm:gap-5 sm:px-5 sm:text-base">
+      <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5" fill="currentColor"/></svg>
+      <span class="flex items-center gap-[10px]">
+        <span>Synced</span>
+        <span class="h-[5px] w-[5px] rounded-full bg-[#1B5E20]" aria-hidden="true"></span>
+        <span>2 minutes ago</span>
+      </span>
+    </footer>
+  </main>
+
+  <script src="product.js"></script>
+</body>
+</html>
