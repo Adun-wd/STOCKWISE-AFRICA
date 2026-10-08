@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales | Stockwise Africa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy: #143967;
+      --color-accent-red: #e85363;
+      --color-circle: #e8edf2;
+      --font-sans: "Inter", sans-serif;
+      --font-grotesk: "Space Grotesk", sans-serif;
+    }
+  </style>
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(175deg, #143967 1.8%, #173d78 58%, #245ec2 99.5%);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-navy bg-white">
+
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR (same as the Inventory page, Sales is active) ================= -->
+  <aside id="sidebar"
+    class="sidebar-gradient fixed inset-y-0 left-0 z-40 flex w-[300px] -translate-x-full flex-col px-[30px] py-[50px] text-white transition-transform lg:w-[350px] lg:translate-x-0">
+
+    <div class="flex items-center gap-[15px]">
+     <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+    </div>
+      <span class="font-grotesk text-2xl font-medium">Stockwise Africa</span>
+    </div>
+
+    <nav aria-label="Main" class="mt-[90px] flex flex-col gap-2.5">
+      <a href="#" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+      <a href="index.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M13 8h3M8 12h2M13 12h3M8 16h2M13 16h3"/></svg>
+        Inventory
+      </a>
+      <a href="sales.html" aria-current="page" class="nav-link flex items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-navy focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2 12h11l2-8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+        Sales
+      </a>
+      <a href="#" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21a2 2 0 0 0 4 0"/></svg>
+        Alerts
+      </a>
+      <a href="#" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <div class="mt-auto flex flex-col gap-2.5">
+      <a href="#" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M10.16 4.63 L10.44 2.12 L13.56 2.12 L13.84 4.63 L15.91 5.49 L17.88 3.91 L20.09 6.12 L18.51 8.09 L19.37 10.16 L21.88 10.44 L21.88 13.56 L19.37 13.84 L18.51 15.91 L20.09 17.88 L17.88 20.09 L15.91 18.51 L13.84 19.37 L13.56 21.88 L10.44 21.88 L10.16 19.37 L8.09 18.51 L6.12 20.09 L3.91 17.88 L5.49 15.91 L4.63 13.84 L2.12 13.56 L2.12 10.44 L4.63 10.16 L5.49 8.09 L3.91 6.12 L6.12 3.91 L8.09 5.49Z"/></svg>
+        Settings
+      </a>
+      <button id="logout-button" type="button" class="flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-accent-red hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M10 12h11M17 8l4 4-4 4"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex min-h-screen flex-col px-4 py-6 lg:pl-[350px] lg:pr-[30px] lg:pt-[35px]">
+    <div class="flex flex-1 flex-col lg:ml-[30px]">
+
+      <header class="flex flex-wrap items-center gap-4 lg:flex-nowrap lg:items-start">
+        <button id="menu-button" type="button" aria-label="Open menu" class="rounded-[5px] border border-navy/50 p-2 hover:bg-navy/5 lg:hidden">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="order-last flex h-[42px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy lg:order-none lg:max-w-[910px] lg:flex-1">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search sales</span>
+          <input id="top-search" type="search" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <div class="relative ml-auto flex items-center gap-[30px]">
+          <button id="notification-button" type="button" aria-label="Notifications" aria-expanded="false" class="rounded-full p-1 hover:bg-navy/10">
+            <svg class="size-[35px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21a2 2 0 0 0 4 0"/></svg>
+          </button>
+          <div class="flex items-center gap-2.5">
+            <svg class="size-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 14a8 8 0 0 1-6-2.7C6.2 15.600 9 15 12 15s5.800.6 6 2.300A8 8 0 0 1 12 20z"/></svg>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold">John Doe</p>
+              <p class="text-sm font-semibold">Owner</p>
+            </div>
+          </div>
+          <div id="notification-panel" class="absolute right-0 top-14 z-20 hidden w-72 rounded-[5px] border border-navy/20 bg-white p-4 text-sm shadow-lg">
+            <p class="font-semibold">Notifications</p>
+            <p id="notification-message" class="mt-2"></p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Title, subtitle, date range and Record Sale button -->
+      <div class="mt-4 flex flex-wrap items-start justify-between gap-4 lg:mt-[22px]">
+        <div>
+          <h1 class="font-grotesk text-[36px] font-bold leading-[46px]">Sales Record</h1>
+          <p class="max-w-[620px] text-sm font-medium">View and manage your sales records. Track performance, filter by date and export reports</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-5">
+          <button id="date-button" type="button" class="flex h-10 w-full items-center gap-1.5 rounded-[5px] border border-navy px-2.5 text-sm font-medium hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy sm:w-[267px]">
+            <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            <span id="date-label" class="flex-1 text-right">Sep 20, 2026 - Sep 26, 2026</span>
+            <svg class="ml-3 w-[10px] shrink-0" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <button type="button" data-open-sale-dialog class="flex h-10 items-center justify-center gap-2.5 rounded-[5px] bg-navy px-[15px] text-sm font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2 12h11l2-8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+            Record Sale
+          </button>
+        </div>
+      </div>
+
+      <!-- Sales table (hidden while there are no sales) -->
+      <section id="sales-section" class="mt-8 hidden" aria-label="Sales list">
+        <div class="overflow-x-auto rounded-[5px] border border-navy/20">
+          <table class="w-full min-w-[700px] text-left text-sm">
+            <thead class="bg-navy/5 font-semibold">
+              <tr>
+                <th class="px-4 py-3">Product</th>
+                <th class="px-4 py-3">Qty</th>
+                <th class="px-4 py-3">Unit price</th>
+                <th class="px-4 py-3">Total</th>
+                <th class="px-4 py-3">Payment</th>
+                <th class="px-4 py-3">Date</th>
+                <th class="px-4 py-3"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="sales-table-body"></tbody>
+          </table>
+        </div>
+        <p id="no-results" class="hidden py-10 text-center text-lg font-medium">No sales match your search or date range.</p>
+      </section>
+
+      <!-- Empty state -->
+      <section id="empty-state" class="flex flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center">
+        <div class="flex size-[200px] items-center justify-center rounded-full bg-circle sm:size-[250px]">
+          <svg class="size-24 sm:size-[110px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.500 3h2.300l2.200 12h11.500l1.700-9H6"/><path d="M8 18.500h11"/><circle cx="9.500" cy="20.500" r="1.100"/><circle cx="16.500" cy="20.500" r="1.100"/></svg>
+        </div>
+        <div class="flex flex-col gap-2.5">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[46px] sm:text-[36px]">No sales record yet</h2>
+          <p class="max-w-[640px] text-base font-medium sm:text-xl sm:leading-[30px]">Your sales record will appear here once you start recording sales.</p>
+        </div>
+        <button type="button" data-open-sale-dialog class="flex h-16 items-center justify-center gap-2.5 rounded-[5px] bg-navy px-5 text-[22px] font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+          <svg class="size-[34px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2 12h11l2-8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+          Record Sale
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= RECORD SALE DIALOG ================= -->
+  <dialog id="sale-dialog" aria-labelledby="sale-dialog-title" class="m-auto w-[calc(100%-2rem)] max-w-md rounded-[7px] p-6 text-navy backdrop:bg-black/40">
+    <h2 id="sale-dialog-title" class="font-grotesk text-2xl font-bold">Record Sale</h2>
+    <form id="sale-form" novalidate class="mt-4 flex flex-col gap-3">
+      <div>
+        <label for="sale-product" class="text-sm font-semibold">Product name</label>
+        <input id="sale-product" name="product" type="text" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+        <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="product"></p>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label for="sale-quantity" class="text-sm font-semibold">Quantity</label>
+          <input id="sale-quantity" name="quantity" type="number" min="1" step="1" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+          <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="quantity"></p>
+        </div>
+        <div>
+          <label for="sale-price" class="text-sm font-semibold">Unit price (₦)</label>
+          <input id="sale-price" name="price" type="number" min="0" step="0.01" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+          <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="price"></p>
+        </div>
+      </div>
+      <div>
+        <label for="sale-payment" class="text-sm font-semibold">Payment method</label>
+        <select id="sale-payment" name="payment" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 bg-white px-2 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+          <option value="">Select a payment method</option>
+          <option value="Cash">Cash</option>
+          <option value="Bank Transfer">Bank Transfer</option>
+          <option value="Card">Card</option>
+        </select>
+        <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="payment"></p>
+      </div>
+      <div class="mt-2 flex justify-end gap-3">
+        <button id="cancel-sale" type="button" class="h-10 rounded-[5px] border border-navy/50 px-4 text-sm font-semibold hover:bg-navy/5">Cancel</button>
+        <button type="submit" class="h-10 rounded-[5px] bg-navy px-4 text-sm font-semibold text-white hover:bg-[#1b4a85]">Save Sale</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= DATE RANGE DIALOG ================= -->
+  <dialog id="date-dialog" aria-labelledby="date-dialog-title" class="m-auto w-[calc(100%-2rem)] max-w-sm rounded-[7px] p-6 text-navy backdrop:bg-black/40">
+    <h2 id="date-dialog-title" class="font-grotesk text-xl font-bold">Filter by sale date</h2>
+    <form id="date-form" class="mt-4 flex flex-col gap-3">
+      <div>
+        <label for="date-start" class="text-sm font-semibold">From</label>
+        <input id="date-start" type="date" required class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm" />
+      </div>
+      <div>
+        <label for="date-end" class="text-sm font-semibold">To</label>
+        <input id="date-end" type="date" required class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm" />
+      </div>
+      <p id="date-error" class="hidden text-xs text-accent-red">The start date must be before the end date.</p>
+      <div class="mt-2 flex justify-end gap-3">
+        <button id="date-clear" type="button" class="h-10 rounded-[5px] border border-navy/50 px-4 text-sm font-semibold hover:bg-navy/5">Reset</button>
+        <button type="submit" class="h-10 rounded-[5px] bg-navy px-4 text-sm font-semibold text-white hover:bg-[#1b4a85]">Apply</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="essales.js"></script>
+</body>
+</html>
