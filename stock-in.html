@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>Stock In | Stockwise Africa</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; color: #101828; }
+  .font-heading { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+</style>
+</head>
+<body class="bg-white">
+<div class="min-h-screen lg:flex">
+
+  <!-- Sidebar (a top strip on small screens) -->
+  <aside class="flex flex-col gap-2 bg-gradient-to-b from-[#17396b] to-[#2358b8] p-4 text-white lg:sticky lg:top-0 lg:h-screen lg:w-60 lg:shrink-0 lg:p-5">
+    <img src="https://res.cloudinary.com/gzmezpec/image/upload/v1791398404/stw.png" alt="Stockwise Africa" class="h-8 w-auto self-start lg:mb-6" />
+    <nav id="nav" aria-label="Main" class="flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible"></nav>
+    <div id="nav-bottom" class="flex gap-1 lg:mt-auto lg:flex-col"></div>
+  </aside>
+
+  <div class="flex min-h-screen min-w-0 flex-1 flex-col px-4 pb-4 pt-5 lg:px-6">
+    <!-- Top bar -->
+    <header class="flex items-center gap-4">
+      <label class="relative flex-1">
+        <span class="sr-only">Search</span>
+        <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+        <input type="search" placeholder="Search products, categories or SKU..." class="min-h-9 w-full rounded-md border border-slate-300 bg-white pl-9 pr-3 text-xs placeholder:text-slate-500 focus:border-[#17396b] focus:outline-none focus:ring-2 focus:ring-[#17396b]/20" />
+      </label>
+      <a href="notifications.html" id="bell" aria-label="Notifications" class="relative text-slate-800"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="bell-badge" class="absolute -right-1.5 -top-1.5 hidden min-w-4 rounded-full bg-red-500 px-1 text-center text-[9px] font-semibold leading-4 text-white"></span></a>
+      <div class="flex items-center gap-2">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#17396b] text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></svg></span>
+        <span class="text-xs leading-tight"><b id="user-name" class="block">John Doe</b><span id="user-role" class="font-semibold text-slate-600">Owner</span></span>
+      </div>
+    </header>
+
+    <main class="mt-5 flex-1">
+      <a href="product-details.html" class="inline-flex items-center gap-2 text-xs text-slate-800 hover:underline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Back to Product details</a>
+      <h1 class="font-heading mt-1 text-2xl font-bold text-[#17396b]">Stock In</h1>
+
+      <div class="mt-3 grid gap-5 lg:grid-cols-[1fr_190px]">
+        <form id="stockin" novalidate class="rounded-md border border-slate-200 bg-white p-3">
+          <div class="flex items-center gap-4 border-b border-slate-100 pb-3">
+            <span class="flex h-20 w-24 shrink-0 items-center justify-center rounded bg-blue-50 text-[#17396b]" role="img" aria-label="Product image">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10.5 20.5-7-7a4.95 4.95 0 0 1 7-7l7 7a4.95 4.95 0 0 1-7 7z"/><path d="m8.5 8.5 7 7"/></svg></span>
+            <div>
+              <h2 class="font-heading text-2xl font-bold text-[#17396b]" id="p-name"></h2>
+              <p class="mt-1 inline-block rounded bg-slate-100 px-2 py-0.5 text-[10px] text-slate-700" id="p-sku"></p>
+              <p class="mt-2 text-[11px]">Current Stock: <b id="p-stock"></b></p>
+            </div>
+          </div>
+
+          <div class="mt-3 grid gap-3 sm:grid-cols-3">
+            <div class="flex flex-col gap-1">
+              <label for="qty" class="text-[11px] font-medium">Quantity to add</label>
+              <input id="qty" type="number" min="1" step="1" inputmode="numeric" placeholder="Enter quantity" class="min-h-9 rounded-md border border-[#17396b] px-3 text-xs focus:outline-none focus:ring-2 focus:ring-[#17396b]/25 aria-[invalid=true]:border-red-600" />
+              <p id="qty-error" class="hidden text-[11px] text-red-600" role="alert"></p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="cost" class="text-[11px] font-medium">Unit Cost (Optional)</label>
+              <div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-700" aria-hidden="true">₦</span>
+                <input id="cost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" class="min-h-9 w-full rounded-md border border-[#17396b] pl-7 pr-3 text-xs focus:outline-none focus:ring-2 focus:ring-[#17396b]/25 aria-[invalid=true]:border-red-600" /></div>
+              <p id="cost-error" class="hidden text-[11px] text-red-600" role="alert"></p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="supplier" class="text-[11px] font-medium">Supplier (Optional)</label>
+              <div class="relative"><select id="supplier" class="min-h-9 w-full appearance-none rounded-md border border-[#17396b] bg-white px-3 pr-8 text-xs focus:outline-none focus:ring-2 focus:ring-[#17396b]/25">
+                <option value="">Select supplier</option><option>ABC Pharm</option><option>MedSupply Ltd</option><option>HealthPlus Distributors</option></select>
+                <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+          </div>
+
+          <div class="mt-3 flex flex-col gap-1">
+            <label for="note" class="text-[11px] font-medium">Note (optional)</label>
+            <textarea id="note" rows="5" maxlength="250" placeholder="e.g. Restock from supplier" class="rounded-md border border-slate-300 bg-slate-50 p-3 text-xs placeholder:text-slate-400 focus:border-[#17396b] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#17396b]/20"></textarea>
+          </div>
+
+          <p class="mt-3 flex items-center gap-2 rounded bg-slate-200/70 px-3 py-2 text-[11px]" aria-live="polite">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span id="summary"></span></p>
+
+          <p id="done" class="mt-3 hidden rounded bg-emerald-50 px-3 py-2 text-xs text-emerald-800" role="status"></p>
+
+          <div class="mt-3 flex justify-end gap-2">
+            <button type="button" id="cancel" class="min-h-9 rounded-md border border-[#17396b] bg-white px-6 text-xs font-semibold text-[#17396b] hover:bg-slate-50">Cancel</button>
+            <button type="submit" class="min-h-9 rounded-md bg-[#17396b] px-4 text-xs font-semibold text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#17396b] focus-visible:ring-offset-2">Confirm Stock In</button>
+          </div>
+        </form>
+
+        <aside aria-label="Quick actions">
+          <h2 class="mb-2 text-[11px] text-slate-600">Quick actions</h2>
+          <ul id="quick" class="space-y-2"></ul>
+        </aside>
+      </div>
+    </main>
+
+    <div id="sync" class="mt-6 hidden items-center justify-center gap-2 rounded bg-amber-50 px-3 py-2 text-[11px] font-semibold text-amber-800" role="status">
+      <span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span><span id="sync-text"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+// Shared notifications for every page. Each page includes a copy of this code before its own script.
+// Add a notification from any page:  Notify.add({ type: 'update', kind: 'sale', title: '...', message: '...', href: 'page.html' })
+//   type: 'alert' | 'update' | 'system'     kind (picks the icon): 'low-stock' | 'expiry' | 'sync' | 'sale' | 'stock' | 'team'
+const Notify = (() => {
+  const KEY = 'notifications', LOW_STOCK_LEVEL = 10; // change LOW_STOCK_LEVEL once the real rule is agreed
+  let mem = null; // used only if the browser blocks storage
+  const raw = () => { try { const v = JSON.parse(localStorage.getItem(KEY)); if (v !== null) return v; } catch (e) {} return mem; };
+  const save = (list) => { mem = list; try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} };
+  const ago = (h) => new Date(Date.now() - h * 3600e3).toISOString();
+  const all = () => {
+    if (raw() === null) save([ // sample notifications from the design, until the backend provides real ones
+      { id: 's1', type: 'alert', kind: 'low-stock', title: 'Low stock alert', message: 'Paracetamol 500mg is running low (2 left).', href: 'stock-in.html', read: false, createdAt: ago(2) },
+      { id: 's2', type: 'alert', kind: 'expiry', title: 'Product expiring soon', message: 'Multivitamin syrup will expire in 5 days.', href: 'product-details.html', read: false, createdAt: ago(4) },
+      { id: 's3', type: 'alert', kind: 'sync', title: 'Sync issue', message: 'Failed to sync with server - retrying...', href: 'settings.html', read: false, createdAt: ago(6) },
+      { id: 's4', type: 'update', kind: 'sale', title: 'New sale recorded', message: '₦1,800 - 2 items', href: 'sales.html', read: false, createdAt: ago(8) },
+      { id: 's5', type: 'system', kind: 'team', title: 'Team member invited', message: 'Sarah Connor has been invited to join your team.', href: 'team.html', read: true, createdAt: ago(24) },
+    ]);
+    return raw() || [];
+  };
+  const unread = () => all().filter((n) => !n.read).length;
+  const badge = () => {
+    const b = document.getElementById('bell-badge'), bell = document.getElementById('bell'), c = unread();
+    if (!b) return;
+    b.textContent = c > 9 ? '9+' : c; b.classList.toggle('hidden', c === 0);
+    if (bell) bell.setAttribute('aria-label', c ? `Notifications, ${c} unread` : 'Notifications');
+  };
+  const add = (n) => {
+    const id = crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(16).slice(2);
+    save([{ id, read: false, createdAt: new Date().toISOString(), ...n }, ...all()]); badge();
+  };
+  // Losing the connection while changes are waiting is worth telling the user about
+  window.addEventListener('offline', () => {
+    let q = []; try { q = JSON.parse(localStorage.getItem('stockQueue')) || []; } catch (e) {}
+    if (q.some((m) => !m.synced) && !all().some((n) => n.kind === 'sync' && !n.read))
+      add({ type: 'alert', kind: 'sync', title: 'Sync issue', message: 'You are offline. Changes will sync when you reconnect.', href: 'settings.html' });
+  });
+  window.addEventListener('storage', badge);
+  document.addEventListener('DOMContentLoaded', badge);
+  return { all, save, add, unread, badge, LOW_STOCK_LEVEL };
+})();
+</script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const ic = (d) => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const I = {
+    home: '<path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/>', inv: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    cart: '<circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 3h3l3 12h11l2-8H6"/>', bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+    chart: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>', gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+    out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/>', plus: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>',
+    minus: '<circle cx="12" cy="12" r="9"/><path d="M8 12h8"/>', edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>', eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  };
+  const item = (href, label, icon, o = {}) => `<a href="${href}" ${o.current ? 'aria-current="page"' : ''} class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${o.current ? 'bg-white font-medium text-[#17396b]' : (o.red ? 'text-red-300 hover:bg-white/10' : 'text-white hover:bg-white/10')}" ${o.id ? `id="${o.id}"` : ''}>${ic(I[icon])}${label}</a>`;
+  $('nav').innerHTML = item('dashboard.html', 'Home', 'home') + item('inventory.html', 'Inventory', 'inv', { current: true }) + item('sales.html', 'Sales', 'cart') + item('alerts.html', 'Alerts', 'bell') + item('reports.html', 'Reports', 'chart');
+  $('nav-bottom').innerHTML = item('settings.html', 'Settings', 'gear') + item('login.html', 'Logout', 'out', { red: true, id: 'logout' });
+  $('logout').addEventListener('click', () => { try { sessionStorage.clear(); } catch (e) {} });
+
+  const qa = (href, label, icon, active) => `<li><a href="${href}" ${active ? 'aria-current="page"' : ''} class="flex items-center gap-2 rounded-md border px-3 py-2 text-[11px] font-semibold ${active ? 'border-[#17396b] bg-[#17396b] text-white' : 'border-slate-200 bg-white text-slate-800 hover:bg-slate-50'}">${ic(I[icon])}${label}</a></li>`;
+  $('quick').innerHTML = qa('sales.html', 'Record Sale', 'cart') + qa('stock-in.html', 'Add Stock', 'plus', true) + qa('stock-out.html', 'Remove Stock', 'minus') + qa('edit-product.html', 'Edit Product', 'edit') + qa('inventory.html', 'View Stock Inventory', 'eye');
+
+  // Signed-in user (mock until the backend is connected)
+  try { const u = JSON.parse(sessionStorage.getItem('user')) || {}; if (u.role) $('user-role').textContent = u.role; } catch (e) {}
+
+  // Mock product. Stock changes are saved on this device first, then queued for sync (offline first).
+  const product = { id: 'SKU001', name: 'Paracetamol 500mg', sku: 'SKU001', form: 'Tablet', baseStock: 48 };
+  const read = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
+  const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const plural = (n) => `${n} unit${n === 1 ? '' : 's'}`;
+
+  const render = () => {
+    const stock = read('stock:' + product.id, product.baseStock);
+    $('p-name').textContent = product.name; $('p-sku').textContent = 'SKU: ' + product.sku; $('p-stock').textContent = plural(stock);
+    const qty = parseInt($('qty').value, 10);
+    $('summary').innerHTML = qty > 0 ? `New stock quantity will be <b>${plural(stock + qty)}</b>` : `Enter a quantity to see the new stock level (now <b>${plural(stock)}</b>)`;
+    const pending = read('stockQueue', []).filter((m) => !m.synced).length;
+    const banner = $('sync'); banner.classList.toggle('hidden', pending === 0); banner.classList.toggle('flex', pending > 0);
+    $('sync-text').textContent = `${pending} item${pending === 1 ? '' : 's'} pending sync` + (navigator.onLine ? '' : ' (you are offline)');
+  };
+  $('qty').addEventListener('input', render);
+  window.addEventListener('online', render); window.addEventListener('offline', render);
+
+  const fail = (id, m) => { const n = $(id + '-error'); n.textContent = m; n.classList.remove('hidden'); $(id).setAttribute('aria-invalid', 'true'); };
+  $('cancel').addEventListener('click', () => { window.location.href = 'product-details.html'; });
+
+  $('stockin').addEventListener('submit', (event) => {
+    event.preventDefault();
+    ['qty', 'cost'].forEach((id) => { $(id).removeAttribute('aria-invalid'); $(id + '-error').classList.add('hidden'); });
+    $('done').classList.add('hidden');
+    const qty = Number($('qty').value), cost = $('cost').value === '' ? null : Number($('cost').value);
+    let ok = true;
+    if (!$('qty').value) { fail('qty', 'Enter the quantity to add.'); ok = false; }
+    else if (!Number.isInteger(qty) || qty < 1) { fail('qty', 'Enter a whole number of 1 or more.'); ok = false; }
+    if (cost !== null && (Number.isNaN(cost) || cost < 0)) { fail('cost', 'Enter 0 or more.'); ok = false; }
+    if (!ok) { const first = document.querySelector('[aria-invalid="true"]'); if (first) first.focus(); return; }
+
+    // Every movement gets a unique ID, so the server can ignore repeats if a sync is sent twice
+    const id = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(16).slice(2));
+    const stock = read('stock:' + product.id, product.baseStock);
+    write('stock:' + product.id, stock + qty);
+    write('stockQueue', [...read('stockQueue', []), { id, type: 'stock_in', productId: product.id, quantity: qty, unitCost: cost,
+      supplier: $('supplier').value || null, note: $('note').value.trim() || null, createdAt: new Date().toISOString(), synced: false }]);
+
+    // Hand the result to the success page
+    try { sessionStorage.setItem('stockResult', JSON.stringify({ name: product.name, sku: product.sku, form: product.form, previous: stock, added: qty, current: stock + qty })); } catch (e) {}
+    if (typeof Notify !== 'undefined') Notify.add({ type: 'update', kind: 'stock', title: 'Stock added', message: `${plural(qty)} of ${product.name} added. New stock: ${plural(stock + qty)}.`, href: 'stock-in-success.html' });
+    window.location.href = 'stock-in-success.html';
+  });
+  render();
+</script>
+</body>
+</html>
