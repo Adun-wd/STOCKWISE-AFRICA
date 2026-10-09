@@ -1,414 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard | Stockwise Africa</title>
-
-  <!-- Fonts: Inter (interface) and Space Grotesk (headings + logo) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>Home | Stockwise Africa</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; color: #101828; }
+  .font-heading { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+</style>
 </head>
+<body class="bg-white">
+<div class="min-h-screen lg:flex">
 
-<body class="bg-white font-['Inter'] text-[#143967]">
-
-  <!-- ============ Main Sidebar ============ -->
-  <aside
-    id="sidebar"
-    class="fixed left-0 top-0 z-40 flex h-screen w-[350px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-[35px] pl-[30px] pr-[20px] pt-[50px] transition-transform lg:translate-x-0"
-    style="background: radial-gradient(50% 50% at 50% 50%, rgba(20,57,103,0.068) 0%, rgba(20,57,103,0) 100%), linear-gradient(174.48deg, #143967 0.88%, #173D78 58.56%, #245EC2 98.54%);"
-  >
-    <!-- Logo (copy the logo markup you use on index.html here) -->
-    <div class="flex items-center gap-[15px]">
-      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
-  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
-</div>
-      <span class="font-['Space_Grotesk'] text-[24px] font-medium leading-[31px] text-white">Stockwise Africa</span>
-      <button id="close-menu-button" type="button" aria-label="Close menu" class="ml-auto text-white lg:hidden">
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
-      </button>
-    </div>
-
-    <!-- Main navigation (Home is the active page) -->
-    <nav aria-label="Main navigation" class="mt-[100px] flex flex-col gap-[10px]">
-      <a href="#" aria-current="page" class="flex h-[62px] items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-[20px] font-medium leading-6 text-[#143967]">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" /></svg>
-        Home
-      </a>
-      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h1M12 8h4M8 12h1M12 12h4M8 16h1M12 16h4" /></svg>
-        Inventory
-      </a>
-      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>
-        Sales
-      </a>
-      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
-        Alerts
-      </a>
-      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="M7 15l4-4 3 3 6-7" /></svg>
-        Reports
-      </a>
-    </nav>
-
-    <!-- Bottom: Settings + Logout -->
-    <div class="mt-auto flex flex-col gap-[18px] pt-10">
-      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" /></svg>
-        Settings
-      </a>
-      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-[#E85363] hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h5" /><path d="M9 12h12M17 8l4 4-4 4" /></svg>
-        Logout
-      </a>
-    </div>
+  <aside class="flex flex-col gap-2 bg-gradient-to-b from-[#17396b] to-[#2358b8] p-4 text-white lg:sticky lg:top-0 lg:h-screen lg:w-60 lg:shrink-0 lg:p-5">
+    <img src="https://res.cloudinary.com/gzmezpec/image/upload/v1791398404/stw.png" alt="Stockwise Africa" class="h-8 w-auto self-start lg:mb-6" />
+    <nav id="nav" aria-label="Main" class="flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible"></nav>
+    <div id="nav-bottom" class="flex gap-1 lg:mt-auto lg:flex-col"></div>
   </aside>
 
-  <!-- ============ Main area ============ -->
-  <div class="flex min-h-screen flex-col px-4 pb-[10px] pt-[35px] lg:ml-[350px] lg:h-screen lg:px-[30px]">
-
-    <!-- Top Header: search + notifications + profile -->
-    <header class="flex items-center justify-between gap-4">
-      <button id="open-menu-button" type="button" aria-label="Open menu" class="shrink-0 lg:hidden">
-        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-      </button>
-
-      <div class="flex h-[42px] w-full max-w-[910px] items-center gap-[10px] rounded-[5px] border border-[#143967]/50 px-[15px] py-[10px]">
-        <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
-        <input id="search-input" type="search" aria-label="Search products, categories or SKU" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-[14px] leading-[17px] text-[#143967] placeholder:text-[#143967] focus:outline-none" />
-      </div>
-
-      <div class="flex shrink-0 items-center justify-end gap-[30px]">
-        <button type="button" aria-label="Notifications" class="hidden sm:block">
-          <svg class="h-[35px] w-[35px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
-        </button>
-
-        <!-- Profile (click to open a small menu) -->
-        <div class="relative">
-          <button type="button" data-dropdown="profile-menu" aria-haspopup="menu" aria-expanded="false" class="flex items-center gap-[10px] text-left focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-            <svg class="h-[40px] w-[40px]" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#143967" /><circle cx="12" cy="9" r="3.6" fill="#fff" /><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff" /></svg>
-            <span class="hidden flex-col sm:flex">
-              <span class="text-[18px] font-semibold leading-[22px]">John Doe</span>
-              <span class="text-[14px] font-semibold leading-[17px]">Owner</span>
-            </span>
-          </button>
-          <div id="profile-menu" role="menu" class="dropdown-menu absolute right-0 top-full z-30 mt-2 hidden w-[160px] rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
-            <button type="button" role="menuitem" data-message="Profile clicked" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Profile</button>
-            <button type="button" role="menuitem" data-message="Settings clicked" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Settings</button>
-            <button type="button" role="menuitem" data-message="Logout clicked" class="block w-full px-4 py-2 text-left text-[14px] font-medium text-[#E85363] hover:bg-[#EFF4FF]">Logout</button>
-          </div>
-        </div>
+  <div class="flex min-h-screen min-w-0 flex-1 flex-col px-4 pb-4 pt-5 lg:px-6">
+    <header class="flex items-center gap-4">
+      <label class="relative flex-1">
+        <span class="sr-only">Search</span>
+        <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+        <input type="search" placeholder="Search products, categories or SKU..." class="min-h-9 w-full rounded-md border border-slate-300 bg-white pl-9 pr-3 text-xs placeholder:text-slate-500 focus:border-[#17396b] focus:outline-none focus:ring-2 focus:ring-[#17396b]/20" />
+      </label>
+      <a href="notifications.html" id="bell" aria-label="Notifications" class="relative text-slate-800"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="bell-badge" class="absolute -right-1.5 -top-1.5 hidden min-w-4 rounded-full bg-red-500 px-1 text-center text-[9px] font-semibold leading-4 text-white"></span></a>
+      <div class="flex items-center gap-2">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#17396b] text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></svg></span>
+        <span class="text-xs leading-tight"><b class="block">John Doe</b><span id="user-role" class="font-semibold text-slate-600">Owner</span></span>
       </div>
     </header>
 
-    <!-- Main Dashboard (scrolls on its own, scrollbar hidden) -->
-    <main class="mt-[30px] flex min-h-0 flex-1 flex-col gap-5 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-y-auto">
-
-      <!-- Greeting + date + Add Product -->
-      <section class="flex flex-wrap items-center justify-between gap-4">
-        <div class="flex flex-col gap-[5px]">
-          <h1 class="font-['Space_Grotesk'] text-[30px] font-bold leading-[38px]">Good morning, John</h1>
-          <p class="text-[14px] font-medium leading-[17px]">Here’s what’s happening with your store today.</p>
+    <main class="mt-5 flex-1">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 class="font-heading text-2xl font-bold text-[#17396b]"><span id="greet">Welcome</span>, John</h1>
+          <p id="sub" class="text-[11px] text-slate-600"></p>
         </div>
-        <div class="flex items-center gap-[10px]">
-          <!-- Date selector -->
+        <div class="flex items-center gap-3">
           <div class="relative">
-            <button type="button" data-dropdown="date-menu" aria-haspopup="menu" aria-expanded="false" class="flex h-[49px] w-[204px] items-center justify-end gap-[10px] rounded-[5px] border border-[#143967]/20 px-[10px] py-[15px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-              <span class="flex items-center gap-[6px]">
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18M8 2v4M16 2v4" /></svg>
-                <span id="date-label" class="text-[14px] font-medium leading-[17px]">Today, Oct 02, 2026</span>
-              </span>
-              <svg class="h-[10px] w-[14px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8 8 8-8" /></svg>
-            </button>
-            <div id="date-menu" role="menu" class="dropdown-menu absolute right-0 top-full z-30 mt-1 hidden w-full rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
-              <button type="button" role="menuitem" data-label-target="date-label" data-value="Today, Oct 02, 2026" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Today, Oct 02, 2026</button>
-              <button type="button" role="menuitem" data-label-target="date-label" data-value="Yesterday, Oct 01, 2026" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Yesterday, Oct 01, 2026</button>
+            <button type="button" id="day-btn" aria-haspopup="dialog" aria-expanded="false" class="flex min-h-9 items-center gap-2 rounded-md border border-slate-300 bg-white px-3 text-[11px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#17396b]/40">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <span id="day-label"></span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div id="day-panel" role="dialog" aria-label="Choose a day" class="absolute right-0 z-20 mt-2 hidden w-60 rounded-lg border border-slate-200 bg-white p-4 text-xs shadow-xl">
+              <label class="flex flex-col gap-1 font-semibold">Show the store on<input id="day" type="date" class="min-h-9 rounded-md border border-[#17396b] px-2 text-xs font-normal" /></label>
+              <p class="mt-2 text-[10px] text-slate-500">Cards compare this day with the day before.</p>
+              <div class="mt-3 flex justify-between"><button type="button" id="day-today" class="min-h-8 rounded-md border border-[#17396b] px-4 font-semibold text-[#17396b]">Today</button><button type="button" id="day-close" class="min-h-8 rounded-md bg-[#17396b] px-4 font-semibold text-white">Done</button></div>
             </div>
           </div>
-          <button id="add-product-button" type="button" class="flex h-[46px] w-[150px] items-center justify-center gap-[5px] rounded-[5px] bg-[#143967] px-5 py-[13px] text-[14px] font-semibold leading-[17px] text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
-            Add Product
-          </button>
+          <a href="add-product.html" class="flex min-h-9 items-center gap-2 rounded-md bg-[#17396b] px-4 text-[11px] font-semibold text-white hover:opacity-90">+ Add Product</a>
         </div>
-      </section>
+      </div>
 
-      <!-- Statistic cards -->
-      <section aria-label="Key numbers" class="grid grid-cols-1 gap-[15px] sm:grid-cols-2 xl:grid-cols-4">
-        <!-- Total Sales (dark) -->
-        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 bg-[#143967] px-[10px] py-[15px] text-white">
-          <div class="flex items-center gap-[10px]">
-            <span class="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white text-[#143967]">
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>
-            </span>
-            <h2 class="text-[16px] font-semibold leading-[19px]">Total Sales</h2>
-          </div>
-          <div class="flex flex-col gap-[5px]">
-            <p class="text-[34px] font-bold leading-[41px]">₦24,800</p>
-            <p class="flex items-center gap-[6px]">
-              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#E4F8E7] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#226F41]"><svg class="h-2 w-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>12%</span>
-              <span class="text-[12px] font-semibold leading-[15px]">vs. yesterday</span>
-            </p>
-          </div>
-        </div>
-        <!-- Products Sold -->
-        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
-          <div class="flex items-center gap-[10px]">
-            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#143967]/[0.12]">
-              <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1" /><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4" /></svg>
-            </span>
-            <h2 class="text-[16px] font-semibold leading-[19px]">Products Sold</h2>
-          </div>
-          <div class="flex flex-col gap-[5px]">
-            <p class="text-[34px] font-bold leading-[41px]">18</p>
-            <p class="flex items-center gap-[6px]">
-              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#E4F8E7] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#226F41]"><svg class="h-2 w-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>20%</span>
-              <span class="text-[12px] font-semibold leading-[15px]">vs. yesterday</span>
-            </p>
-          </div>
-        </div>
-        <!-- Current Stock Value -->
-        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
-          <div class="flex items-center gap-[10px]">
-            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#143967]/[0.12]">
-              <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 4v3M6 13v4M6 7h0M4 7h4v6H4zM13 6v3M13 15v4M11 9h4v6h-4zM19 3v4" /></svg>
-            </span>
-            <h2 class="text-[16px] font-semibold leading-[19px]">Current Stock Value</h2>
-          </div>
-          <div class="flex flex-col gap-[5px]">
-            <p class="text-[34px] font-bold leading-[41px]">₦532,400</p>
-            <p class="flex items-center gap-[6px]">
-              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#E4F8E7] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#226F41]"><svg class="h-2 w-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>8%</span>
-              <span class="text-[12px] font-semibold leading-[15px]">vs. last week</span>
-            </p>
-          </div>
-        </div>
-        <!-- Low Stock Items -->
-        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
-          <div class="flex items-center gap-[10px]">
-            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#143967]/[0.12]">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z" /><path d="M12 10v4M12 17v.01" /></svg>
-            </span>
-            <h2 class="text-[16px] font-semibold leading-[19px]">Low Stock Items</h2>
-          </div>
-          <div class="flex flex-col gap-[5px]">
-            <p class="text-[34px] font-bold leading-[41px]">18</p>
-            <p class="flex items-center gap-[6px]">
-              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#FEECF0] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#E85363]"><svg class="h-2 w-2 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>2%</span>
-              <span class="text-[12px] font-semibold leading-[15px]">vs. yesterday</span>
-            </p>
-          </div>
-        </div>
-      </section>
+      <ul id="stats" class="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4" aria-live="polite"></ul>
 
-      <!-- Sales Overview + Stock Status -->
-      <div class="flex flex-col gap-[25px] xl:flex-row">
-
-        <!-- Sales Overview -->
-        <section aria-labelledby="sales-overview-heading" class="min-w-0 rounded-[5px] border border-[#143967]/20 px-[15px] pb-[10px] pt-[10px] xl:flex-[741]">
-          <div class="flex items-center justify-between gap-4">
-            <h2 id="sales-overview-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Sales Overview</h2>
-            <div class="relative">
-              <button type="button" data-dropdown="range-menu" aria-haspopup="menu" aria-expanded="false" class="flex h-[39px] w-[121px] items-center justify-end gap-[10px] rounded-[5px] border border-[#143967]/20 p-[10px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-                <span id="range-label" class="text-[14px] font-medium leading-[17px]">Last 7 days</span>
-                <svg class="h-[7px] w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8 8 8-8" /></svg>
-              </button>
-              <div id="range-menu" role="menu" class="dropdown-menu absolute right-0 top-full z-30 mt-1 hidden w-[150px] rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
-                <button type="button" role="menuitem" data-label-target="range-label" data-value="Last 7 days" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Last 7 days</button>
-                <button type="button" role="menuitem" data-label-target="range-label" data-value="Last 14 days" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Last 14 days</button>
-                <button type="button" role="menuitem" data-label-target="range-label" data-value="Last 30 days" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Last 30 days</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Line/area chart drawn with inline SVG (no chart library) -->
-          <svg class="mt-[10px] h-auto w-full" viewBox="0 0 711 226" role="img" aria-label="Line chart of daily sales from Sep 20 to Sep 26, rising from about 10 thousand to about 28 thousand naira">
-            <defs>
-              <linearGradient id="area-gradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0.18" stop-color="#DAE9FB" />
-                <stop offset="1" stop-color="#FFFFFF" />
-              </linearGradient>
-            </defs>
-            <!-- Grid lines -->
-            <g stroke="#143967" stroke-opacity="0.05">
-              <line x1="37" y1="0.5" x2="711" y2="0.5" />
-              <line x1="37" y1="51" x2="711" y2="51" />
-              <line x1="37" y1="102" x2="711" y2="102" />
-              <line x1="37" y1="153" x2="711" y2="153" />
-              <line x1="37" y1="194" x2="711" y2="194" />
-            </g>
-            <!-- Y axis line -->
-            <line x1="37" y1="0" x2="37" y2="194" stroke="#143967" stroke-opacity="0.2" />
-            <!-- Area under the line -->
-            <path d="M38 153 C95.5 153 95.5 121 153 121 C205.5 121 205.5 126 258 126 C312 126 312 93 366 93 C419 93 419 108 472 108 C525.5 108 525.5 70 579 70 C632.5 70 632.5 60 686 60 L686 194 L38 194 Z" fill="url(#area-gradient)" />
-            <!-- The line -->
-            <path d="M38 153 C95.5 153 95.5 121 153 121 C205.5 121 205.5 126 258 126 C312 126 312 93 366 93 C419 93 419 108 472 108 C525.5 108 525.5 70 579 70 C632.5 70 632.5 60 686 60" fill="none" stroke="#143967" stroke-width="2" />
-            <!-- Data points -->
-            <g fill="#143967">
-              <circle cx="153" cy="121" r="4" /><circle cx="258" cy="126" r="4" /><circle cx="366" cy="93" r="4" />
-              <circle cx="472" cy="108" r="4" /><circle cx="579" cy="70" r="4" /><circle cx="686" cy="60" r="4" />
-            </g>
-            <!-- Y axis labels -->
-            <g font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#143967" text-anchor="end">
-              <text x="27" y="10">₦40k</text><text x="27" y="58">₦30k</text><text x="27" y="106">₦20k</text><text x="27" y="154">₦10k</text><text x="27" y="202">₦0</text>
-            </g>
-            <!-- X axis labels -->
-            <g font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#143967" text-anchor="middle">
-              <text x="44" y="214">Sep 20</text><text x="150.7" y="214">Sep 21</text><text x="257.3" y="214">Sep 22</text><text x="364" y="214">Sep 23</text>
-              <text x="470.7" y="214">Sep 24</text><text x="577.3" y="214">Sep 25</text><text x="684" y="214">Sep 26</text>
-            </g>
-          </svg>
+      <div class="mt-3 grid gap-3 lg:grid-cols-[1.45fr_1fr]">
+        <section class="rounded-lg border border-slate-200 bg-white p-4" aria-labelledby="ov">
+          <div class="flex items-center justify-between"><h2 id="ov" class="font-heading text-sm font-bold text-[#17396b]">Sales Overview</h2>
+            <label class="relative"><span class="sr-only">Chart range</span><select id="chart-range" class="min-h-8 appearance-none rounded-md border border-slate-300 bg-white pl-3 pr-7 text-[11px] focus:outline-none focus:ring-2 focus:ring-[#17396b]/25">
+              <option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option><option value="custom">Custom range</option></select>
+              <svg class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></label></div>
+          <div id="chart" class="mt-2"></div>
         </section>
-
-        <!-- Stock Status -->
-        <section aria-labelledby="stock-status-heading" class="flex min-w-0 flex-col justify-center gap-[27px] rounded-[10px] border border-[#143967]/20 px-[30px] py-5 xl:flex-[552]">
-          <h2 id="stock-status-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Stock Status</h2>
-          <div class="flex flex-wrap items-center justify-center gap-[50px] xl:justify-end">
-            <!-- Donut: a conic-gradient circle with a white circle on top -->
-            <div class="relative flex h-[200px] w-[200px] shrink-0 items-center justify-center rounded-full" style="background: conic-gradient(from 19.2deg, #143967 0deg 234deg, #F5A85A 234deg 288deg, #787CF5 288deg 324deg, #EA5157 324deg 360deg);" role="img" aria-label="Donut chart of stock status">
-              <div class="flex h-[150px] w-[150px] flex-col items-center justify-center rounded-full bg-white">
-                <span class="text-[32px] font-bold leading-[39px]">248</span>
-                <span class="text-[14px] font-medium leading-[17px]">Total Products</span>
-              </div>
-            </div>
-            <!-- Legend -->
-            <ul class="flex w-[240px] max-w-full flex-col gap-5 text-[14px] leading-[17px]">
-              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#143967]"></span>In Stock</span><span class="font-bold">188</span></li>
-              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#F5A85A]"></span>Low Stock</span><span class="font-medium">5</span></li>
-              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#EA5157]"></span>Out of Stock</span><span class="font-medium">3</span></li>
-              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#787CF5]"></span>Expiring Soon</span><span class="font-medium">4</span></li>
-            </ul>
-          </div>
+        <section class="rounded-lg border border-slate-200 bg-white p-4" aria-labelledby="ss">
+          <h2 id="ss" class="font-heading text-sm font-bold text-[#17396b]">Stock Status</h2>
+          <div id="status" class="mt-3 flex flex-wrap items-center justify-center gap-6"></div>
         </section>
       </div>
 
-      <!-- Lower area: tables + stock alert on the left, Quick actions on the right -->
-      <div class="flex flex-col gap-[26px] 2xl:flex-row 2xl:items-start">
-
-        <div class="flex min-w-0 flex-col gap-5 2xl:w-[900px] 2xl:shrink-0">
-          <div class="flex flex-col gap-[26px] 2xl:flex-row">
-
-            <!-- Recent Sales -->
-            <section aria-labelledby="recent-sales-heading" class="flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-black/10 px-[10px] pb-[15px] pt-[10px] 2xl:w-[502px] 2xl:shrink-0">
-              <div class="flex items-center justify-between">
-                <h2 id="recent-sales-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Recent Sales</h2>
-                <button type="button" data-message="View all sales clicked" class="flex items-center text-[12px] font-medium leading-[15px] hover:underline focus-visible:outline-2 focus-visible:outline-[#245EC2]">View all
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
-                </button>
-              </div>
-              <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <table class="w-full min-w-[440px] table-fixed text-left text-[12px] font-semibold leading-[15px]">
-                  <caption class="sr-only">Recent sales</caption>
-                  <colgroup><col class="w-[164px]" /><col class="w-[158px]" /><col class="w-[90px]" /><col class="w-[68px]" /></colgroup>
-                  <thead>
-                    <tr class="h-[35px] bg-[#143967]/10">
-                      <th scope="col" class="pl-[5px] font-semibold">Date &amp; Time</th>
-                      <th scope="col" class="font-semibold">Product</th>
-                      <th scope="col" class="font-semibold">Quantity</th>
-                      <th scope="col" class="font-semibold">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody id="recent-sales-body">
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 26, 10:24 AM</td><td class="product-name py-[15px]">Paracetamol 500mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">2</span></td><td class="py-[15px]">₦2,400</td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 26, 09:17 AM</td><td class="product-name py-[15px]">Amoxicillin 250mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">1</span></td><td class="py-[15px]">₦1,800</td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 25, 04:32 PM</td><td class="product-name py-[15px]">Cough Syrup 200ml</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">3</span></td><td class="py-[15px]">₦7,500</td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 25, 02:10 PM</td><td class="product-name py-[15px]">Vitamin C 1000mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">1</span></td><td class="py-[15px]">₦950</td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 25, 11:45 AM</td><td class="product-name py-[15px]">Ibuprofen 400mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">2</span></td><td class="py-[15px]">₦3,000</td></tr>
-                    <tr class="no-results-row hidden"><td colspan="4" class="py-[15px] text-center font-medium">No matching products.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <!-- Low Stock Items -->
-            <section aria-labelledby="low-stock-heading" class="flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-black/10 px-[10px] pb-[15px] pt-[10px] 2xl:w-[372px] 2xl:shrink-0">
-              <div class="flex items-center justify-between">
-                <h2 id="low-stock-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Low Stock Items</h2>
-                <button type="button" data-message="View all low stock items clicked" class="flex items-center text-[12px] font-medium leading-[15px] hover:underline focus-visible:outline-2 focus-visible:outline-[#245EC2]">View all
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
-                </button>
-              </div>
-              <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <table class="w-full min-w-[350px] table-fixed text-left text-[12px] font-semibold leading-[15px]">
-                  <caption class="sr-only">Low stock items</caption>
-                  <colgroup><col class="w-[154px]" /><col class="w-[109px]" /><col class="w-[87px]" /></colgroup>
-                  <thead>
-                    <tr class="h-[35px] bg-[#143967]/10">
-                      <th scope="col" class="pl-[5px] font-semibold">Product</th>
-                      <th scope="col" class="font-semibold">Current Stock</th>
-                      <th scope="col" class="font-semibold">Reorder Level</th>
-                    </tr>
-                  </thead>
-                  <tbody id="low-stock-body">
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Amoxicillin 250mg</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">12</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">20</span></td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Ibuprofen 400mg</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">5</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">10</span></td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Multivitamin Syrup</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">8</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">15</span></td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Declofenac Gel</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">7</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">15</span></td></tr>
-                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Hydrogen Peroxide</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">3</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">10</span></td></tr>
-                    <tr class="no-results-row hidden"><td colspan="3" class="py-[15px] text-center font-medium">No matching products.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          </div>
-
-          <!-- Stock alert -->
-          <aside aria-label="Stock alert" class="flex flex-col gap-[10px] rounded-[7px] bg-[#E7EBF0] px-[15px] py-5 sm:flex-row sm:items-center sm:justify-between">
-            <div class="flex items-start gap-[10px]">
-              <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2v.1h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" /><path d="M10.5 13.5l1.5-3 1.5 3" /></svg>
-              <div class="flex flex-col gap-[5px]">
-                <h3 class="text-[14px] font-bold leading-[17px]">Stock alert</h3>
-                <p class="text-[14px] font-medium leading-[17px]">Cough Syrup 200ml is running low. Only 5 units left in stock.</p>
-              </div>
-            </div>
-            <button type="button" data-message="View product clicked" class="flex h-[39px] w-[159px] shrink-0 items-center justify-center gap-[10px] rounded-[5px] border border-[#143967]/60 px-5 py-[10px] text-[14px] font-semibold leading-[17px] hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
-              View product
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
-            </button>
-          </aside>
-        </div>
-
-        <!-- Quick actions -->
-        <section aria-labelledby="quick-actions-heading" class="flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 p-5 2xl:w-[392px] 2xl:shrink-0">
-          <h2 id="quick-actions-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Quick actions</h2>
-          <div class="flex flex-col gap-[9px]">
-            <button type="button" data-message="Add Product clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-              <span class="flex items-center gap-[10px]"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z" /><path d="M3 7l9 5 9-5M12 12v10" /></svg>Add Product</span>
-              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
-            </button>
-            <button type="button" data-message="Record Sale clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-              <span class="flex items-center gap-[10px]"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>Record Sale</span>
-              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
-            </button>
-            <button type="button" data-message="Add Stock clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-              <span class="flex items-center gap-[10px]"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v8M8 12h8" /></svg>Add Stock</span>
-              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
-            </button>
-            <button type="button" data-message="Remove Stock clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-              <span class="flex items-center gap-[10px]"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10" /><path d="M8 12h8" /></svg>Remove Stock</span>
-              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
-            </button>
-            <button type="button" data-message="View Stock Inventory clicked" class="flex min-h-[52px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
-              <span class="flex items-center gap-[10px]"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="2.5" /></svg>View Stock Inventory</span>
-              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
-            </button>
-          </div>
+      <div class="mt-3 grid gap-3 lg:grid-cols-[1fr_1fr_0.75fr]">
+        <section class="rounded-lg border border-slate-200 bg-white p-4" aria-labelledby="rs">
+          <div class="flex items-center justify-between"><h2 id="rs" class="font-heading text-sm font-bold text-[#17396b]">Recent Sales</h2><a href="sales-list.html" class="text-[10px] hover:underline">View all →</a></div>
+          <div class="mt-2 overflow-x-auto"><table class="w-full min-w-[300px] text-left text-[10px]">
+            <thead class="bg-slate-100 text-slate-700"><tr><th class="px-2 py-2 font-medium">Date &amp; Time</th><th class="px-2 py-2 font-medium">Product</th><th class="px-2 py-2 font-medium">Quantity</th><th class="px-2 py-2 font-medium">Amount</th></tr></thead>
+            <tbody id="recent" class="divide-y divide-slate-100"></tbody></table></div>
+        </section>
+        <section class="rounded-lg border border-slate-200 bg-white p-4" aria-labelledby="ls">
+          <div class="flex items-center justify-between"><h2 id="ls" class="font-heading text-sm font-bold text-[#17396b]">Low Stock Items</h2><a href="alerts.html?tab=low" class="text-[10px] hover:underline">View all →</a></div>
+          <div class="mt-2 overflow-x-auto"><table class="w-full min-w-[300px] text-left text-[10px]">
+            <thead class="bg-slate-100 text-slate-700"><tr><th class="px-2 py-2 font-medium">Product</th><th class="px-2 py-2 text-center font-medium">Current Stock</th><th class="px-2 py-2 text-center font-medium">Reorder Level</th></tr></thead>
+            <tbody id="low" class="divide-y divide-slate-100"></tbody></table></div>
+        </section>
+        <section class="rounded-lg border border-slate-200 bg-white p-4" aria-labelledby="qa">
+          <h2 id="qa" class="font-heading text-sm font-bold text-[#17396b]">Quick actions</h2>
+          <ul id="quick" class="mt-3 space-y-2"></ul>
         </section>
       </div>
+
+      <div id="banner" class="mt-3 hidden items-center justify-between gap-3 rounded-lg bg-slate-100 px-4 py-3"></div>
     </main>
 
-    <!-- Sync status bar -->
-    <div role="status" class="flex h-[40px] shrink-0 items-center justify-center gap-5 rounded-[5px] bg-[#E8EEF6] px-5 py-[10px]">
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.5" /><circle cx="12" cy="12" r="4.5" fill="currentColor" /></svg>
-      <span class="text-[16px] font-bold leading-[19px]">Syncing...</span>
-    </div>
+    <p id="sync" class="mt-3 flex items-center justify-center gap-2 rounded-md bg-slate-100 px-3 py-2.5 text-xs font-semibold text-slate-800" role="status"></p>
   </div>
+</div>
 
-  <script src="dashboard.js"></script>
+<script>
+// Shared notifications for every page. Each page includes a copy of this code before its own script.
+// Add a notification from any page:  Notify.add({ type: 'update', kind: 'sale', title: '...', message: '...', href: 'page.html' })
+//   type: 'alert' | 'update' | 'system'     kind (picks the icon): 'low-stock' | 'expiry' | 'sync' | 'sale' | 'stock' | 'team'
+const Notify = (() => {
+  const KEY = 'notifications', LOW_STOCK_LEVEL = 10; // change LOW_STOCK_LEVEL once the real rule is agreed
+  let mem = null; // used only if the browser blocks storage
+  const raw = () => { try { const v = JSON.parse(localStorage.getItem(KEY)); if (v !== null) return v; } catch (e) {} return mem; };
+  const save = (list) => { mem = list; try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} };
+  const ago = (h) => new Date(Date.now() - h * 3600e3).toISOString();
+  const all = () => {
+    if (raw() === null) save([ // sample notifications from the design, until the backend provides real ones
+      { id: 's1', type: 'alert', kind: 'low-stock', title: 'Low stock alert', message: 'Paracetamol 500mg is running low (2 left).', href: 'stock-in.html', read: false, createdAt: ago(2) },
+      { id: 's2', type: 'alert', kind: 'expiry', title: 'Product expiring soon', message: 'Multivitamin syrup will expire in 5 days.', href: 'product-details.html', read: false, createdAt: ago(4) },
+      { id: 's3', type: 'alert', kind: 'sync', title: 'Sync issue', message: 'Failed to sync with server - retrying...', href: 'settings.html', read: false, createdAt: ago(6) },
+      { id: 's4', type: 'update', kind: 'sale', title: 'New sale recorded', message: '₦1,800 - 2 items', href: 'sales.html', read: false, createdAt: ago(8) },
+      { id: 's5', type: 'system', kind: 'team', title: 'Team member invited', message: 'Sarah Connor has been invited to join your team.', href: 'team.html', read: true, createdAt: ago(24) },
+    ]);
+    return raw() || [];
+  };
+  const unread = () => all().filter((n) => !n.read).length;
+  const badge = () => {
+    const b = document.getElementById('bell-badge'), bell = document.getElementById('bell'), c = unread();
+    if (!b) return;
+    b.textContent = c > 9 ? '9+' : c; b.classList.toggle('hidden', c === 0);
+    if (bell) bell.setAttribute('aria-label', c ? `Notifications, ${c} unread` : 'Notifications');
+  };
+  const add = (n) => {
+    const id = crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(16).slice(2);
+    save([{ id, read: false, createdAt: new Date().toISOString(), ...n }, ...all()]); badge();
+  };
+  // Losing the connection while changes are waiting is worth telling the user about
+  window.addEventListener('offline', () => {
+    let q = []; try { q = JSON.parse(localStorage.getItem('stockQueue')) || []; } catch (e) {}
+    if (q.some((m) => !m.synced) && !all().some((n) => n.kind === 'sync' && !n.read))
+      add({ type: 'alert', kind: 'sync', title: 'Sync issue', message: 'You are offline. Changes will sync when you reconnect.', href: 'settings.html' });
+  });
+  window.addEventListener('storage', badge);
+  document.addEventListener('DOMContentLoaded', badge);
+  return { all, save, add, unread, badge, LOW_STOCK_LEVEL };
+})();
+</script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const ic = (d) => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const I = {
+    home: '<path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/>', inv: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    cart: '<circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 3h3l3 12h11l2-8H6"/>', bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+    chart: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>', gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+    out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/>',
+  };
+  const item = (href, label, icon, o = {}) => `<a href="${href}" ${o.current ? 'aria-current="page"' : ''} ${o.id ? `id="${o.id}"` : ''} class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${o.current ? 'bg-white font-medium text-[#17396b]' : (o.red ? 'text-red-300 hover:bg-white/10' : 'text-white hover:bg-white/10')}">${ic(I[icon])}${label}</a>`;
+  $('nav').innerHTML = item('dashboard.html', 'Home', 'home', { current: true }) + item('inventory.html', 'Inventory', 'inv') + item('sales.html', 'Sales', 'cart') + item('alerts.html', 'Alerts', 'bell') + item('reports.html', 'Reports', 'chart');
+  $('nav-bottom').innerHTML = item('settings.html', 'Settings', 'gear') + item('login.html', 'Logout', 'out', { red: true, id: 'logout' });
+  $('logout').addEventListener('click', () => { try { sessionStorage.clear(); } catch (e) {} });
+  try { const u = JSON.parse(sessionStorage.getItem('user')) || {}; if (u.role) $('user-role').textContent = u.role; } catch (e) {}
+
+  /* ---------- Dates: real calendar, any year, in the business's own time zone ---------- */
+  const TZ_BY_COUNTRY = { Nigeria: 'Africa/Lagos', Ghana: 'Africa/Accra', Kenya: 'Africa/Nairobi', 'South Africa': 'Africa/Johannesburg', Egypt: 'Africa/Cairo',
+    Ethiopia: 'Africa/Addis_Ababa', Tanzania: 'Africa/Dar_es_Salaam', Uganda: 'Africa/Kampala', Rwanda: 'Africa/Kigali', Morocco: 'Africa/Casablanca',
+    Senegal: 'Africa/Dakar', "Côte d'Ivoire": 'Africa/Abidjan', 'Ivory Coast': 'Africa/Abidjan', Cameroon: 'Africa/Douala', Zambia: 'Africa/Lusaka',
+    Zimbabwe: 'Africa/Harare', Algeria: 'Africa/Algiers', Tunisia: 'Africa/Tunis', Angola: 'Africa/Luanda', Namibia: 'Africa/Windhoek', Botswana: 'Africa/Gaborone' };
+  let country = 'Nigeria'; try { country = (JSON.parse(sessionStorage.getItem('business')) || {}).country || 'Nigeria'; } catch (e) {}
+  const TZ = TZ_BY_COUNTRY[country] || 'Africa/Lagos';
+  const MAX_DAYS = 366;                                                   // longest range allowed (agree the real limit with the backend)
+  const isoOf = (date) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+  const utc = (iso) => new Date(iso + 'T00:00:00Z');
+  const addDays = (iso, n) => new Date(utc(iso).getTime() + n * 864e5).toISOString().slice(0, 10);
+  const diff = (a, b) => Math.round((utc(b) - utc(a)) / 864e5);
+  const fmtDay = (iso, o = { month: 'short', day: 'numeric', year: 'numeric' }) => utc(iso).toLocaleDateString('en-US', { ...o, timeZone: 'UTC' });
+  const fmtTime = (hhmm) => { const [h, m] = hhmm.split(':').map(Number); return `${String(h % 12 || 12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`; };
+  const today = () => isoOf(new Date());                                  // switches to 2027 by itself on 1 January 2027
+  const naira = (n) => '₦' + Math.round(n).toLocaleString('en-NG');
+  const short = (n) => n >= 1e6 ? '₦' + +(n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? '₦' + +(n / 1e3).toFixed(1) + 'k' : '₦' + n;
+
+  /* ---------- Data. api.sales() stands in for the backend: it returns finished numbers, the page only displays them ---------- */
+  const PRODUCTS = [['Paracetamol 500mg', 1200], ['Amoxicillin 250mg', 2500], ['Cough Syrup 200ml', 1800], ['Vitamin C 1000mg', 3000], ['Multivitamin Syrup', 1800], ['Ibuprofen 400mg', 1500]];
+  const STAFF = ['Alex Morgan', 'Sarah Connor', 'Mary Smith', 'Jane Doe'], PAY = ['Cash', 'Card', 'Bank Transfer', 'Other'];
+  const rand = (s) => { let t = (s + 0x6D2B79F5) | 0; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const sampleDay = (iso) => { const n = diff('2020-01-01', iso), out = [], count = 1 + Math.floor(rand(n) * 4);
+    for (let k = 0; k < count; k++) { const r = (i) => rand(n * 53 + k * 7 + i), p = PRODUCTS[Math.floor(r(1) * PRODUCTS.length)], q = 1 + Math.floor(r(2) * 3), x = r(3);
+      out.push({ id: `${iso}-${k}`, day: iso, time: `${String(8 + Math.floor(r(4) * 12)).padStart(2, '0')}:${String(Math.floor(r(5) * 60)).padStart(2, '0')}`, product: p[0], qty: q, price: p[1], total: q * p[1],
+        pay: x < .42 ? PAY[0] : x < .74 ? PAY[1] : x < .92 ? PAY[2] : PAY[3], by: STAFF[Math.floor(r(6) * STAFF.length)] }); }
+    return out; };
+  const recorded = () => { let q = []; try { q = JSON.parse(localStorage.getItem('stockQueue')) || []; } catch (e) {}   // sales made on the Record Sale page
+    return q.filter((m) => m.type === 'sale').map((m) => { const d = new Date(m.createdAt), parts = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(d);
+      return { id: m.id, day: isoOf(d), time: parts, product: 'Paracetamol 500mg', qty: m.quantity, price: m.unitPrice, total: m.total, pay: m.paymentMethod === 'POS / Card' ? 'Card' : (PAY.includes(m.paymentMethod) ? m.paymentMethod : 'Other'), by: 'John Doe' }; }); };
+  const nowHM = () => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date());
+  const salesIn = (from, to) => { const out = [], t0 = today(), hm = nowHM(); for (let d = from; d <= to; d = addDays(d, 1)) out.push(...sampleDay(d).filter((x) => x.day !== t0 || x.time <= hm)); return [...out, ...recorded().filter((s) => s.day >= from && s.day <= to)].sort((a, b) => (b.day + b.time).localeCompare(a.day + a.time)); };
+  const sum = (rows) => ({ total: rows.reduce((a, s) => a + s.total, 0), count: rows.length });
+  const api = { sales(from, to) {
+    const len = diff(from, to) + 1, rows = salesIn(from, to), cur = sum(rows), prev = sum(salesIn(addDays(from, -len), addDays(from, -1)));
+    const step = len <= 31 ? 'day' : len <= 120 ? 'week' : 'month', buckets = new Map();
+    const key = (iso) => step === 'day' ? iso : step === 'week' ? addDays(from, Math.floor(diff(from, iso) / 7) * 7) : iso.slice(0, 7);
+    for (let d = from; d <= to; d = addDays(d, 1)) buckets.set(key(d), 0);
+    rows.forEach((s) => buckets.set(key(s.day), buckets.get(key(s.day)) + s.total));
+    const by = PAY.map((p) => ({ name: p, value: rows.filter((s) => s.pay === p).reduce((a, s) => a + s.total, 0) }));
+    return { len, rows, summary: { ...cur, avg: cur.count ? cur.total / cur.count : 0, refunds: 0 }, previous: { ...prev, avg: prev.count ? prev.total / prev.count : 0 }, step,
+      series: [...buckets].map(([k, v]) => ({ key: k, value: v })), by }; } };
+
+  const smooth = (pts) => pts.map((p, i) => { if (!i) return `M${p[0]},${p[1]}`; const q = pts[i - 1], mx = (q[0] + p[0]) / 2; return `C${mx},${q[1]} ${mx},${p[1]} ${p[0]},${p[1]}`; }).join(' ');
+  const niceMax = (v) => { if (v <= 0) return 1000; const e = 10 ** Math.floor(Math.log10(v)), n = v / e; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 4 ? 4 : n <= 5 ? 5 : 10) * e; };
+
+  const chart = (data) => { const W = 560, H = 190, L = 46, B = 24, T = 8, R = 12, pts = data.series, max = niceMax(Math.max(...pts.map((p) => p.value)));
+    if (!pts.some((p) => p.value)) return '<p class="py-16 text-center text-xs text-slate-500">No sales in this date range.</p>';
+    const x = (i) => L + (pts.length < 2 ? (W - L - R) / 2 : i * (W - L - R) / (pts.length - 1)), y = (v) => T + (H - T - B) * (1 - v / max), xy = pts.map((p, i) => [x(i), y(p.value)]);
+    const every = Math.ceil(pts.length / 8), lab = (k) => data.step === 'month' ? fmtDay(k + '-01', { month: 'short', year: '2-digit' }) : fmtDay(k, { month: 'short', day: 'numeric' });
+    const grid = [0, .25, .5, .75, 1].map((f) => `<line x1="${L}" x2="${W - R}" y1="${y(max * f)}" y2="${y(max * f)}" stroke="#e5e7eb"/><text x="${L - 6}" y="${y(max * f) + 3}" text-anchor="end" font-size="8" fill="#667085">${f ? short(max * f) : '₦0'}</text>`).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" class="w-full" role="img" aria-label="Sales from ${fmtDay(range.from)} to ${fmtDay(range.to)}, total ${naira(data.summary.total)}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2358b8" stop-opacity=".25"/><stop offset="1" stop-color="#2358b8" stop-opacity="0"/></linearGradient></defs>${grid}
+      <path d="${smooth(xy)} L${xy[xy.length - 1][0]},${H - B} L${xy[0][0]},${H - B} Z" fill="url(#g)"/><path d="${smooth(xy)}" fill="none" stroke="#17396b" stroke-width="1.5"/>
+      ${pts.length <= 31 ? xy.map((p) => `<circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="#17396b"/>`).join('') : ''}
+      ${pts.map((p, i) => i % every === 0 ? `<text x="${x(i)}" y="${H - 8}" text-anchor="middle" font-size="8" fill="#667085">${lab(p.key)}</text>` : '').join('')}</svg>`; };
+
+  const COLORS = ['#17396b', '#f6a54a', '#7c7cf0', '#ef5350'];
+  const percents = (vals) => { const t = vals.reduce((a, v) => a + v, 0), raw = vals.map((v) => v / t * 100), out = raw.map(Math.floor); let left = 100 - out.reduce((a, v) => a + v, 0);
+    raw.map((r, i) => [r - out[i], i]).sort((x, y) => y[0] - x[0]).forEach(([, i]) => { if (left > 0) { out[i]++; left--; } }); return out; };   // whole numbers that add up to 100
+  const donut = (data) => { const total = data.by.reduce((a, p) => a + p.value, 0), C = 2 * Math.PI * 60; let off = 0;
+    const pct = percents(data.by.map((p) => p.value));
+    if (!total) return '<p class="py-16 text-center text-xs text-slate-500">No sales in this date range.</p>';
+    const rings = data.by.map((p, i) => { const len = p.value / total * C, el = `<circle r="60" cx="80" cy="80" fill="none" stroke="${COLORS[i]}" stroke-width="24" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-off}" transform="rotate(-90 80 80)"/>`; off += len; return el; }).join('');
+    return `<svg viewBox="0 0 160 160" class="h-44 w-44" role="img" aria-label="Sales by payment method">${rings}<text x="80" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#17396b" font-family="Space Grotesk, sans-serif">${naira(total)}</text><text x="80" y="94" text-anchor="middle" font-size="7" fill="#667085">Total Sales</text></svg>
+      <ul class="space-y-3 text-[11px]">${data.by.map((p, i) => `<li class="flex items-center gap-3"><span class="h-2.5 w-2.5 rounded-full" style="background:${COLORS[i]}"></span><span class="w-24">${p.name}</span><b class="font-medium">${pct[i]}%</b></li>`).join('')}</ul>`; };
+
+
+  /* ---------- The store today: every number here comes from the same data as the Sales, Reports and Alerts pages ---------- */
+  let range = { from: addDays(today(), -6), to: today() }, day = today();          // chart range, and the day the cards show
+  const PILL = {};                                                                  // (payment colours are not used on this page)
+  const lowItems = [['a0', 'Amoxicillin 250mg', 'SKU001', 6, 20], ['a3', 'Ibuprofen 400mg', 'SKU004', 9, 10], ['a6', 'Multivitamin Syrup', 'SKU007', 3, 15], ['a7', 'Metformin 500mg', 'SKU008', 8, 15],
+    ['a8', 'Vitamin C 1000mg', 'SKU009', 5, 10], ['a9', 'Cough Syrup 200ml', 'SKU010', 4, 10], ['a10', 'Zinc Tablets', 'SKU011', 7, 10]];        // id, name, SKU, units left, reorder level
+  const OUT = ['a1', 'a11', 'a12'], EXP = ['a2', 'a5', 'a13', 'a14'];               // out-of-stock and expiring alerts on the Alerts page
+  const TOTAL_PRODUCTS = 248, STOCK_VALUE = 532400;                                  // sample until the backend provides them
+  const gone = () => { try { return JSON.parse(localStorage.getItem('alertsDismissed')) || []; } catch (e) { return []; } };
+  const live = (ids) => ids.filter((id) => !gone().includes(id));
+  const sub = (iso, n) => addDays(iso, -n);
+  const chip = (cur, prev, tail, dark) => { const base = dark ? 'text-white/80' : 'text-slate-600';
+    if (!prev) return `<span class="rounded px-1.5 py-0.5 text-[9px] ${dark ? 'bg-white/15' : 'bg-slate-100'} ${base}">no previous data</span>`;
+    const p = Math.round((cur - prev) / prev * 100);
+    return (p === 0 ? `<span class="rounded px-1.5 py-0.5 text-[9px] ${dark ? 'bg-white/15' : 'bg-slate-100'} ${base}">— no change</span>`
+      : `<span class="rounded px-1.5 py-0.5 text-[9px] font-semibold ${p > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-600'}">${p > 0 ? '↑' : '↓'} ${Math.abs(p)}%</span>`) + ` <span class="text-[9px] ${base}">${tail}</span>`; };
+
+  function render() {
+    const t = today(), isToday = day === t, hour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', hourCycle: 'h23' }).format(new Date()));
+    $('greet').textContent = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+    $('sub').textContent = isToday ? "Here's what's happening with your store today." : `Here's what happened with your store on ${fmtDay(day)}.`;
+    $('day-label').textContent = (isToday ? 'Today, ' : '') + fmtDay(day, { month: 'short', day: '2-digit', year: 'numeric' });
+    const cur = salesIn(day, day), prev = salesIn(sub(day, 1), sub(day, 1)), tc = cur.reduce((a, s) => a + s.total, 0), tp = prev.reduce((a, s) => a + s.total, 0);
+    const uc = cur.reduce((a, s) => a + s.qty, 0), up = prev.reduce((a, s) => a + s.qty, 0), low = live(lowItems.map((x) => x[0])).length;
+    const tail = isToday ? 'vs. yesterday' : 'vs. day before';
+    const card = (title, value, extra, icon, dark) => `<li class="rounded-lg border p-4 ${dark ? 'border-[#17396b] bg-[#17396b] text-white' : 'border-slate-200 bg-white'}"><p class="flex items-center gap-2 text-xs font-semibold"><span class="flex h-6 w-6 items-center justify-center rounded-full ${dark ? 'bg-white text-[#17396b]' : 'bg-slate-100 text-[#17396b]'}" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></span>${title}</p><p class="font-heading mt-3 text-3xl font-bold ${dark ? '' : 'text-[#17396b]'}">${value}</p><p class="mt-1">${extra}</p></li>`;
+    $('stats').innerHTML = card('Total Sales', naira(tc), chip(tc, tp, tail, true), I.cart, true) + card('Products Sold', uc, chip(uc, up, tail), '<path d="m21 8-9-5-9 5v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>') +
+      card('Current Stock Value', naira(STOCK_VALUE), chip(1.08, 1, 'vs. last week'), '<circle cx="12" cy="12" r="9"/><path d="M9 9h6M9 12h6M12 9v7"/>') +
+      card('Low Stock Items', low, `<a href="alerts.html?tab=low" class="text-[9px] text-[#17396b] underline">${low ? 'need restocking' : 'all stocked up'}</a>`, '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>');
+
+    data = api.sales(range.from, range.to); $('chart-range').value = range.to === t && ['7', '30', '90'].includes(String(data.len)) ? String(data.len) : '7';
+    $('chart').innerHTML = chart(data);
+
+    const out = live(OUT).length, exp = live(EXP).length, inStock = TOTAL_PRODUCTS - low - out - exp, parts = [['In Stock', inStock, '#17396b'], ['Low Stock', low, '#f6a54a'], ['Out of Stock', out, '#ef5350'], ['Expiring Soon', exp, '#7c7cf0']], C = 2 * Math.PI * 60; let off = 0;
+    $('status').innerHTML = `<svg viewBox="0 0 160 160" class="h-44 w-44" role="img" aria-label="${TOTAL_PRODUCTS} products: ${parts.map((p) => p[1] + ' ' + p[0]).join(', ')}">${parts.map(([, v, c]) => { const len = v / TOTAL_PRODUCTS * C, el = `<circle r="60" cx="80" cy="80" fill="none" stroke="${c}" stroke-width="22" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-off}" transform="rotate(-90 80 80)"/>`; off += len; return el; }).join('')}
+      <text x="80" y="82" text-anchor="middle" font-size="26" font-weight="700" fill="#17396b" font-family="Space Grotesk, sans-serif">${TOTAL_PRODUCTS}</text><text x="80" y="96" text-anchor="middle" font-size="8" fill="#17396b">Total Products</text></svg>
+      <ul class="w-44 space-y-2.5 text-[11px]">${parts.map(([n, v, c]) => `<li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full" style="background:${c}"></span><span class="flex-1">${n}</span><b class="${n === 'In Stock' ? '' : 'font-medium'}">${v}</b></li>`).join('')}</ul>`;
+
+    const recent = salesIn(addDays(t, -30), t).slice(0, 5);
+    $('recent').innerHTML = recent.map((r) => `<tr><td class="px-2 py-2.5 font-medium">${fmtDay(r.day, { month: 'short', day: 'numeric' })}, ${fmtTime(r.time)}</td><td class="px-2 py-2.5 font-medium">${r.product}</td><td class="px-2 py-2.5 text-center">${r.qty}</td><td class="px-2 py-2.5">${naira(r.total)}</td></tr>`).join('') || '<tr><td colspan="4" class="px-2 py-6 text-center text-slate-500">No sales yet.</td></tr>';
+    const lows = lowItems.filter((x) => live([x[0]]).length).sort((a, b) => a[3] - b[3]).slice(0, 5);
+    $('low').innerHTML = lows.map((x) => `<tr><td class="px-2 py-2.5 font-medium">${x[1]}</td><td class="px-2 py-2.5 text-center">${x[3]}</td><td class="px-2 py-2.5 text-center">${x[4]}</td></tr>`).join('') || '<tr><td colspan="3" class="px-2 py-6 text-center text-slate-500">Nothing is running low.</td></tr>';
+    const worst = lows[0]; $('banner').classList.toggle('hidden', !worst); $('banner').classList.toggle('flex', !!worst);
+    if (worst) $('banner').innerHTML = `<p class="flex items-center gap-3 text-[11px]"><span aria-hidden="true">💡</span><span><b class="block text-xs">Stock alert</b>${worst[1]} is running low. Only ${worst[3]} unit${worst[3] === 1 ? '' : 's'} left (reorder level ${worst[4]}).</span></p>
+      <a href="product-details.html?sku=${worst[2]}" class="shrink-0 rounded-md border border-[#17396b] bg-white px-4 py-2 text-[11px] font-semibold text-[#17396b] hover:bg-slate-50">View product →</a>`;
+    syncBar();
+  }
+  const syncBar = () => { let q = []; try { q = JSON.parse(localStorage.getItem('stockQueue')) || []; } catch (e) {} const n = q.filter((m) => !m.synced).length, on = navigator.onLine;
+    $('sync').innerHTML = `<span class="h-2.5 w-2.5 rounded-full ${on ? (n ? 'bg-amber-500' : 'bg-emerald-500') : 'bg-slate-500'}" aria-hidden="true"></span>` + (!on ? `Offline${n ? ' • ' + n + ' change' + (n === 1 ? '' : 's') + ' saved on this device' : ''}` : n ? `${n} change${n === 1 ? '' : 's'} waiting to sync` : 'All changes synced'); };
+  window.addEventListener('online', syncBar); window.addEventListener('offline', syncBar);
+
+  const qa = (href, label, icon) => `<li><a href="${href}" class="flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2.5 text-[11px] font-semibold hover:bg-slate-50">${ic(I[icon])}<span class="flex-1">${label}</span><span aria-hidden="true">›</span></a></li>`;
+  Object.assign(I, { plus: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>', minus: '<circle cx="12" cy="12" r="9"/><path d="M8 12h8"/>', eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>', box: '<path d="m21 8-9-5-9 5v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>' });
+  $('quick').innerHTML = qa('add-product.html', 'Add Product', 'box') + qa('record-sale.html', 'Record Sale', 'cart') + qa('stock-in.html', 'Add Stock', 'plus') + qa('stock-out.html', 'Remove Stock', 'minus') + qa('inventory.html', 'View Stock Inventory', 'eye');
+
+  /* ---------- Controls ---------- */
+  const panel = $('day-panel'), openDay = (on) => { panel.classList.toggle('hidden', !on); $('day-btn').setAttribute('aria-expanded', on); if (on) { $('day').max = today(); $('day').value = day; $('day').focus(); } };
+  $('day-btn').addEventListener('click', () => openDay(panel.classList.contains('hidden')));
+  $('day').addEventListener('change', (e) => { const v = e.target.value; if (v && v <= today()) { day = v; render(); } });
+  $('day-today').addEventListener('click', () => { day = today(); $('day').value = day; render(); });
+  $('day-close').addEventListener('click', () => { openDay(false); $('day-btn').focus(); });
+  document.addEventListener('click', (e) => { if (!panel.classList.contains('hidden') && !e.target.closest('#day-panel, #day-btn')) openDay(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.classList.contains('hidden')) { openDay(false); $('day-btn').focus(); } });
+  $('chart-range').addEventListener('change', (e) => { const n = Number(e.target.value); if (n) { range = { from: addDays(today(), -(n - 1)), to: today() }; render(); } });
+  let data = null; render();
+</script>
 </body>
 </html>

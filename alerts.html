@@ -1,215 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alerts</title>
-
-  <!-- Tailwind CSS (CDN version, no build step needed) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <!-- Space Grotesk for the heading, Inter for everything else -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    body {
-      font-family: "Inter", sans-serif;
-    }
-    .font-heading {
-      font-family: "Space Grotesk", sans-serif;
-    }
-    /* Hides the scrollbar on the filter pill row while still allowing
-       it to scroll horizontally by touch, trackpad, or drag. */
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>Alerts | Stockwise Africa</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; color: #101828; }
+  .font-heading { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+</style>
 </head>
+<body class="bg-white">
+<div class="min-h-screen lg:flex">
 
-<body class="bg-white min-h-screen flex justify-center">
+  <aside class="flex flex-col gap-2 bg-gradient-to-b from-[#17396b] to-[#2358b8] p-4 text-white lg:sticky lg:top-0 lg:h-screen lg:w-60 lg:shrink-0 lg:p-5">
+    <img src="https://res.cloudinary.com/gzmezpec/image/upload/v1791398404/stw.png" alt="Stockwise Africa" class="h-8 w-auto self-start lg:mb-6" />
+    <nav id="nav" aria-label="Main" class="flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible"></nav>
+    <div id="nav-bottom" class="flex gap-1 lg:mt-auto lg:flex-col"></div>
+  </aside>
 
-  <main class="w-full max-w-[440px] pb-28">
-
-    <!-- ===================== HEADER ===================== -->
-    <header class="flex items-start justify-between px-5 pt-6 gap-4">
-      <div class="flex flex-col gap-[5px]">
-        <h1 class="font-heading font-bold text-[20px] leading-[26px] text-[#143967]">Alerts</h1>
-        <p class="text-[10px] leading-[12px] font-medium text-[#143967]">
-          Stay on top of important updates and take action when needed.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-[10px] shrink-0">
-        <!-- Notification bell with a small dot, matching the reference icon -->
-        <button type="button" aria-label="Notifications" class="relative w-6 h-6">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
-            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-          </svg>
-          <span class="absolute top-[1px] right-[1px] w-[6px] h-[6px] rounded-full bg-black"></span>
-        </button>
-
-        <!-- Profile avatar: a solid navy circle with a simple white person icon -->
-        <button type="button" aria-label="Profile" class="w-9 h-9 rounded-full bg-[#143967] flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-5 h-5">
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
-          </svg>
-        </button>
+  <div class="flex min-h-screen min-w-0 flex-1 flex-col px-4 pb-4 pt-5 lg:px-6">
+    <header class="flex items-center gap-4">
+      <label class="relative flex-1">
+        <span class="sr-only">Search</span>
+        <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+        <input type="search" placeholder="Search products, categories or SKU..." class="min-h-9 w-full rounded-md border border-slate-300 bg-white pl-9 pr-3 text-xs placeholder:text-slate-500 focus:border-[#17396b] focus:outline-none focus:ring-2 focus:ring-[#17396b]/20" />
+      </label>
+      <a href="notifications.html" id="bell" aria-label="Notifications" class="relative text-slate-800"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="bell-badge" class="absolute -right-1.5 -top-1.5 hidden min-w-4 rounded-full bg-red-500 px-1 text-center text-[9px] font-semibold leading-4 text-white"></span></a>
+      <div class="flex items-center gap-2">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#17396b] text-white" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></svg></span>
+        <span class="text-xs leading-tight"><b class="block">John Doe</b><span id="user-role" class="font-semibold text-slate-600">Owner</span></span>
       </div>
     </header>
 
-    <!-- ===================== STAT CARDS ===================== -->
-    <section class="grid grid-cols-2 gap-[10px] px-5 mt-5">
-
-      <!-- Low Stock -->
-      <div class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[5px]">
-        <div class="flex items-center gap-1">
-          <span class="w-[22px] h-[22px] rounded-full bg-[#CD7D40]/20 flex items-center justify-center shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-3 h-3">
-              <path d="M12 2L1 21h22L12 2z" fill="#CD7D40" />
-              <rect x="11" y="9" width="2" height="6" rx="1" fill="white" />
-              <circle cx="12" cy="18" r="1.2" fill="white" />
-            </svg>
-          </span>
-          <span class="text-[10px] leading-[12px] font-semibold text-[#143967]">Low Stock</span>
+    <main class="mt-5 flex-1">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 class="font-heading text-3xl font-bold text-[#17396b]">Alerts</h1>
+          <p class="text-[11px] text-slate-600">Stay on top of important updates and take action when needed.</p>
         </div>
-        <p class="text-[20px] leading-[24px] font-bold text-[#143967]">7</p>
-        <p class="text-[9px] leading-[11px] font-medium text-[#143967]">items need restocking</p>
+        <div class="flex items-center gap-4">
+          <p class="flex items-center gap-2 text-[11px] leading-tight text-slate-600">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>Last updated<br /><span id="updated" class="text-xs text-slate-900"></span></span></p>
+          <button type="button" id="mark-all" class="flex min-h-9 items-center gap-2 rounded-md border border-[#17396b] bg-white px-4 text-xs font-semibold text-[#17396b] hover:bg-slate-50 disabled:opacity-50">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Mark all as read</button>
+        </div>
       </div>
 
-      <!-- Out of Stock -->
-      <div class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[5px]">
-        <div class="flex items-center gap-1">
-          <span class="w-[22px] h-[22px] rounded-full bg-[#E85363]/20 flex items-center justify-center shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#E85363" class="w-3 h-3">
-              <circle cx="12" cy="12" r="10" />
-              <rect x="7" y="11" width="10" height="2" fill="white" />
-            </svg>
-          </span>
-          <span class="text-[10px] leading-[12px] font-semibold text-[#143967]">Out of Stock</span>
-        </div>
-        <p class="text-[20px] leading-[24px] font-bold text-[#143967]">3</p>
-        <p class="text-[9px] leading-[11px] font-medium text-[#143967]">items are out of stock</p>
+      <ul id="cards" class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4"></ul>
+
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <div id="tabs" role="tablist" aria-label="Filter alerts" class="inline-flex max-w-full gap-1 overflow-x-auto rounded-md bg-slate-200/70 p-1"></div>
+        <label class="relative"><span class="sr-only">Sort alerts</span>
+          <select id="sort" class="min-h-10 w-44 appearance-none rounded-md border border-[#17396b] bg-white px-3 pr-8 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#17396b]/25">
+            <option value="new">Newest first</option><option value="old">Oldest first</option><option value="name">Product A to Z</option></select>
+          <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></label>
       </div>
 
-      <!-- Expiring Soon -->
-      <div class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[5px]">
-        <div class="flex items-center gap-1">
-          <span class="w-[22px] h-[22px] rounded-full bg-[#CD7D40]/20 flex items-center justify-center shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-3 h-3">
-              <circle cx="12" cy="12" r="10" fill="#CD7D40" />
-              <path d="M12 7v5l3 3" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </span>
-          <span class="text-[10px] leading-[12px] font-semibold text-[#143967]">Expiring Soon</span>
-        </div>
-        <p class="text-[20px] leading-[24px] font-bold text-[#143967]">4</p>
-        <p class="text-[9px] leading-[11px] font-medium text-[#143967]">items will expire within 7 days</p>
+      <div class="mt-3 overflow-x-auto rounded-md border border-slate-200 bg-white">
+        <table class="w-full min-w-[760px] text-left text-[11px]">
+          <thead class="bg-slate-100 text-slate-700"><tr><th class="px-4 py-3 font-medium">Product</th><th class="px-4 py-3 font-medium">Type</th><th class="px-4 py-3 font-medium">Details</th><th class="px-4 py-3 font-medium">Date</th><th class="px-4 py-3 font-medium">Actions</th></tr></thead>
+          <tbody id="rows" class="divide-y divide-slate-100"></tbody>
+        </table>
       </div>
+      <p id="live" class="sr-only" role="status"></p>
+    </main>
+  </div>
+</div>
 
-      <!-- Sync Issues -->
-      <div class="border border-[#143967]/20 rounded-[10px] p-[10px] flex flex-col gap-[5px]">
-        <div class="flex items-center gap-1">
-          <span class="w-[22px] h-[22px] rounded-full bg-[#686CE4]/20 flex items-center justify-center shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#686CE4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
-              <path d="M4 12a8 8 0 0 1 14-5" />
-              <path d="M20 12a8 8 0 0 1-14 5" />
-              <path d="M18 4v3h-3M6 20v-3h3" />
-            </svg>
-          </span>
-          <span class="text-[10px] leading-[12px] font-semibold text-[#143967]">Sync Issues</span>
-        </div>
-        <p class="text-[20px] leading-[24px] font-bold text-[#143967]">1</p>
-        <p class="text-[9px] leading-[11px] font-medium text-[#143967]">Limited access (sales &amp; inventory)</p>
-      </div>
-    </section>
+<script>
+// Shared notifications for every page. Each page includes a copy of this code before its own script.
+// Add a notification from any page:  Notify.add({ type: 'update', kind: 'sale', title: '...', message: '...', href: 'page.html' })
+//   type: 'alert' | 'update' | 'system'     kind (picks the icon): 'low-stock' | 'expiry' | 'sync' | 'sale' | 'stock' | 'team'
+const Notify = (() => {
+  const KEY = 'notifications', LOW_STOCK_LEVEL = 10; // change LOW_STOCK_LEVEL once the real rule is agreed
+  let mem = null; // used only if the browser blocks storage
+  const raw = () => { try { const v = JSON.parse(localStorage.getItem(KEY)); if (v !== null) return v; } catch (e) {} return mem; };
+  const save = (list) => { mem = list; try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} };
+  const ago = (h) => new Date(Date.now() - h * 3600e3).toISOString();
+  const all = () => {
+    if (raw() === null) save([ // sample notifications from the design, until the backend provides real ones
+      { id: 's1', type: 'alert', kind: 'low-stock', title: 'Low stock alert', message: 'Paracetamol 500mg is running low (2 left).', href: 'stock-in.html', read: false, createdAt: ago(2) },
+      { id: 's2', type: 'alert', kind: 'expiry', title: 'Product expiring soon', message: 'Multivitamin syrup will expire in 5 days.', href: 'product-details.html', read: false, createdAt: ago(4) },
+      { id: 's3', type: 'alert', kind: 'sync', title: 'Sync issue', message: 'Failed to sync with server - retrying...', href: 'settings.html', read: false, createdAt: ago(6) },
+      { id: 's4', type: 'update', kind: 'sale', title: 'New sale recorded', message: '₦1,800 - 2 items', href: 'sales.html', read: false, createdAt: ago(8) },
+      { id: 's5', type: 'system', kind: 'team', title: 'Team member invited', message: 'Sarah Connor has been invited to join your team.', href: 'team.html', read: true, createdAt: ago(24) },
+    ]);
+    return raw() || [];
+  };
+  const unread = () => all().filter((n) => !n.read).length;
+  const badge = () => {
+    const b = document.getElementById('bell-badge'), bell = document.getElementById('bell'), c = unread();
+    if (!b) return;
+    b.textContent = c > 9 ? '9+' : c; b.classList.toggle('hidden', c === 0);
+    if (bell) bell.setAttribute('aria-label', c ? `Notifications, ${c} unread` : 'Notifications');
+  };
+  const add = (n) => {
+    const id = crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(16).slice(2);
+    save([{ id, read: false, createdAt: new Date().toISOString(), ...n }, ...all()]); badge();
+  };
+  // Losing the connection while changes are waiting is worth telling the user about
+  window.addEventListener('offline', () => {
+    let q = []; try { q = JSON.parse(localStorage.getItem('stockQueue')) || []; } catch (e) {}
+    if (q.some((m) => !m.synced) && !all().some((n) => n.kind === 'sync' && !n.read))
+      add({ type: 'alert', kind: 'sync', title: 'Sync issue', message: 'You are offline. Changes will sync when you reconnect.', href: 'settings.html' });
+  });
+  window.addEventListener('storage', badge);
+  document.addEventListener('DOMContentLoaded', badge);
+  return { all, save, add, unread, badge, LOW_STOCK_LEVEL };
+})();
+</script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const ic = (d) => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const I = {
+    home: '<path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/>', inv: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    cart: '<circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 3h3l3 12h11l2-8H6"/>', bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+    chart: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>', gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+    out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/>',
+  };
+  const item = (href, label, icon, o = {}) => `<a href="${href}" ${o.current ? 'aria-current="page"' : ''} ${o.id ? `id="${o.id}"` : ''} class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${o.current ? 'bg-white font-medium text-[#17396b]' : (o.red ? 'text-red-300 hover:bg-white/10' : 'text-white hover:bg-white/10')}">${ic(I[icon])}${label}</a>`;
+  $('nav').innerHTML = item('dashboard.html', 'Home', 'home') + item('inventory.html', 'Inventory', 'inv') + item('sales.html', 'Sales', 'cart') + item('alerts.html', 'Alerts', 'bell', { current: true }) + item('reports.html', 'Reports', 'chart');
+  $('nav-bottom').innerHTML = item('settings.html', 'Settings', 'gear') + item('login.html', 'Logout', 'out', { red: true, id: 'logout' });
+  $('logout').addEventListener('click', () => { try { sessionStorage.clear(); } catch (e) {} });
+  try { const u = JSON.parse(sessionStorage.getItem('user')) || {}; if (u.role) $('user-role').textContent = u.role; } catch (e) {}
 
-    <!-- ===================== FILTER PILLS ===================== -->
-    <!-- Horizontally scrollable row. Clicking a pill filters the list below. -->
-    <nav id="filterRow" class="no-scrollbar flex items-center gap-[10px] px-5 mt-5 overflow-x-auto pb-1">
-      <button type="button" class="filter-pill shrink-0 px-[20px] py-[10px] rounded-[5px] text-[10px] leading-[12px] font-semibold bg-[#143967] text-white" data-filter="all">
-        All (15)
-      </button>
-      <button type="button" class="filter-pill shrink-0 px-[20px] py-[10px] rounded-[5px] text-[10px] leading-[12px] font-semibold bg-[#143967]/10 text-[#143967]" data-filter="Low Stock">
-        Low Stock (7)
-      </button>
-      <button type="button" class="filter-pill shrink-0 px-[20px] py-[10px] rounded-[5px] text-[10px] leading-[12px] font-semibold bg-[#143967]/10 text-[#143967]" data-filter="Out of Stock">
-        Out of Stock (3)
-      </button>
-      <button type="button" class="filter-pill shrink-0 px-[20px] py-[10px] rounded-[5px] text-[10px] leading-[12px] font-semibold bg-[#143967]/10 text-[#143967]" data-filter="Expiring Soon">
-        Expiring Soon (7)
-      </button>
-      <button type="button" class="filter-pill shrink-0 px-[20px] py-[10px] rounded-[5px] text-[10px] leading-[12px] font-semibold bg-[#143967]/10 text-[#143967]" data-filter="Sync Issue">
-        Sync Issues (1)
-      </button>
-    </nav>
+  // Sample alerts (the backend will supply real ones). Dates are set relative to now.
+  const mins = (m) => new Date(Date.now() - m * 60000).toISOString();
+  const TYPES = { low: ['Low Stock', 'bg-amber-100 text-amber-700'], out: ['Out of Stock', 'bg-rose-100 text-rose-600'], exp: ['Expiring Soon', 'bg-orange-100 text-orange-700'], sync: ['Sync Issue', 'bg-indigo-100 text-indigo-600'] };
+  const seed = [
+    ['Amoxicillin 250mg', 'SKU001', 'low', 'Only 6 units left in stock', 'Reorder soon to avoid running out', 29],
+    ['Loratadine 10mg', 'SKU002', 'out', 'Currently out of stock', 'Restock to resume sales', 54],
+    ['Hydrogen Peroxide', 'SKU003', 'exp', 'Expires in 5 days', 'Consider discounting or using soon', 80],
+    ['Ibuprofen 400mg', 'SKU004', 'low', 'Only 9 units left in stock', 'Reorder soon to avoid running out', 105],
+    ['Diclofenac Gel', 'SKU005', 'sync', 'Failed to sync with server', 'Will retry automatically', 129],
+    ['Oral Rehydration Salts', 'SKU006', 'exp', 'Expires in 3 days', 'Consider discounting or using soon', 151],
+    ['Multivitamin Syrup', 'SKU007', 'low', 'Only 3 units left in stock', 'Reorder soon to avoid running out', 175],
+    ['Metformin 500mg', 'SKU008', 'low', 'Only 8 units left in stock', 'Reorder soon to avoid running out', 300],
+    ['Vitamin C 1000mg', 'SKU009', 'low', 'Only 5 units left in stock', 'Reorder soon to avoid running out', 420],
+    ['Cough Syrup 200ml', 'SKU010', 'low', 'Only 4 units left in stock', 'Reorder soon to avoid running out', 560],
+    ['Zinc Tablets', 'SKU011', 'low', 'Only 7 units left in stock', 'Reorder soon to avoid running out', 700],
+    ['Salbutamol Inhaler', 'SKU012', 'out', 'Currently out of stock', 'Restock to resume sales', 860],
+    ['Chlorhexidine Wash', 'SKU013', 'out', 'Currently out of stock', 'Restock to resume sales', 1000],
+    ['Eye Drops', 'SKU014', 'exp', 'Expires in 6 days', 'Consider discounting or using soon', 1200],
+    ['Antacid Suspension', 'SKU015', 'exp', 'Expires in 7 days', 'Consider discounting or using soon', 1400],
+  ].map(([name, sku, type, title, hint, m], i) => ({ id: 'a' + i, name, sku, type, title, hint, at: mins(m) }));
 
-    <!-- ===================== ALERT LIST ===================== -->
-    <!-- Cards are generated by app.js from the alertsData array, so adding
-         a new alert only means adding one object to that list. -->
-    <section id="alertList" class="flex flex-col gap-[5px] px-5 mt-5"></section>
+  const read = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
+  const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  let alerts = seed.filter((a) => !read('alertsDismissed', []).includes(a.id));
+  const wanted = new URLSearchParams(location.search).get('tab');
+  let tab = ['low', 'out', 'exp', 'sync'].includes(wanted) ? wanted : 'all', seen = read('alertsRead', []);
+  const count = (t) => alerts.filter((a) => t === 'all' || a.type === t).length;
+  const d = (iso) => new Date(iso);
+  $('updated').textContent = d(new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' • ' + d(new Date()).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 
-    <!-- ===================== BOTTOM NAV BAR ===================== -->
-    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] bg-white border-t border-black/10 flex items-center justify-between px-5 py-[10px]">
+  const CARD = [['low', 'Low Stock', 'items need restocking', 'bg-amber-100 text-amber-600', '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'],
+    ['out', 'Out of Stock', 'items are out of stock', 'bg-rose-100 text-rose-500', '<circle cx="12" cy="12" r="9"/><path d="M8 12h8"/>'],
+    ['exp', 'Expiring Soon', 'items will expire within 7 days', 'bg-orange-100 text-orange-500', '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'],
+    ['sync', 'Sync Issues', 'items failed to sync', 'bg-indigo-100 text-indigo-500', '<path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/>']];
 
-      <button type="button" class="flex flex-col items-center justify-center gap-1 text-[#143967]">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z" />
-        </svg>
-        <span class="text-[13.5px]">Home</span>
-      </button>
+  const render = () => {
+    $('cards').innerHTML = CARD.map(([k, t, s, c, p]) => `<li class="rounded-lg border border-slate-200 bg-white p-4">
+      <p class="flex items-center gap-2 text-xs font-semibold"><span class="flex h-6 w-6 items-center justify-center rounded-full ${c}" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${p}</svg></span>${t}</p>
+      <p class="font-heading mt-3 text-3xl font-bold text-[#17396b]">${count(k)}</p><p class="mt-1 text-[10px] text-slate-600">${s}</p></li>`).join('');
+    $('tabs').innerHTML = [['all', 'All'], ['low', 'Low Stock'], ['out', 'Out of Stock'], ['exp', 'Expiring Soon'], ['sync', 'Sync Issues']].map(([k, l]) =>
+      `<button role="tab" data-tab="${k}" aria-selected="${tab === k}" class="whitespace-nowrap rounded px-4 py-2 text-[10px] font-semibold ${tab === k ? 'bg-[#17396b] text-white' : 'text-slate-700 hover:bg-white/60'}">${l} (${count(k)})</button>`).join('');
+    const sort = $('sort').value;
+    const list = alerts.filter((a) => tab === 'all' || a.type === tab).sort((a, b) => sort === 'name' ? a.name.localeCompare(b.name) : sort === 'old' ? d(a.at) - d(b.at) : d(b.at) - d(a.at));
+    $('mark-all').disabled = alerts.every((a) => seen.includes(a.id));
+    $('rows').innerHTML = list.length ? list.map((a) => { const [label, color] = TYPES[a.type]; const dt = d(a.at); return `
+      <tr class="${seen.includes(a.id) ? '' : 'bg-blue-50/30'}">
+        <td class="px-4 py-3"><div class="flex items-center gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded bg-blue-50 text-[#17396b]" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5-7-7a4.95 4.95 0 0 1 7-7l7 7a4.95 4.95 0 0 1-7 7z"/><path d="m8.5 8.5 7 7"/></svg></span>
+          <span><b class="block text-xs">${a.name}</b><span class="text-[10px] text-slate-600">SKU: ${a.sku}</span></span></div></td>
+        <td class="px-4 py-3"><span class="rounded px-2.5 py-1 text-[10px] font-semibold ${color}">${label}</span></td>
+        <td class="px-4 py-3"><b class="block">${a.title}</b><span class="text-[10px] text-slate-600">${a.hint}</span></td>
+        <td class="px-4 py-3"><b class="block">${dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</b><span class="text-[10px] text-slate-600">${dt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span></td>
+        <td class="px-4 py-3"><div class="flex items-center gap-3">
+          <a href="product-details.html?sku=${a.sku}" data-seen="${a.id}" class="rounded-md border border-[#17396b] bg-white px-3 py-1.5 text-[11px] font-semibold text-[#17396b] hover:bg-slate-50">View Product</a>
+          <button type="button" data-dismiss="${a.id}" aria-label="Dismiss alert for ${a.name}" class="text-slate-700 hover:text-red-600">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></svg></button></div></td>
+      </tr>`; }).join('') : '<tr><td colspan="5" class="px-4 py-10 text-center text-xs text-slate-500">No alerts here. Everything looks good.</td></tr>';
+  };
 
-      <button type="button" class="flex flex-col items-center justify-center gap-1 text-[#143967]">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="4" y="4" width="16" height="16" rx="2" />
-          <path d="M8 9h8M8 13h5" />
-        </svg>
-        <span class="text-[13.5px]">Inventory</span>
-      </button>
-
-      <button type="button" class="flex flex-col items-center justify-center gap-1 text-[#143967]">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="4" y="3" width="16" height="18" rx="2" />
-          <path d="M7 7h10M7 11h3M12 11h3M17 11h0M7 15h3M12 15h3M17 15h0" />
-        </svg>
-        <span class="text-[13.5px]">Sales</span>
-      </button>
-
-      <!-- Alerts is the active tab on this screen: navy pill, white icon/text -->
-      <button type="button" class="flex flex-col items-center justify-center gap-1 px-[15px] py-1 rounded-full bg-[#143967] text-white">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M6 10a6 6 0 0 1 12 0c0 3 1 4 1 5H5c0-1 1-2 1-5z" />
-          <path d="M10 18a2 2 0 0 0 4 0" />
-        </svg>
-        <span class="text-[13.5px]">Alerts</span>
-      </button>
-
-      <button type="button" class="flex flex-col items-center justify-center gap-1 text-[#143967]">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#143967">
-          <circle cx="4" cy="4" r="1.7" />
-          <circle cx="10" cy="4" r="1.7" />
-          <circle cx="16" cy="4" r="1.7" />
-          <circle cx="4" cy="10" r="1.7" />
-          <circle cx="10" cy="10" r="1.7" />
-          <circle cx="16" cy="10" r="1.7" />
-          <circle cx="4" cy="16" r="1.7" />
-          <circle cx="10" cy="16" r="1.7" />
-          <circle cx="16" cy="16" r="1.7" />
-        </svg>
-        <span class="text-[13.5px]">More</span>
-      </button>
-    </nav>
-  </main>
-
-  <script src="alerts.js"></script>
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('button, a'); if (!t) return;
+    if (t.dataset.tab) { tab = t.dataset.tab; render(); }
+    else if (t.dataset.dismiss) {
+      write('alertsDismissed', [...read('alertsDismissed', []), t.dataset.dismiss]);
+      const a = alerts.find((x) => x.id === t.dataset.dismiss); alerts = alerts.filter((x) => x.id !== t.dataset.dismiss);
+      $('live').textContent = `Alert for ${a.name} dismissed.`; render();
+    } else if (t.id === 'mark-all') { seen = alerts.map((a) => a.id); write('alertsRead', seen); render(); }
+    else if (t.dataset.seen) { seen = [...new Set([...seen, t.dataset.seen])]; write('alertsRead', seen); }
+  });
+  $('sort').addEventListener('change', render);
+  render();
+</script>
 </body>
 </html>

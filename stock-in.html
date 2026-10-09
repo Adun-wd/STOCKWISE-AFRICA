@@ -162,7 +162,7 @@ const Notify = (() => {
   $('logout').addEventListener('click', () => { try { sessionStorage.clear(); } catch (e) {} });
 
   const qa = (href, label, icon, active) => `<li><a href="${href}" ${active ? 'aria-current="page"' : ''} class="flex items-center gap-2 rounded-md border px-3 py-2 text-[11px] font-semibold ${active ? 'border-[#17396b] bg-[#17396b] text-white' : 'border-slate-200 bg-white text-slate-800 hover:bg-slate-50'}">${ic(I[icon])}${label}</a></li>`;
-  $('quick').innerHTML = qa('sales.html', 'Record Sale', 'cart') + qa('stock-in.html', 'Add Stock', 'plus', true) + qa('stock-out.html', 'Remove Stock', 'minus') + qa('edit-product.html', 'Edit Product', 'edit') + qa('inventory.html', 'View Stock Inventory', 'eye');
+  $('quick').innerHTML = qa('record-sale.html', 'Record Sale', 'cart') + qa('stock-in.html', 'Add Stock', 'plus', true) + qa('stock-out.html', 'Remove Stock', 'minus') + qa('edit-product.html', 'Edit Product', 'edit') + qa('inventory.html', 'View Stock Inventory', 'eye');
 
   // Signed-in user (mock until the backend is connected)
   try { const u = JSON.parse(sessionStorage.getItem('user')) || {}; if (u.role) $('user-role').textContent = u.role; } catch (e) {}
