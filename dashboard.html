@@ -12,6 +12,27 @@
 
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Fit the dashboard to a default 100% zoom browser -->
+  <style type="text/tailwindcss">
+    /* Switch the 2xl layout on earlier, because the page is scaled down below */
+    @theme {
+      --breakpoint-2xl: 80rem; /* 1280px */
+    }
+  </style>
+  <style>
+    @media (min-width: 1280px) {
+      :root { --z: 0.7; }
+      html { zoom: var(--z); }
+
+      /* h-screen / min-h-screen must be divided by the zoom so they still fill the real window */
+      #sidebar,
+      body > div.flex.min-h-screen {
+        height: calc(100vh / var(--z)) !important;
+        min-height: calc(100vh / var(--z)) !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-white font-['Inter'] text-[#143967]">
@@ -60,7 +81,7 @@
     <!-- Bottom: Settings + Logout -->
     <div class="mt-auto flex flex-col gap-[18px] pt-10">
       <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
-        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" /></svg>
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" /><circle cx="12" cy="12" r="3" /></svg>
         Settings
       </a>
       <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-[#E85363] hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
