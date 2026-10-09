@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings - Teams &amp; Roles | Stockwise Africa</title>
+
+  <!-- Fonts: Inter (interface) and Space Grotesk (headings + logo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-white font-['Inter'] text-[#143967]">
+
+  <!-- ============ MAIN SIDEBAR (same as the notifications page) ============ -->
+  <aside
+    id="sidebar"
+    class="fixed left-0 top-0 z-40 flex h-screen w-[350px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-[35px] pl-[30px] pr-[20px] pt-[50px] transition-transform lg:translate-x-0"
+    style="background: radial-gradient(50% 50% at 50% 50%, rgba(20,57,103,0.068) 0%, rgba(20,57,103,0) 100%), linear-gradient(175.26deg, #143967 3.03%, #173D78 57.62%, #245EC2 97.33%);"
+  >
+    <!-- Logo (copy the logo markup you use on index.html here) -->
+    <div class="flex items-center gap-[15px]">
+     <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+</div>
+      <span class="font-['Space_Grotesk'] text-[24px] font-medium leading-[31px] text-white">Stockwise Africa</span>
+      <button id="close-menu-button" type="button" aria-label="Close menu" class="ml-auto text-white lg:hidden">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+
+    <!-- Main navigation -->
+    <nav aria-label="Main navigation" class="mt-[100px] flex flex-col gap-[10px]">
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" /></svg>
+        Home
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h1M12 8h4M8 12h1M12 12h4M8 16h1M12 16h4" /></svg>
+        Inventory
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>
+        Sales
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+        Alerts
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="M7 15l4-4 3 3 6-7" /></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- Bottom: Settings (active) + Logout -->
+    <div class="mt-auto flex flex-col gap-[18px] pt-10">
+      <a href="#" aria-current="page" class="flex h-[62px] items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-[20px] font-medium leading-6 text-[#143967]">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" /></svg>
+        Settings
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-[#E85363] hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h5" /><path d="M9 12h12M17 8l4 4-4 4" /></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN AREA ============ -->
+  <div class="flex min-h-screen flex-col px-4 pb-6 pt-[35px] lg:ml-[350px] lg:h-screen lg:px-[30px] lg:pb-0">
+
+    <!-- ----- Top header ----- -->
+    <header class="flex items-center justify-between gap-4">
+      <button id="open-menu-button" type="button" aria-label="Open menu" class="shrink-0 lg:hidden">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+
+      <div class="flex h-[42px] w-full max-w-[910px] items-center gap-[10px] rounded-[5px] border border-[#143967]/50 px-[15px] py-[10px]">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+        <input type="search" aria-label="Search products, categories or SKU" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-[14px] leading-[17px] text-[#143967] placeholder:text-[#143967] focus:outline-none" />
+      </div>
+
+      <div class="flex shrink-0 items-center justify-end gap-[30px]">
+        <button type="button" aria-label="Notifications" class="hidden sm:block">
+          <svg class="h-[35px] w-[35px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+        </button>
+        <div class="flex items-center gap-[10px]">
+          <svg class="h-[40px] w-[40px]" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#143967" /><circle cx="12" cy="9" r="3.6" fill="#fff" /><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff" /></svg>
+          <div class="hidden flex-col sm:flex">
+            <span class="text-[18px] font-semibold leading-[22px]">John Doe</span>
+            <span class="text-[14px] font-semibold leading-[17px]">Owner</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ----- Page title + Invite button ----- -->
+    <div class="mt-5 flex items-center justify-between gap-4">
+      <div>
+        <h1 class="font-['Space_Grotesk'] text-[28px] font-bold leading-[46px] sm:text-[36px]">Teams &amp; Roles</h1>
+        <p class="text-[14px] font-medium leading-[17px]">Manage your team members, assign roles and control access to different features</p>
+      </div>
+      <button id="invite-button" type="button" class="flex h-[40px] w-[193px] shrink-0 items-center justify-center gap-[5px] rounded-[5px] bg-[#143967] px-[15px] py-[10px] text-[14px] font-semibold leading-[17px] text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="4" /><path d="M2 21a7 7 0 0 1 14 0" /><path d="M19 8v6M16 11h6" /></svg>
+        Invite Team Member
+      </button>
+    </div>
+
+    <!-- ----- Body: settings sub menu + page content ----- -->
+    <div class="mt-5 flex min-h-0 flex-1 flex-col gap-5 xl:flex-row">
+
+      <!-- Settings sub menu: scrolls sideways on small screens, vertical on wide screens -->
+      <nav aria-label="Settings sections" class="flex shrink-0 gap-4 overflow-x-auto rounded-[10px] bg-[#EFF4FF] px-[10px] py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden xl:mt-[5px] xl:-ml-[10px] xl:w-[320px] xl:flex-col xl:gap-[25px] xl:overflow-visible xl:rounded-b-none xl:py-[20px]">
+        <a href="#" class="flex h-[36px] shrink-0 items-center gap-[15px] border-l-4 border-[#EFF4FF] px-[15px] py-[2px] text-[20px] font-medium leading-6">
+          <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1" /><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" /></svg>
+          <span class="whitespace-nowrap">Business Info</span>
+        </a>
+        <a href="#" class="flex h-[36px] shrink-0 items-center gap-[15px] border-l-4 border-[#EFF4FF] px-[15px] py-[2px] text-[20px] font-medium leading-6">
+          <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="10" r="3" /><path d="M6 19a7 7 0 0 1 12 0" /></svg>
+          <span class="whitespace-nowrap">Profile</span>
+        </a>
+        <a href="teams-roles.html" aria-current="page" class="flex h-[36px] shrink-0 items-center justify-between gap-[15px] border-l-4 border-[#143967] px-[15px] py-[2px] text-[20px] font-medium leading-6">
+          <span class="flex items-center gap-[15px]">
+            <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="1.8" /><circle cx="12" cy="5" r="1.8" /><circle cx="18" cy="6" r="1.8" /><path d="M3 20v-6a2 2 0 0 1 2-2h2M21 20v-6a2 2 0 0 0-2-2h-2" /><rect x="8" y="10" width="8" height="11" rx="3" /></svg>
+            <span class="whitespace-nowrap">Teams &amp; Roles</span>
+          </span>
+          <span class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-[#143967] text-[18px] font-medium text-white">3</span>
+        </a>
+        <a href="index.html" class="flex h-[36px] shrink-0 items-center gap-[15px] border-l-4 border-[#EFF4FF] px-[15px] py-[2px] text-[20px] font-medium leading-6">
+          <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" /><circle cx="18" cy="6" r="2.5" /></svg>
+          <span class="whitespace-nowrap">Notifications</span>
+        </a>
+      </nav>
+
+      <!-- Page content (988px on desktop). Scrolls on its own, scrollbar hidden. -->
+      <main class="min-w-0 flex-1 pb-[30px] xl:self-stretch lg:min-h-0 lg:overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+        <!-- Statistics cards -->
+        <section aria-label="Team statistics" class="grid grid-cols-1 gap-[15px] sm:grid-cols-2 xl:grid-cols-4">
+          <!-- Card 1 (dark) -->
+          <div class="flex h-[128px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 bg-[#143967] px-[10px] py-[15px] text-white">
+            <div class="flex items-center gap-1">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[#143967]">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5" /><path d="M2 20a7 7 0 0 1 14 0" /><circle cx="18" cy="9" r="2.5" /></svg>
+              </span>
+              <h2 class="text-[14px] font-semibold leading-[17px]">Team Members</h2>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <p id="stat-total" class="text-[34px] font-bold leading-[41px]">5</p>
+              <p class="text-[12px] font-medium leading-[15px]">Active team members</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="flex h-[128px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
+            <div class="flex items-center gap-1">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#143967]/[0.12]">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /></svg>
+              </span>
+              <h2 class="text-[14px] font-semibold leading-[17px]">Owner/Admins</h2>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <p id="stat-owners" class="text-[34px] font-bold leading-[41px]">1</p>
+              <p class="text-[12px] font-medium leading-[15px]">Full access to all features</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="flex h-[128px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
+            <div class="flex items-center gap-1">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#143967]/[0.12]">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+              </span>
+              <h2 class="text-[14px] font-semibold leading-[17px]">Managers</h2>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <p id="stat-managers" class="text-[34px] font-bold leading-[41px]">1</p>
+              <p class="text-[12px] font-medium leading-[15px]">Business and inventory access</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="flex h-[128px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
+            <div class="flex items-center gap-1">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#143967]/[0.12]">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4" /><path d="M2 21a7 7 0 0 1 11-5" /><path d="M15 17l2.5 2.5L22 14" /></svg>
+              </span>
+              <h2 class="text-[14px] font-semibold leading-[17px]">Attendants</h2>
+            </div>
+            <div class="flex flex-col gap-[5px]">
+              <p id="stat-attendants" class="text-[34px] font-bold leading-[41px]">3</p>
+              <p class="text-[12px] font-medium leading-[15px]">Limited access (sales &amp; inventory)</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Team members -->
+        <section aria-labelledby="members-heading" class="mt-[35px]">
+          <!-- Heading text kept as written in the Figma file -->
+          <h2 id="members-heading" class="font-['Space_Grotesk'] text-[24px] font-bold leading-[31px]">Teams Members</h2>
+
+          <!-- Search + role filter -->
+          <div class="mt-5 flex flex-col gap-[15px] sm:flex-row sm:gap-[27px]">
+            <div class="flex h-[42px] flex-1 items-center gap-[10px] rounded-[5px] border border-[#143967]/50 px-[15px] py-[10px]">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+              <input id="member-search" type="search" aria-label="Search members" placeholder="Search members..." class="w-full bg-transparent text-[14px] leading-[17px] text-[#143967] placeholder:text-[#143967] focus:outline-none" />
+            </div>
+            <div class="relative h-[42px] w-full shrink-0 sm:w-[166px]">
+              <select id="role-filter" aria-label="Filter by role" class="h-full w-full appearance-none rounded-[5px] border border-[#143967]/50 bg-white px-[15px] text-[14px] text-[#143967] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+                <option value="all">All Roles</option>
+                <option value="Owner">Owner</option>
+                <option value="Manager">Manager</option>
+                <option value="Attendant">Attendant</option>
+              </select>
+              <svg class="pointer-events-none absolute right-[15px] top-1/2 h-3 w-3 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7" /></svg>
+            </div>
+          </div>
+
+          <!-- Table (scrolls sideways on small screens) -->
+          <div class="mt-5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <table class="-mt-[15px] w-full min-w-[988px] table-fixed border-separate border-spacing-y-[15px] text-left">
+              <caption class="sr-only">Team members</caption>
+              <colgroup>
+                <col class="w-[23.5%]" />
+                <col class="w-[23.5%]" />
+                <col class="w-[13.5%]" />
+                <col class="w-[13.5%]" />
+                <col class="w-[18.5%]" />
+                <col class="w-[7.5%]" />
+              </colgroup>
+              <thead>
+                <tr class="h-[35px] bg-[#143967]/10 text-[12px] font-semibold leading-[15px]">
+                  <th scope="col" class="bg-[#143967]/10 py-[10px] pl-[5px] font-semibold">Name</th>
+                  <th scope="col" class="bg-[#143967]/10 py-[10px] font-semibold">Email</th>
+                  <th scope="col" class="bg-[#143967]/10 py-[10px] font-semibold">Role</th>
+                  <th scope="col" class="bg-[#143967]/10 py-[10px] font-semibold">Status</th>
+                  <th scope="col" class="bg-[#143967]/10 py-[10px] font-semibold">Last Active</th>
+                  <th scope="col" class="bg-[#143967]/10 py-[10px] pr-[5px] text-center font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <!-- Rows are created by renderMembers() in js/teams-roles.js -->
+              <tbody id="members-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Help card -->
+          <aside class="mt-5 flex flex-col gap-4 rounded-[7px] bg-[#143967]/10 px-[15px] py-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-start gap-[10px] sm:items-center">
+              <svg class="h-[30px] w-[30px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 11v6" /><circle cx="12" cy="7.5" r="0.6" fill="currentColor" /></svg>
+              <div class="flex flex-col gap-[5px]">
+                <h3 class="text-[12px] font-bold leading-[15px]">Need help with team setup?</h3>
+                <p class="text-[12px] font-medium leading-[15px]">You can always edit roles and permissions later. If you’re unsure about a role, check the role permissions guide.</p>
+              </div>
+            </div>
+            <button id="role-guide-button" type="button" class="flex h-[39px] w-[179px] shrink-0 items-center justify-center gap-[10px] rounded-[5px] border border-[#143967]/60 bg-transparent px-5 py-[10px] text-[14px] font-semibold leading-[17px] hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
+              View Role Guide
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9" /><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></svg>
+            </button>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ ACTION MENU (one menu, moved next to the clicked three-dot button) ============ -->
+  <div id="action-menu" role="menu" class="fixed z-50 hidden w-[160px] rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
+    <button id="menu-edit" type="button" role="menuitem" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF] focus-visible:bg-[#EFF4FF] focus-visible:outline-none">Edit Member</button>
+    <button id="menu-role" type="button" role="menuitem" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF] focus-visible:bg-[#EFF4FF] focus-visible:outline-none">Change Role</button>
+    <button id="menu-status" type="button" role="menuitem" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF] focus-visible:bg-[#EFF4FF] focus-visible:outline-none">Deactivate</button>
+  </div>
+
+  <!-- ============ MODALS (native <dialog> elements) ============ -->
+
+  <!-- Invite Team Member -->
+  <dialog id="invite-modal" aria-labelledby="invite-title" class="m-auto w-[min(92vw,460px)] rounded-[10px] border border-[#143967]/20 p-0 text-[#143967] shadow-lg backdrop:bg-black/40">
+    <form id="invite-form" class="flex flex-col gap-4 p-6">
+      <h2 id="invite-title" class="font-['Space_Grotesk'] text-[24px] font-bold leading-[31px]">Invite Team Member</h2>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Full Name
+        <input id="invite-name" type="text" required class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]" />
+      </label>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Email
+        <input id="invite-email" type="email" required class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]" />
+      </label>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Role
+        <select id="invite-role" class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 bg-white px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+          <option value="Owner">Owner</option>
+          <option value="Manager">Manager</option>
+          <option value="Attendant" selected>Attendant</option>
+        </select>
+      </label>
+      <div class="mt-2 flex justify-end gap-[10px]">
+        <button type="button" data-close class="h-[39px] rounded-[5px] border border-[#143967] px-5 text-[14px] font-bold hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Cancel</button>
+        <button type="submit" class="h-[39px] rounded-[5px] border border-[#143967] bg-[#143967] px-5 text-[14px] font-bold text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Send Invitation</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Edit Member -->
+  <dialog id="edit-modal" aria-labelledby="edit-title" class="m-auto w-[min(92vw,460px)] rounded-[10px] border border-[#143967]/20 p-0 text-[#143967] shadow-lg backdrop:bg-black/40">
+    <form id="edit-form" class="flex flex-col gap-4 p-6">
+      <h2 id="edit-title" class="font-['Space_Grotesk'] text-[24px] font-bold leading-[31px]">Edit Member</h2>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Full Name
+        <input id="edit-name" type="text" required class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]" />
+      </label>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Email
+        <input id="edit-email" type="email" required class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]" />
+      </label>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Role
+        <select id="edit-role" class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 bg-white px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+          <option value="Owner">Owner</option>
+          <option value="Manager">Manager</option>
+          <option value="Attendant">Attendant</option>
+        </select>
+      </label>
+      <div class="mt-2 flex justify-end gap-[10px]">
+        <button type="button" data-close class="h-[39px] rounded-[5px] border border-[#143967] px-5 text-[14px] font-bold hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Cancel</button>
+        <button type="submit" class="h-[39px] rounded-[5px] border border-[#143967] bg-[#143967] px-5 text-[14px] font-bold text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Save Changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Change Role -->
+  <dialog id="role-modal" aria-labelledby="role-title" class="m-auto w-[min(92vw,400px)] rounded-[10px] border border-[#143967]/20 p-0 text-[#143967] shadow-lg backdrop:bg-black/40">
+    <form id="role-form" class="flex flex-col gap-4 p-6">
+      <h2 id="role-title" class="font-['Space_Grotesk'] text-[24px] font-bold leading-[31px]">Change Role</h2>
+      <p id="role-modal-name" class="text-[14px] font-medium"></p>
+      <label class="flex flex-col gap-1 text-[14px] font-semibold">Role
+        <select id="role-select" class="h-[42px] w-full rounded-[5px] border border-[#143967]/50 bg-white px-[15px] text-[14px] font-normal focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+          <option value="Owner">Owner</option>
+          <option value="Manager">Manager</option>
+          <option value="Attendant">Attendant</option>
+        </select>
+      </label>
+      <div class="mt-2 flex justify-end gap-[10px]">
+        <button type="button" data-close class="h-[39px] rounded-[5px] border border-[#143967] px-5 text-[14px] font-bold hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Cancel</button>
+        <button type="submit" class="h-[39px] rounded-[5px] border border-[#143967] bg-[#143967] px-5 text-[14px] font-bold text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Save Role</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Role Guide -->
+  <dialog id="guide-modal" aria-labelledby="guide-title" class="m-auto w-[min(92vw,460px)] rounded-[10px] border border-[#143967]/20 p-0 text-[#143967] shadow-lg backdrop:bg-black/40">
+    <div class="flex flex-col gap-4 p-6">
+      <h2 id="guide-title" class="font-['Space_Grotesk'] text-[24px] font-bold leading-[31px]">Role Guide</h2>
+      <div class="flex flex-col gap-3">
+        <div>
+          <span class="inline-block rounded-[5px] bg-[#143967] px-[15px] py-[5px] text-[12px] font-semibold leading-[15px] text-white">Owner</span>
+          <p class="mt-1 text-[14px] font-medium">Full access to all features</p>
+        </div>
+        <div>
+          <span class="inline-block rounded-[5px] bg-[#115DE2]/20 px-[15px] py-[5px] text-[12px] font-semibold leading-[15px] text-[#115DE2]">Manager</span>
+          <p class="mt-1 text-[14px] font-medium">Business and inventory access</p>
+        </div>
+        <div>
+          <span class="inline-block rounded-[5px] bg-[#686CE4]/20 px-[15px] py-[5px] text-[12px] font-semibold leading-[15px] text-[#686CE4]">Attendant</span>
+          <p class="mt-1 text-[14px] font-medium">Limited access (sales &amp; inventory)</p>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button type="button" data-close class="h-[39px] rounded-[5px] border border-[#143967] bg-[#143967] px-5 text-[14px] font-bold text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Success message -->
+  <div id="toast" role="status" aria-live="polite" class="pointer-events-none fixed bottom-[40px] left-1/2 z-[60] hidden -translate-x-1/2 rounded-[5px] bg-[#143967] px-5 py-3 text-[14px] font-semibold text-white shadow-lg"></div>
+
+  <script src="teams.js"></script>
+</body>
+</html>

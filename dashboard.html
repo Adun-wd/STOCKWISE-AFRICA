@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard | Stockwise Africa</title>
+
+  <!-- Fonts: Inter (interface) and Space Grotesk (headings + logo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-white font-['Inter'] text-[#143967]">
+
+  <!-- ============ Main Sidebar ============ -->
+  <aside
+    id="sidebar"
+    class="fixed left-0 top-0 z-40 flex h-screen w-[350px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-[35px] pl-[30px] pr-[20px] pt-[50px] transition-transform lg:translate-x-0"
+    style="background: radial-gradient(50% 50% at 50% 50%, rgba(20,57,103,0.068) 0%, rgba(20,57,103,0) 100%), linear-gradient(174.48deg, #143967 0.88%, #173D78 58.56%, #245EC2 98.54%);"
+  >
+    <!-- Logo (copy the logo markup you use on index.html here) -->
+    <div class="flex items-center gap-[15px]">
+      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+</div>
+      <span class="font-['Space_Grotesk'] text-[24px] font-medium leading-[31px] text-white">Stockwise Africa</span>
+      <button id="close-menu-button" type="button" aria-label="Close menu" class="ml-auto text-white lg:hidden">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+
+    <!-- Main navigation (Home is the active page) -->
+    <nav aria-label="Main navigation" class="mt-[100px] flex flex-col gap-[10px]">
+      <a href="#" aria-current="page" class="flex h-[62px] items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-[20px] font-medium leading-6 text-[#143967]">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" /></svg>
+        Home
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h1M12 8h4M8 12h1M12 12h4M8 16h1M12 16h4" /></svg>
+        Inventory
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>
+        Sales
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+        Alerts
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="M7 15l4-4 3 3 6-7" /></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- Bottom: Settings + Logout -->
+    <div class="mt-auto flex flex-col gap-[18px] pt-10">
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="7" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" /></svg>
+        Settings
+      </a>
+      <a href="#" class="flex h-[62px] items-center gap-[15px] rounded-[5px] p-[15px] text-[20px] font-medium leading-6 text-[#E85363] hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h5" /><path d="M9 12h12M17 8l4 4-4 4" /></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- ============ Main area ============ -->
+  <div class="flex min-h-screen flex-col px-4 pb-[10px] pt-[35px] lg:ml-[350px] lg:h-screen lg:px-[30px]">
+
+    <!-- Top Header: search + notifications + profile -->
+    <header class="flex items-center justify-between gap-4">
+      <button id="open-menu-button" type="button" aria-label="Open menu" class="shrink-0 lg:hidden">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+
+      <div class="flex h-[42px] w-full max-w-[910px] items-center gap-[10px] rounded-[5px] border border-[#143967]/50 px-[15px] py-[10px]">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+        <input id="search-input" type="search" aria-label="Search products, categories or SKU" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-[14px] leading-[17px] text-[#143967] placeholder:text-[#143967] focus:outline-none" />
+      </div>
+
+      <div class="flex shrink-0 items-center justify-end gap-[30px]">
+        <button type="button" aria-label="Notifications" class="hidden sm:block">
+          <svg class="h-[35px] w-[35px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+        </button>
+
+        <!-- Profile (click to open a small menu) -->
+        <div class="relative">
+          <button type="button" data-dropdown="profile-menu" aria-haspopup="menu" aria-expanded="false" class="flex items-center gap-[10px] text-left focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+            <svg class="h-[40px] w-[40px]" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#143967" /><circle cx="12" cy="9" r="3.6" fill="#fff" /><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff" /></svg>
+            <span class="hidden flex-col sm:flex">
+              <span class="text-[18px] font-semibold leading-[22px]">John Doe</span>
+              <span class="text-[14px] font-semibold leading-[17px]">Owner</span>
+            </span>
+          </button>
+          <div id="profile-menu" role="menu" class="dropdown-menu absolute right-0 top-full z-30 mt-2 hidden w-[160px] rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
+            <button type="button" role="menuitem" data-message="Profile clicked" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Profile</button>
+            <button type="button" role="menuitem" data-message="Settings clicked" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Settings</button>
+            <button type="button" role="menuitem" data-message="Logout clicked" class="block w-full px-4 py-2 text-left text-[14px] font-medium text-[#E85363] hover:bg-[#EFF4FF]">Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dashboard (scrolls on its own, scrollbar hidden) -->
+    <main class="mt-[30px] flex min-h-0 flex-1 flex-col gap-5 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-y-auto">
+
+      <!-- Greeting + date + Add Product -->
+      <section class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-col gap-[5px]">
+          <h1 class="font-['Space_Grotesk'] text-[30px] font-bold leading-[38px]">Good morning, John</h1>
+          <p class="text-[14px] font-medium leading-[17px]">Here’s what’s happening with your store today.</p>
+        </div>
+        <div class="flex items-center gap-[10px]">
+          <!-- Date selector -->
+          <div class="relative">
+            <button type="button" data-dropdown="date-menu" aria-haspopup="menu" aria-expanded="false" class="flex h-[49px] w-[204px] items-center justify-end gap-[10px] rounded-[5px] border border-[#143967]/20 px-[10px] py-[15px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+              <span class="flex items-center gap-[6px]">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18M8 2v4M16 2v4" /></svg>
+                <span id="date-label" class="text-[14px] font-medium leading-[17px]">Today, Oct 02, 2026</span>
+              </span>
+              <svg class="h-[10px] w-[14px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8 8 8-8" /></svg>
+            </button>
+            <div id="date-menu" role="menu" class="dropdown-menu absolute right-0 top-full z-30 mt-1 hidden w-full rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
+              <button type="button" role="menuitem" data-label-target="date-label" data-value="Today, Oct 02, 2026" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Today, Oct 02, 2026</button>
+              <button type="button" role="menuitem" data-label-target="date-label" data-value="Yesterday, Oct 01, 2026" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Yesterday, Oct 01, 2026</button>
+            </div>
+          </div>
+          <button id="add-product-button" type="button" class="flex h-[46px] w-[150px] items-center justify-center gap-[5px] rounded-[5px] bg-[#143967] px-5 py-[13px] text-[14px] font-semibold leading-[17px] text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+            Add Product
+          </button>
+        </div>
+      </section>
+
+      <!-- Statistic cards -->
+      <section aria-label="Key numbers" class="grid grid-cols-1 gap-[15px] sm:grid-cols-2 xl:grid-cols-4">
+        <!-- Total Sales (dark) -->
+        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 bg-[#143967] px-[10px] py-[15px] text-white">
+          <div class="flex items-center gap-[10px]">
+            <span class="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-white text-[#143967]">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>
+            </span>
+            <h2 class="text-[16px] font-semibold leading-[19px]">Total Sales</h2>
+          </div>
+          <div class="flex flex-col gap-[5px]">
+            <p class="text-[34px] font-bold leading-[41px]">₦24,800</p>
+            <p class="flex items-center gap-[6px]">
+              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#E4F8E7] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#226F41]"><svg class="h-2 w-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>12%</span>
+              <span class="text-[12px] font-semibold leading-[15px]">vs. yesterday</span>
+            </p>
+          </div>
+        </div>
+        <!-- Products Sold -->
+        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
+          <div class="flex items-center gap-[10px]">
+            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#143967]/[0.12]">
+              <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1" /><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4" /></svg>
+            </span>
+            <h2 class="text-[16px] font-semibold leading-[19px]">Products Sold</h2>
+          </div>
+          <div class="flex flex-col gap-[5px]">
+            <p class="text-[34px] font-bold leading-[41px]">18</p>
+            <p class="flex items-center gap-[6px]">
+              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#E4F8E7] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#226F41]"><svg class="h-2 w-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>20%</span>
+              <span class="text-[12px] font-semibold leading-[15px]">vs. yesterday</span>
+            </p>
+          </div>
+        </div>
+        <!-- Current Stock Value -->
+        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
+          <div class="flex items-center gap-[10px]">
+            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#143967]/[0.12]">
+              <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 4v3M6 13v4M6 7h0M4 7h4v6H4zM13 6v3M13 15v4M11 9h4v6h-4zM19 3v4" /></svg>
+            </span>
+            <h2 class="text-[16px] font-semibold leading-[19px]">Current Stock Value</h2>
+          </div>
+          <div class="flex flex-col gap-[5px]">
+            <p class="text-[34px] font-bold leading-[41px]">₦532,400</p>
+            <p class="flex items-center gap-[6px]">
+              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#E4F8E7] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#226F41]"><svg class="h-2 w-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>8%</span>
+              <span class="text-[12px] font-semibold leading-[15px]">vs. last week</span>
+            </p>
+          </div>
+        </div>
+        <!-- Low Stock Items -->
+        <div class="flex min-h-[160px] flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 px-[10px] py-[15px]">
+          <div class="flex items-center gap-[10px]">
+            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#143967]/[0.12]">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z" /><path d="M12 10v4M12 17v.01" /></svg>
+            </span>
+            <h2 class="text-[16px] font-semibold leading-[19px]">Low Stock Items</h2>
+          </div>
+          <div class="flex flex-col gap-[5px]">
+            <p class="text-[34px] font-bold leading-[41px]">18</p>
+            <p class="flex items-center gap-[6px]">
+              <span class="flex items-center gap-[2px] rounded-[7px] bg-[#FEECF0] px-[5px] py-[2px] text-[12px] font-semibold leading-[15px] text-[#E85363]"><svg class="h-2 w-2 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7" /></svg>2%</span>
+              <span class="text-[12px] font-semibold leading-[15px]">vs. yesterday</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sales Overview + Stock Status -->
+      <div class="flex flex-col gap-[25px] xl:flex-row">
+
+        <!-- Sales Overview -->
+        <section aria-labelledby="sales-overview-heading" class="min-w-0 rounded-[5px] border border-[#143967]/20 px-[15px] pb-[10px] pt-[10px] xl:flex-[741]">
+          <div class="flex items-center justify-between gap-4">
+            <h2 id="sales-overview-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Sales Overview</h2>
+            <div class="relative">
+              <button type="button" data-dropdown="range-menu" aria-haspopup="menu" aria-expanded="false" class="flex h-[39px] w-[121px] items-center justify-end gap-[10px] rounded-[5px] border border-[#143967]/20 p-[10px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+                <span id="range-label" class="text-[14px] font-medium leading-[17px]">Last 7 days</span>
+                <svg class="h-[7px] w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8 8 8-8" /></svg>
+              </button>
+              <div id="range-menu" role="menu" class="dropdown-menu absolute right-0 top-full z-30 mt-1 hidden w-[150px] rounded-[5px] border border-[#143967]/20 bg-white py-1 shadow-md">
+                <button type="button" role="menuitem" data-label-target="range-label" data-value="Last 7 days" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Last 7 days</button>
+                <button type="button" role="menuitem" data-label-target="range-label" data-value="Last 14 days" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Last 14 days</button>
+                <button type="button" role="menuitem" data-label-target="range-label" data-value="Last 30 days" class="block w-full px-4 py-2 text-left text-[14px] font-medium hover:bg-[#EFF4FF]">Last 30 days</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Line/area chart drawn with inline SVG (no chart library) -->
+          <svg class="mt-[10px] h-auto w-full" viewBox="0 0 711 226" role="img" aria-label="Line chart of daily sales from Sep 20 to Sep 26, rising from about 10 thousand to about 28 thousand naira">
+            <defs>
+              <linearGradient id="area-gradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0.18" stop-color="#DAE9FB" />
+                <stop offset="1" stop-color="#FFFFFF" />
+              </linearGradient>
+            </defs>
+            <!-- Grid lines -->
+            <g stroke="#143967" stroke-opacity="0.05">
+              <line x1="37" y1="0.5" x2="711" y2="0.5" />
+              <line x1="37" y1="51" x2="711" y2="51" />
+              <line x1="37" y1="102" x2="711" y2="102" />
+              <line x1="37" y1="153" x2="711" y2="153" />
+              <line x1="37" y1="194" x2="711" y2="194" />
+            </g>
+            <!-- Y axis line -->
+            <line x1="37" y1="0" x2="37" y2="194" stroke="#143967" stroke-opacity="0.2" />
+            <!-- Area under the line -->
+            <path d="M38 153 C95.5 153 95.5 121 153 121 C205.5 121 205.5 126 258 126 C312 126 312 93 366 93 C419 93 419 108 472 108 C525.5 108 525.5 70 579 70 C632.5 70 632.5 60 686 60 L686 194 L38 194 Z" fill="url(#area-gradient)" />
+            <!-- The line -->
+            <path d="M38 153 C95.5 153 95.5 121 153 121 C205.5 121 205.5 126 258 126 C312 126 312 93 366 93 C419 93 419 108 472 108 C525.5 108 525.5 70 579 70 C632.5 70 632.5 60 686 60" fill="none" stroke="#143967" stroke-width="2" />
+            <!-- Data points -->
+            <g fill="#143967">
+              <circle cx="153" cy="121" r="4" /><circle cx="258" cy="126" r="4" /><circle cx="366" cy="93" r="4" />
+              <circle cx="472" cy="108" r="4" /><circle cx="579" cy="70" r="4" /><circle cx="686" cy="60" r="4" />
+            </g>
+            <!-- Y axis labels -->
+            <g font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#143967" text-anchor="end">
+              <text x="27" y="10">₦40k</text><text x="27" y="58">₦30k</text><text x="27" y="106">₦20k</text><text x="27" y="154">₦10k</text><text x="27" y="202">₦0</text>
+            </g>
+            <!-- X axis labels -->
+            <g font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#143967" text-anchor="middle">
+              <text x="44" y="214">Sep 20</text><text x="150.7" y="214">Sep 21</text><text x="257.3" y="214">Sep 22</text><text x="364" y="214">Sep 23</text>
+              <text x="470.7" y="214">Sep 24</text><text x="577.3" y="214">Sep 25</text><text x="684" y="214">Sep 26</text>
+            </g>
+          </svg>
+        </section>
+
+        <!-- Stock Status -->
+        <section aria-labelledby="stock-status-heading" class="flex min-w-0 flex-col justify-center gap-[27px] rounded-[10px] border border-[#143967]/20 px-[30px] py-5 xl:flex-[552]">
+          <h2 id="stock-status-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Stock Status</h2>
+          <div class="flex flex-wrap items-center justify-center gap-[50px] xl:justify-end">
+            <!-- Donut: a conic-gradient circle with a white circle on top -->
+            <div class="relative flex h-[200px] w-[200px] shrink-0 items-center justify-center rounded-full" style="background: conic-gradient(from 19.2deg, #143967 0deg 234deg, #F5A85A 234deg 288deg, #787CF5 288deg 324deg, #EA5157 324deg 360deg);" role="img" aria-label="Donut chart of stock status">
+              <div class="flex h-[150px] w-[150px] flex-col items-center justify-center rounded-full bg-white">
+                <span class="text-[32px] font-bold leading-[39px]">248</span>
+                <span class="text-[14px] font-medium leading-[17px]">Total Products</span>
+              </div>
+            </div>
+            <!-- Legend -->
+            <ul class="flex w-[240px] max-w-full flex-col gap-5 text-[14px] leading-[17px]">
+              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#143967]"></span>In Stock</span><span class="font-bold">188</span></li>
+              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#F5A85A]"></span>Low Stock</span><span class="font-medium">5</span></li>
+              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#EA5157]"></span>Out of Stock</span><span class="font-medium">3</span></li>
+              <li class="flex items-center justify-between"><span class="flex items-center gap-[15px] font-medium"><span class="h-[14px] w-[14px] rounded-full bg-[#787CF5]"></span>Expiring Soon</span><span class="font-medium">4</span></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- Lower area: tables + stock alert on the left, Quick actions on the right -->
+      <div class="flex flex-col gap-[26px] 2xl:flex-row 2xl:items-start">
+
+        <div class="flex min-w-0 flex-col gap-5 2xl:w-[900px] 2xl:shrink-0">
+          <div class="flex flex-col gap-[26px] 2xl:flex-row">
+
+            <!-- Recent Sales -->
+            <section aria-labelledby="recent-sales-heading" class="flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-black/10 px-[10px] pb-[15px] pt-[10px] 2xl:w-[502px] 2xl:shrink-0">
+              <div class="flex items-center justify-between">
+                <h2 id="recent-sales-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Recent Sales</h2>
+                <button type="button" data-message="View all sales clicked" class="flex items-center text-[12px] font-medium leading-[15px] hover:underline focus-visible:outline-2 focus-visible:outline-[#245EC2]">View all
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
+                </button>
+              </div>
+              <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <table class="w-full min-w-[440px] table-fixed text-left text-[12px] font-semibold leading-[15px]">
+                  <caption class="sr-only">Recent sales</caption>
+                  <colgroup><col class="w-[164px]" /><col class="w-[158px]" /><col class="w-[90px]" /><col class="w-[68px]" /></colgroup>
+                  <thead>
+                    <tr class="h-[35px] bg-[#143967]/10">
+                      <th scope="col" class="pl-[5px] font-semibold">Date &amp; Time</th>
+                      <th scope="col" class="font-semibold">Product</th>
+                      <th scope="col" class="font-semibold">Quantity</th>
+                      <th scope="col" class="font-semibold">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-sales-body">
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 26, 10:24 AM</td><td class="product-name py-[15px]">Paracetamol 500mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">2</span></td><td class="py-[15px]">₦2,400</td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 26, 09:17 AM</td><td class="product-name py-[15px]">Amoxicillin 250mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">1</span></td><td class="py-[15px]">₦1,800</td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 25, 04:32 PM</td><td class="product-name py-[15px]">Cough Syrup 200ml</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">3</span></td><td class="py-[15px]">₦7,500</td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 25, 02:10 PM</td><td class="product-name py-[15px]">Vitamin C 1000mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">1</span></td><td class="py-[15px]">₦950</td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="py-[15px] pl-[5px]">Aug 25, 11:45 AM</td><td class="product-name py-[15px]">Ibuprofen 400mg</td><td class="py-[15px]"><span class="inline-block w-[50px] text-center">2</span></td><td class="py-[15px]">₦3,000</td></tr>
+                    <tr class="no-results-row hidden"><td colspan="4" class="py-[15px] text-center font-medium">No matching products.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Low Stock Items -->
+            <section aria-labelledby="low-stock-heading" class="flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-black/10 px-[10px] pb-[15px] pt-[10px] 2xl:w-[372px] 2xl:shrink-0">
+              <div class="flex items-center justify-between">
+                <h2 id="low-stock-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Low Stock Items</h2>
+                <button type="button" data-message="View all low stock items clicked" class="flex items-center text-[12px] font-medium leading-[15px] hover:underline focus-visible:outline-2 focus-visible:outline-[#245EC2]">View all
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
+                </button>
+              </div>
+              <div class="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <table class="w-full min-w-[350px] table-fixed text-left text-[12px] font-semibold leading-[15px]">
+                  <caption class="sr-only">Low stock items</caption>
+                  <colgroup><col class="w-[154px]" /><col class="w-[109px]" /><col class="w-[87px]" /></colgroup>
+                  <thead>
+                    <tr class="h-[35px] bg-[#143967]/10">
+                      <th scope="col" class="pl-[5px] font-semibold">Product</th>
+                      <th scope="col" class="font-semibold">Current Stock</th>
+                      <th scope="col" class="font-semibold">Reorder Level</th>
+                    </tr>
+                  </thead>
+                  <tbody id="low-stock-body">
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Amoxicillin 250mg</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">12</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">20</span></td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Ibuprofen 400mg</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">5</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">10</span></td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Multivitamin Syrup</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">8</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">15</span></td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Declofenac Gel</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">7</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">15</span></td></tr>
+                    <tr class="searchable-row border-b border-[#143967]/5 last:border-0 [&:last-child>td]:pb-0"><td class="product-name py-[15px] pl-[5px]">Hydrogen Peroxide</td><td class="py-[15px]"><span class="inline-block w-[81px] text-center">3</span></td><td class="py-[15px]"><span class="inline-block w-[80px] text-center">10</span></td></tr>
+                    <tr class="no-results-row hidden"><td colspan="3" class="py-[15px] text-center font-medium">No matching products.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <!-- Stock alert -->
+          <aside aria-label="Stock alert" class="flex flex-col gap-[10px] rounded-[7px] bg-[#E7EBF0] px-[15px] py-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-start gap-[10px]">
+              <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2v.1h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" /><path d="M10.5 13.5l1.5-3 1.5 3" /></svg>
+              <div class="flex flex-col gap-[5px]">
+                <h3 class="text-[14px] font-bold leading-[17px]">Stock alert</h3>
+                <p class="text-[14px] font-medium leading-[17px]">Cough Syrup 200ml is running low. Only 5 units left in stock.</p>
+              </div>
+            </div>
+            <button type="button" data-message="View product clicked" class="flex h-[39px] w-[159px] shrink-0 items-center justify-center gap-[10px] rounded-[5px] border border-[#143967]/60 px-5 py-[10px] text-[14px] font-semibold leading-[17px] hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
+              View product
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
+            </button>
+          </aside>
+        </div>
+
+        <!-- Quick actions -->
+        <section aria-labelledby="quick-actions-heading" class="flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-[#143967]/20 p-5 2xl:w-[392px] 2xl:shrink-0">
+          <h2 id="quick-actions-heading" class="font-['Space_Grotesk'] text-[20px] font-bold leading-[26px]">Quick actions</h2>
+          <div class="flex flex-col gap-[9px]">
+            <button type="button" data-message="Add Product clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+              <span class="flex items-center gap-[10px]"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z" /><path d="M3 7l9 5 9-5M12 12v10" /></svg>Add Product</span>
+              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
+            </button>
+            <button type="button" data-message="Record Sale clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+              <span class="flex items-center gap-[10px]"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>Record Sale</span>
+              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
+            </button>
+            <button type="button" data-message="Add Stock clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+              <span class="flex items-center gap-[10px]"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v8M8 12h8" /></svg>Add Stock</span>
+              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
+            </button>
+            <button type="button" data-message="Remove Stock clicked" class="flex min-h-[50px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+              <span class="flex items-center gap-[10px]"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10" /><path d="M8 12h8" /></svg>Remove Stock</span>
+              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
+            </button>
+            <button type="button" data-message="View Stock Inventory clicked" class="flex min-h-[52px] items-center justify-between gap-5 rounded-[5px] border border-[#143967]/40 px-5 py-[15px] text-[14px] font-bold leading-[17px] hover:bg-[#EFF4FF] focus-visible:outline-2 focus-visible:outline-[#245EC2]">
+              <span class="flex items-center gap-[10px]"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="2.5" /></svg>View Stock Inventory</span>
+              <svg class="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l8 8-8 8" /></svg>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Sync status bar -->
+    <div role="status" class="flex h-[40px] shrink-0 items-center justify-center gap-5 rounded-[5px] bg-[#E8EEF6] px-5 py-[10px]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.5" /><circle cx="12" cy="12" r="4.5" fill="currentColor" /></svg>
+      <span class="text-[16px] font-bold leading-[19px]">Syncing...</span>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
