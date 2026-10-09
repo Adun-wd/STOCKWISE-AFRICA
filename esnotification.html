@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notifications | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (body) and Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v4 browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Design tokens: they become classes like bg-navy, text-navy, font-grotesk -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy: #143967;
+      --color-accent-red: #e85363;
+      --font-sans: "Inter", sans-serif;
+      --font-grotesk: "Space Grotesk", sans-serif;
+    }
+  </style>
+
+  <!-- The only custom CSS: the sidebar gradient from the design file -->
+  <style>
+    .sidebar-gradient {
+      background:
+        radial-gradient(50% 50% at 50% 50%, rgba(20, 57, 103, 0.068) 0%, rgba(20, 57, 103, 0) 100%),
+        linear-gradient(175.65deg, #143967 5.21%, #173d78 59.25%, #245ec2 99.08%);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-navy bg-white">
+
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR (Home is highlighted, as in the design) ================= -->
+  <aside id="sidebar"
+    class="sidebar-gradient fixed inset-y-0 left-0 z-40 flex w-[300px] -translate-x-full flex-col px-[30px] py-[50px] text-white transition-transform lg:w-[350px] lg:translate-x-0">
+
+    <div class="flex items-center gap-[15px]">
+     <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+    </div>
+      <span class="font-grotesk text-2xl font-medium">Stockwise Africa</span>
+    </div>
+
+    <nav aria-label="Main" class="mt-[90px] flex flex-col gap-2.5">
+      <a href="#" data-page="Home" aria-current="page" class="nav-link flex items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-navy focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+      <a href="index.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M13 8h3M8 12h2M13 12h3M8 16h2M13 16h3"/></svg>
+        Inventory
+      </a>
+      <a href="sales.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2 12h11l2-8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+        Sales
+      </a>
+      <a href="alerts.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+        Alerts
+      </a>
+      <a href="reports.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- mt-auto pushes Settings and Logout to the bottom -->
+    <div class="mt-auto flex flex-col gap-2.5">
+      <a href="teams.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M10.16 4.63 L10.44 2.12 L13.56 2.12 L13.84 4.63 L15.91 5.49 L17.88 3.91 L20.09 6.12 L18.51 8.09 L19.37 10.16 L21.88 10.44 L21.88 13.56 L19.37 13.84 L18.51 15.91 L20.09 17.88 L17.88 20.09 L15.91 18.51 L13.84 19.37 L13.56 21.88 L10.44 21.88 L10.16 19.37 L8.09 18.51 L6.12 20.09 L3.91 17.88 L5.49 15.91 L4.63 13.84 L2.12 13.56 L2.12 10.44 L4.63 10.16 L5.49 8.09 L3.91 6.12 L6.12 3.91 L8.09 5.49Z"/></svg>
+        Settings
+      </a>
+      <button id="logout-button" type="button" class="flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-accent-red hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="size-8 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M10 12h11M17 8l4 4-4 4"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex min-h-screen flex-col px-4 py-6 lg:pl-[350px] lg:pr-[30px] lg:pt-[35px]">
+    <div class="flex flex-1 flex-col lg:ml-[30px]">
+
+      <header class="flex flex-wrap items-center gap-4 lg:flex-nowrap lg:items-start">
+        <button id="menu-button" type="button" aria-label="Open menu" class="rounded-[5px] border border-navy/50 p-2 hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:hidden">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="order-last flex h-[42px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy lg:order-none lg:max-w-[910px] lg:flex-1">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search</span>
+          <input id="top-search" type="search" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <div class="relative ml-auto flex items-center gap-[30px]">
+          <button id="notification-button" type="button" aria-label="Notifications" aria-expanded="false" class="rounded-full p-1 hover:bg-navy/10 focus-visible:outline-2 focus-visible:outline-navy">
+            <svg class="size-[35px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+          </button>
+          <div class="flex items-center gap-2.5">
+            <svg class="size-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 14a8 8 0 0 1-6-2.7C6.2 15.6 9 15 12 15s5.8.6 6 2.3A8 8 0 0 1 12 20z"/></svg>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold">John Doe</p>
+              <p class="text-sm font-semibold">Owner</p>
+            </div>
+          </div>
+          <div id="notification-panel" class="absolute right-0 top-14 z-20 hidden w-72 max-w-[calc(100vw-2rem)] rounded-[5px] border border-navy/20 bg-white p-4 text-sm shadow-lg">
+            <p class="font-semibold">Notifications</p>
+            <p id="notification-panel-message" class="mt-2">You have no new notifications.</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page heading + Mark all as read -->
+      <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between lg:mt-5">
+        <div>
+          <h1 class="font-grotesk text-[32px] font-bold leading-[42px] sm:text-[36px] sm:leading-[46px]">Notifications</h1>
+          <p class="text-sm font-medium">Stay updated with important alerts and activities from your store.</p>
+        </div>
+        <!-- whitespace-nowrap + shrink-0 keep the label on one line -->
+        <button id="mark-all-button" type="button" class="flex h-[39px] min-w-[176px] shrink-0 items-center justify-center gap-2.5 whitespace-nowrap rounded-[5px] border border-navy bg-white px-5 text-sm font-bold hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+          <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          <span>Mark all as read</span>
+        </button>
+      </div>
+
+      <!-- Notification list: only shown when the notifications array has items -->
+      <section id="notification-list-section" class="mt-8 hidden" aria-label="Notification list">
+        <ul id="notification-list" class="flex flex-col gap-3"></ul>
+      </section>
+
+      <!-- Empty state: centered in the space left below the heading -->
+      <section id="empty-state" class="flex flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center">
+        <div class="flex size-[180px] items-center justify-center rounded-full bg-navy/10 sm:h-[243px] sm:w-[250px]">
+          <!-- Bell with four "ringing" lines, drawn on a 109 x 90 canvas like the design -->
+          <svg class="h-[60px] w-[73px] sm:h-[90px] sm:w-[109px]" viewBox="0 0 109 90" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <!-- bell body: round dome, sides that flare out to a flat base -->
+            <path d="M21 69L28 44V30.5A26.5 26.5 0 0 1 81 30.5V44L88 69Z"/>
+            <!-- clapper: a U hanging from the base -->
+            <path d="M43.5 69V74A11 11 0 0 0 65.5 74V69"/>
+            <!-- four "ringing" lines: two diagonal, two horizontal -->
+            <path d="M7 4L18 12M102 4L91 12M4 33H14M95 33H105"/>
+          </svg>
+        </div>
+        <div class="flex flex-col items-center gap-2.5">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[46px]">No notification yet</h2>
+          <!-- max-w keeps the line break after "here", like the design -->
+          <p class="max-w-[450px] text-base font-medium sm:text-xl sm:leading-[30px]">You’ll see important alerts and updates here when they became available</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Floating status message (aria-live), fixed so it never shifts the layout -->
+  <p id="status-message" role="status" aria-live="polite" class="pointer-events-none fixed bottom-6 left-1/2 z-50 hidden max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-[5px] bg-navy px-4 py-2 text-sm font-medium text-white shadow-lg lg:ml-[175px]"></p>
+
+  <script src="esnotification.js"></script>
+</body>
+</html>
