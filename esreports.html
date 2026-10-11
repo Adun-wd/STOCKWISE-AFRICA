@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reports | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (body) and Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v4 browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Design tokens: they become classes like bg-navy, text-navy, font-grotesk -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy: #143967;
+      --color-accent-red: #e85363;
+      --color-circle: #e8edf2;
+      --font-sans: "Inter", sans-serif;
+      --font-grotesk: "Space Grotesk", sans-serif;
+    }
+  </style>
+
+  <!-- The only custom CSS: the sidebar gradient from the design file -->
+  <style>
+    .sidebar-gradient {
+      background:
+        radial-gradient(50% 50% at 50% 50%, rgba(20, 57, 103, 0.068) 0%, rgba(20, 57, 103, 0) 100%),
+        linear-gradient(175.29deg, #143967 0.7%, #173d78 56.88%, #245ec2 96.96%);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-navy bg-white">
+
+  <!-- Dark overlay behind the mobile menu -->
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR (Reports is active) ================= -->
+  <aside id="sidebar"
+    class="sidebar-gradient fixed inset-y-0 left-0 z-40 flex w-[300px] -translate-x-full flex-col px-[30px] py-[50px] text-white transition-transform lg:w-[280px] lg:translate-x-0 lg:px-5 lg:py-8">
+
+    <div class="flex items-center gap-[15px] lg:gap-3">
+      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+        <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+      </div>
+      <span class="font-grotesk text-2xl font-medium lg:text-xl">Stockwise Africa</span>
+    </div>
+
+    <nav aria-label="Main" class="mt-[90px] flex flex-col gap-2.5 lg:mt-[clamp(32px,8vh,70px)] lg:gap-1.5">
+      <a href="#" data-page="Home" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+      <a href="index.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M13 8h3M8 12h2M13 12h3M8 16h2M13 16h3"/></svg>
+        Inventory
+      </a>
+      <a href="sales.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <!-- Cart icon from the design file -->
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 29 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.9281 17.8719H8.31875L9.25312 15.9688L24.7781 15.9406C25.3031 15.9406 25.7531 15.5656 25.8469 15.0469L27.9969 3.0125C28.0531 2.69687 27.9687 2.37188 27.7625 2.125C27.6606 2.0035 27.5334 1.90563 27.3899 1.83818C27.2463 1.77073 27.0898 1.73531 26.9312 1.73438L7.18125 1.66875L7.0125 0.875C6.90625 0.36875 6.45 0 5.93125 0H1.10312C0.810558 0 0.529974 0.116222 0.323098 0.323098C0.116222 0.529974 0 0.810558 0 1.10313C0 1.39569 0.116222 1.67628 0.323098 1.88315C0.529974 2.09003 0.810558 2.20625 1.10312 2.20625H5.0375L5.775 5.7125L7.59063 14.5031L5.25313 18.3188C5.13174 18.4826 5.05862 18.6771 5.04205 18.8804C5.02548 19.0836 5.06612 19.2874 5.15938 19.4688C5.34688 19.8406 5.725 20.075 6.14375 20.075H8.10625C7.68787 20.6307 7.46189 21.3075 7.4625 22.0031C7.4625 23.7719 8.9 25.2094 10.6687 25.2094C12.4375 25.2094 13.875 23.7719 13.875 22.0031C13.875 21.3062 13.6438 20.6281 13.2312 20.075H18.2656C17.8472 20.6307 17.6213 21.3075 17.6219 22.0031C17.6219 23.7719 19.0594 25.2094 20.8281 25.2094C22.5969 25.2094 24.0344 23.7719 24.0344 22.0031C24.0344 21.3062 23.8031 20.6281 23.3906 20.075H26.9312C27.5375 20.075 28.0344 19.5812 28.0344 18.9719C28.0326 18.6796 27.9152 18.3999 27.708 18.1939C27.5007 17.9878 27.2204 17.872 26.9281 17.8719ZM7.64063 3.84375L25.6344 3.90312L23.8719 13.7719L9.7375 13.7969L7.64063 3.84375ZM10.6687 22.9906C10.125 22.9906 9.68125 22.5469 9.68125 22.0031C9.68125 21.4594 10.125 21.0156 10.6687 21.0156C11.2125 21.0156 11.6562 21.4594 11.6562 22.0031C11.6562 22.265 11.5522 22.5162 11.367 22.7014C11.1818 22.8866 10.9307 22.9906 10.6687 22.9906ZM20.8281 22.9906C20.2844 22.9906 19.8406 22.5469 19.8406 22.0031C19.8406 21.4594 20.2844 21.0156 20.8281 21.0156C21.3719 21.0156 21.8156 21.4594 21.8156 22.0031C21.8156 22.265 21.7116 22.5162 21.5264 22.7014C21.3412 22.8866 21.09 22.9906 20.8281 22.9906Z"/></svg>
+        Sales
+      </a>
+      <a href="alerts.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+        Alerts
+      </a>
+      <a href="reports.html" aria-current="page" class="nav-link flex items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-navy focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- mt-auto pushes Settings and Logout to the bottom -->
+    <div class="mt-auto flex flex-col gap-2.5 lg:gap-1.5">
+      <a href="#" data-page="Settings" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M10.16 4.63 L10.44 2.12 L13.56 2.12 L13.84 4.63 L15.91 5.49 L17.88 3.91 L20.09 6.12 L18.51 8.09 L19.37 10.16 L21.88 10.44 L21.88 13.56 L19.37 13.84 L18.51 15.91 L20.09 17.88 L17.88 20.09 L15.91 18.51 L13.84 19.37 L13.56 21.88 L10.44 21.88 L10.16 19.37 L8.09 18.51 L6.12 20.09 L3.91 17.88 L5.49 15.91 L4.63 13.84 L2.12 13.56 L2.12 10.44 L4.63 10.16 L5.49 8.09 L3.91 6.12 L6.12 3.91 L8.09 5.49Z"/></svg>
+        Settings
+      </a>
+      <button id="logout-button" type="button" class="flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-accent-red hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M10 12h11M17 8l4 4-4 4"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <!-- lg:h-screen keeps the page inside the browser window; only this area scrolls if a table appears -->
+  <main class="flex min-h-screen flex-col px-4 py-6 lg:h-screen lg:min-h-0 lg:overflow-y-auto lg:pl-[280px] lg:pr-6 lg:py-5">
+    <div class="flex flex-1 flex-col lg:ml-5">
+
+      <!-- Top bar: menu button (mobile), search, notifications, profile -->
+      <header class="flex flex-wrap items-center gap-4 lg:flex-nowrap lg:items-start">
+        <button id="menu-button" type="button" aria-label="Open menu" class="rounded-[5px] border border-navy/50 p-2 hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:hidden">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="order-last flex h-[42px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy lg:order-none lg:max-w-[910px] lg:flex-1">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search reports</span>
+          <input id="top-search" type="search" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <div class="relative ml-auto flex items-center gap-[30px] lg:gap-5">
+          <button id="notification-button" type="button" aria-label="Notifications" aria-expanded="false" class="rounded-full p-1 hover:bg-navy/10 focus-visible:outline-2 focus-visible:outline-navy">
+            <svg class="size-[35px] lg:size-[30px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+          </button>
+          <div class="flex items-center gap-2.5">
+            <svg class="size-10 lg:size-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 14a8 8 0 0 1-6-2.7C6.2 15.6 9 15 12 15s5.8.6 6 2.3A8 8 0 0 1 12 20z"/></svg>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold lg:text-base">John Doe</p>
+              <p class="text-sm font-semibold">Owner</p>
+            </div>
+          </div>
+
+          <div id="notification-panel" class="absolute right-0 top-14 z-20 hidden w-72 max-w-[calc(100vw-2rem)] rounded-[5px] border border-navy/20 bg-white p-4 text-sm shadow-lg">
+            <p class="font-semibold">Notifications</p>
+            <p class="mt-2">You have no new notifications.</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page heading + date range + Export Report -->
+      <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between lg:mt-3">
+        <div>
+          <h1 class="font-grotesk text-[32px] font-bold leading-[42px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">Reports</h1>
+          <p class="text-sm font-medium">Access detailed reports on your inventory, sales and business performance.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          <!-- Date range selector + its small panel -->
+          <div class="relative w-full sm:w-auto">
+            <button id="date-button" type="button" aria-haspopup="dialog" aria-expanded="false"
+              class="flex h-10 w-full items-center gap-1.5 whitespace-nowrap rounded-[5px] border border-navy bg-white px-2.5 text-sm font-medium hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:w-[267px]">
+              <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              <span id="date-label" class="flex-1 text-left sm:text-right">Sep 20, 2026 - Sep 26, 2026</span>
+              <svg class="ml-3 w-[10px] shrink-0" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+            </button>
+
+            <form id="date-form" role="dialog" aria-label="Choose a date range" class="absolute right-0 top-12 z-20 hidden w-72 max-w-[calc(100vw-2rem)] rounded-[5px] border border-navy/20 bg-white p-4 shadow-lg">
+              <div class="flex flex-col gap-3">
+                <div>
+                  <label for="date-start" class="text-sm font-semibold">Start date</label>
+                  <input id="date-start" type="date" required class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+                </div>
+                <div>
+                  <label for="date-end" class="text-sm font-semibold">End date</label>
+                  <input id="date-end" type="date" required class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+                </div>
+                <p id="date-error" role="alert" class="hidden text-xs text-accent-red">The end date cannot be earlier than the start date.</p>
+                <div class="flex justify-end gap-3">
+                  <button id="date-cancel" type="button" class="h-10 rounded-[5px] border border-navy/50 px-4 text-sm font-semibold hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy">Cancel</button>
+                  <button type="submit" class="h-10 rounded-[5px] bg-navy px-4 text-sm font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Apply</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <button id="export-button" type="button" class="flex h-10 min-w-[150px] shrink-0 items-center justify-center gap-[5px] whitespace-nowrap rounded-[5px] bg-navy px-[15px] text-sm font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+            <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11M7.5 10.5l4.5 4.5 4.5-4.5M3.5 15v4a1.5 1.5 0 0 0 1.5 1.5h14a1.5 1.5 0 0 0 1.5-1.5v-4"/></svg>
+            <span>Export Report</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Report table: only shown when real sales exist inside the chosen date range -->
+      <section id="report-section" class="mt-8 hidden lg:mt-5" aria-label="Report data">
+        <p id="report-summary" class="mb-3 text-sm font-semibold"></p>
+        <div class="overflow-x-auto rounded-[5px] border border-navy/20">
+          <table class="w-full min-w-[560px] text-left text-sm">
+            <thead class="bg-navy/5 font-semibold">
+              <tr>
+                <th class="px-4 py-3">Product</th>
+                <th class="px-4 py-3">Qty</th>
+                <th class="px-4 py-3">Total</th>
+                <th class="px-4 py-3">Payment</th>
+                <th class="px-4 py-3">Date</th>
+              </tr>
+            </thead>
+            <tbody id="report-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Empty state: centered in the space left below the header -->
+      <section id="empty-state" class="flex flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center lg:gap-5 lg:py-4">
+        <div class="flex size-[180px] items-center justify-center rounded-full bg-navy/10 sm:size-[250px] lg:size-[clamp(160px,28vh,220px)]">
+          <svg class="h-[66px] w-[69px] sm:h-[86px] sm:w-[90px] lg:h-[70px] lg:w-[73px]" viewBox="0 0 90 86" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8H56a8 8 0 0 1 8 8V56H82V70a8 8 0 0 1-8 8H18A10 10 0 0 1 8 68V18A10 10 0 0 1 18 8Z"/><path d="M64 56V78"/><path d="M24 24H48M24 38H48M24 52H34"/></svg>
+        </div>
+        <div class="flex max-w-[686px] flex-col gap-2.5 lg:gap-2">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">No reports available</h2>
+          <p id="empty-message" class="text-base font-medium sm:text-xl sm:leading-[30px] lg:text-lg lg:leading-7">There’s no data to show yet. Try adjusting your date range or create some activities in your inventory and sales</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Floating message (fixed position, so it never shifts the layout) -->
+  <p id="status-message" role="status" class="pointer-events-none fixed bottom-6 left-1/2 z-50 hidden max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-[5px] bg-navy px-4 py-2 text-sm font-medium text-white shadow-lg lg:ml-[140px]"></p>
+
+  <script src="esreports.js"></script>
+</body>
+</html>

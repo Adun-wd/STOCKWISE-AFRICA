@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add New Product | Stockwise Africa</title>
+
+  <!-- Fonts: Inter (interface) and Space Grotesk (heading + brand) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!--
+    Reusable class names for the form. Each one is a bundle of Tailwind classes,
+    so we don't repeat the same long class list on every field.
+  -->
+  <style type="text/tailwindcss">
+    @layer components {
+      /* A form card (Basic Information, Pricing & Stock, ...) */
+      .form-card { @apply flex min-w-0 flex-col gap-[15px] rounded-[10px] border border-[#C9D5E4] p-[10px] sm:gap-[27px] sm:rounded-[9px] sm:px-[18px] sm:py-[13px] xl:gap-[12px] xl:py-[10px]; }
+      .card-toggle { @apply flex w-full items-center justify-between gap-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2] sm:items-start; }
+      .card-badge { @apply flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#143967] text-[10px] font-bold leading-none text-white sm:h-5 sm:w-5 sm:text-[12px]; }
+      .card-title { @apply text-[12px] font-bold leading-[15px] sm:text-[14px] sm:leading-5; }
+      .card-description { @apply mt-[6px] hidden text-[11px] font-medium leading-[14px] sm:block; }
+
+      /* A label + control + error message */
+      .field { @apply flex min-w-0 flex-col gap-[5px]; }
+      .field-label { @apply text-[12px] font-semibold leading-[15px] sm:text-[13px]; }
+      .field-control { @apply block h-[47px] w-full min-w-0 rounded-[5px] border border-[#315B91] bg-white px-[10px] text-[12px] font-medium text-[#143967] placeholder:text-[#7088A9] focus:outline-none focus:shadow-[inset_0_0_0_0.5px_#315B91] sm:h-[34px]; }
+      .field-control[aria-invalid='true'] { @apply border-[#C91D24] focus:shadow-[inset_0_0_0_0.5px_#C91D24]; }
+      .field-error { @apply text-[11px] font-medium leading-[14px] text-[#C91D24]; }
+
+      /* Radio buttons (Physical product / Service) */
+      .radio { @apply h-[18px] w-[18px] shrink-0 cursor-pointer appearance-none rounded-full border-[3px] border-[#143967] bg-white checked:border-[6px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]; }
+    }
+  </style>
+
+  <!-- A few small things Tailwind classes can't do on their own -->
+  <style>
+    /* Hide the up/down arrows on number inputs */
+    input[type='number'] { -moz-appearance: textfield; appearance: textfield; }
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    /* Dropdowns: we draw our own chevron, and show the placeholder in a muted colour */
+    select { -webkit-appearance: none; appearance: none; }
+    select:has(option[value='']:checked) { color: #7088A9; }
+    select option { color: #143967; }
+
+    /* Date input: our own calendar icon is on the left; the browser's icon covers the whole field so a click opens the picker */
+    input[type='date']::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+
+    /* Bottom navigation labels (mobile only) use the SF Pro look from the mobile design */
+    .nav-font { font-family: 'SF Pro', -apple-system, 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-white font-['Inter'] text-[#143967]">
+
+  <!-- Dark overlay behind the sidebar when it is opened on small screens -->
+  <div id="sidebar-overlay" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ============ Sidebar ============ -->
+  <aside
+    id="sidebar"
+    class="fixed left-0 top-0 z-50 flex h-screen w-[311px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto pb-[31px] pl-[27px] pr-[18px] pt-[44px] transition-transform [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:translate-x-0"
+    style="background: linear-gradient(180deg, #143967 0%, #173D78 55%, #245EC2 100%);"
+  >
+    <!-- Brand: white circle with an "SW" monogram + name -->
+    <div class="flex items-center gap-[13px]">
+      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+  <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+    </div>
+      <span class="font-['Space_Grotesk'] text-[22px] font-medium leading-7 text-white">Stockwise Africa</span>
+      <button id="close-menu-button" type="button" aria-label="Close menu" class="ml-auto text-white lg:hidden">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+
+    <!-- Main navigation (links are placeholders: point them at your real pages) -->
+    <nav aria-label="Main navigation" class="mt-[89px] flex flex-col gap-[9px]">
+      <a href="#" aria-current="page" class="flex h-[55px] items-center gap-[13px] rounded-[5px] bg-white px-[13px] text-[18px] font-medium text-[#143967]">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" /></svg>
+        Home
+      </a>
+      <a href="product.html" class="flex h-[55px] items-center gap-[13px] rounded-[5px] px-[13px] text-[18px] font-medium text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h1M12 8h4M8 12h1M12 12h4M8 16h1M12 16h4" /></svg>
+        Inventory
+      </a>
+      <a href="#" class="flex h-[55px] items-center gap-[13px] rounded-[5px] px-[13px] text-[18px] font-medium text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.5 12h11l2-8H6" /></svg>
+        Sales
+      </a>
+      <a href="#" class="flex h-[55px] items-center gap-[13px] rounded-[5px] px-[13px] text-[18px] font-medium text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+        Alerts
+      </a>
+      <a href="#" class="flex h-[55px] items-center gap-[13px] rounded-[5px] px-[13px] text-[18px] font-medium text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18" /><path d="M7 15l4-4 3 3 6-7" /></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- Bottom: Settings + Logout (pushed down with mt-auto) -->
+    <div class="mt-auto flex flex-col gap-4 pt-10">
+      <a href="#" class="flex h-[55px] items-center gap-[13px] rounded-[5px] px-[13px] text-[18px] font-medium text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" /><circle cx="12" cy="12" r="3" /></svg>
+        Settings
+      </a>
+      <a href="#" class="flex h-[55px] items-center gap-[13px] rounded-[5px] px-[13px] text-[18px] font-medium text-[#FF4545] hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h5" /><path d="M9 12h12M17 8l4 4-4 4" /></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- ============ Page content ============ -->
+  <!-- Mobile: 20px side padding + room at the bottom for the bottom nav bar. sm and up: 26px sides. lg and up: leave room for the sidebar.
+       xl and up (two-column layout): the page is exactly one screen tall (h-screen) with tighter spacing, so it fits at 100% browser zoom. -->
+  <div class="min-h-screen px-5 pb-[81px] pt-5 sm:px-[26px] sm:pb-[10px] sm:pt-[31px] lg:ml-[311px] xl:h-screen xl:overflow-y-auto xl:pb-[8px] xl:pt-[14px]">
+
+    <!-- MOBILE header: back arrow + title on the left, bell + avatar on the right -->
+    <header class="flex items-center justify-between sm:hidden">
+      <div class="flex items-center gap-5">
+        <a href="#" aria-label="Back to inventory" class="text-[#143967]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6" /></svg>
+        </a>
+        <span class="text-[14px] font-bold leading-[17px] text-black">Add New Product</span>
+      </div>
+      <div class="flex items-center gap-[10px]">
+        <button type="button" aria-label="Notifications" class="text-black">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /><circle cx="19" cy="5" r="2.6" fill="currentColor" stroke="none" /></svg>
+        </button>
+        <svg class="h-9 w-9" viewBox="0 0 24 24" role="img" aria-label="John Doe, Owner"><circle cx="12" cy="12" r="12" fill="#143967" /><circle cx="12" cy="9" r="3.6" fill="#fff" /><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff" /></svg>
+      </div>
+    </header>
+
+    <!-- TABLET + DESKTOP header: search, notifications, profile -->
+    <header class="hidden items-center justify-between gap-4 sm:flex">
+      <button type="button" data-open-menu aria-label="Open menu" class="shrink-0 lg:hidden">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+
+      <div class="flex h-[37px] min-w-0 flex-1 items-center gap-[9px] rounded-[4px] border border-[#143967]/50 px-[13px] lg:max-w-[809px]">
+        <svg class="h-[18px] w-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+        <input id="search-input" type="search" aria-label="Search products, categories or SKU" placeholder="Search products, categories or SKU..." class="w-full min-w-0 bg-transparent text-[13px] text-[#143967] placeholder:text-[#143967] focus:outline-none" />
+      </div>
+
+      <div class="flex shrink-0 items-center gap-[27px]">
+        <button type="button" aria-label="Notifications">
+          <svg class="h-[31px] w-[31px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+        </button>
+        <div class="flex items-center gap-[9px]">
+          <svg class="h-9 w-9 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#143967" /><circle cx="12" cy="9" r="3.6" fill="#fff" /><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff" /></svg>
+          <div class="hidden flex-col md:flex">
+            <span class="text-[16px] font-semibold leading-5">John Doe</span>
+            <span class="text-[12.5px] font-semibold leading-[15px]">Owner</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Back link, heading and description (tablet + desktop only; on mobile the title lives in the header above) -->
+      <div class="mt-[18px] hidden sm:block xl:mt-[8px]">
+        <!-- Replace href="#" with your real inventory page, e.g. href="inventory.html" -->
+        <a href="#" class="inline-flex items-center gap-[9px] text-[14px] font-medium leading-[17px] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">
+          <svg class="h-[21px] w-[21px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6" /></svg>
+          Back to inventory
+        </a>
+        <h1 class="mt-[14px] font-['Space_Grotesk'] text-[32px] font-bold leading-[41px] xl:mt-[4px] xl:text-[28px] xl:leading-[34px]">Add New Product</h1>
+        <p class="text-[12.5px] font-medium leading-[15px]">Fill in the details below to add a new product to your inventory.</p>
+      </div>
+
+      <!-- ============ The form ============ -->
+      <form id="product-form" novalidate class="mt-[10px] sm:mt-[13px] xl:mt-[8px]">
+
+        <!-- Cards: one column on mobile + tablet, two columns from xl -->
+        <div class="flex flex-col gap-[10px] sm:gap-[27px] xl:grid xl:grid-cols-2 xl:gap-[14px]">
+
+          <!-- ---------- Card 1: Basic Information ---------- -->
+          <section class="form-card sm:px-[9px]">
+            <button type="button" class="card-toggle" data-card-toggle aria-expanded="true" aria-controls="card-1-body">
+              <span class="flex items-center gap-[15px] sm:items-start sm:gap-[13px]">
+                <span class="card-badge" aria-hidden="true">1</span>
+                <span>
+                  <span class="card-title block">Basic Information</span>
+                  <span class="card-description">Enter the essential details about the product</span>
+                </span>
+              </span>
+              <svg data-chevron class="h-4 w-4 shrink-0 transition-transform sm:mt-[2px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+            </button>
+
+            <div id="card-1-body" data-card-body class="flex flex-col gap-[15px] sm:flex-row sm:gap-[18px] sm:px-[9px]">
+
+              <!-- Image upload -->
+              <div class="flex flex-col gap-[5px] sm:w-[170px] sm:shrink-0">
+                <div class="flex flex-1 items-center gap-[30px] rounded-[5px] border border-[#C9D5E4] px-[10px] py-[15px] sm:flex-col sm:justify-center sm:gap-[14px] sm:rounded-[9px] sm:px-[18px] sm:py-[18px] xl:gap-[8px] xl:py-[10px]">
+                  <!-- Grey square: shows a camera icon, or a preview once an image is chosen -->
+                  <div class="flex h-[80px] w-[100px] shrink-0 items-center justify-center overflow-hidden rounded-[5px] bg-[#143967]/[0.06] sm:h-[71px] sm:w-[89px] sm:bg-[#143967]/10 xl:h-[60px] xl:w-[80px]">
+                    <svg id="image-placeholder" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><circle cx="12" cy="13" r="3.8" /></svg>
+                    <img id="image-preview" alt="Preview of the chosen product image" class="hidden h-full w-full object-cover" />
+                  </div>
+                  <div class="flex flex-col items-start gap-[10px] sm:items-center sm:gap-[5px] sm:text-center">
+                    <div class="flex flex-col gap-[5px]">
+                      <p class="text-[12px] font-semibold leading-[15px]">Upload product image</p>
+                      <p class="text-[12px] font-medium leading-[15px]">JPG, PNG (Max 2MB)</p>
+                    </div>
+                    <p id="image-file-name" class="max-w-[130px] truncate text-[11px] font-medium text-[#143967]/70"></p>
+                    <!-- The real file input is hidden; this button opens it -->
+                    <input id="product-image" name="productImage" type="file" accept="image/png,image/jpeg" class="sr-only" aria-describedby="image-error" tabindex="-1" />
+                    <button id="choose-file-button" type="button" class="rounded-[5px] border border-[#C9D5E4] px-[15px] py-[8px] text-[12px] font-bold leading-[15px] hover:bg-[#143967]/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2]">Choose file</button>
+                  </div>
+                </div>
+                <p id="image-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Name, category, SKU -->
+              <div class="flex min-w-0 flex-1 flex-col gap-[15px] sm:gap-[18px] xl:gap-[10px]">
+                <div class="field">
+                  <label for="product-name" class="field-label">Product name *</label>
+                  <input id="product-name" name="productName" type="text" required autocomplete="off" placeholder="Enter product name" aria-describedby="product-name-error" class="field-control" />
+                  <p id="product-name-error" class="field-error hidden"></p>
+                </div>
+
+                <div class="field">
+                  <label for="category" class="field-label">Category *</label>
+                  <div class="relative">
+                    <select id="category" name="category" required aria-describedby="category-error" class="field-control pr-8">
+                      <option value="" selected disabled hidden>Select category</option>
+                      <option value="Medicine">Medicine</option>
+                      <option value="Medical Supplies">Medical Supplies</option>
+                      <option value="Equipment">Equipment</option>
+                      <option value="Personal Care">Personal Care</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <svg class="pointer-events-none absolute right-[10px] top-1/2 h-4 w-4 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+                  </div>
+                  <p id="category-error" class="field-error hidden"></p>
+                </div>
+
+                <div class="field">
+                  <label for="sku" class="field-label">SKU *</label>
+                  <input id="sku" name="sku" type="text" required autocomplete="off" placeholder="Enter SKU" aria-describedby="sku-error" class="field-control" />
+                  <p id="sku-error" class="field-error hidden"></p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ---------- Card 2: Pricing & Stock ---------- -->
+          <section class="form-card">
+            <button type="button" class="card-toggle" data-card-toggle aria-expanded="true" aria-controls="card-2-body">
+              <span class="flex items-center gap-[15px] sm:items-start sm:gap-[13px]">
+                <span class="card-badge" aria-hidden="true">2</span>
+                <span>
+                  <span class="card-title block">Pricing &amp; Stock</span>
+                  <span class="card-description">Set the pricing and stock information</span>
+                </span>
+              </span>
+              <svg data-chevron class="h-4 w-4 shrink-0 transition-transform sm:mt-[2px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+            </button>
+
+            <div id="card-2-body" data-card-body class="grid grid-cols-2 content-start gap-x-[5px] gap-y-[15px] sm:gap-x-[18px] sm:gap-y-[18px] xl:gap-y-[12px]">
+              <div class="field">
+                <label for="selling-price" class="field-label">Selling price *</label>
+                <div class="relative">
+                  <span aria-hidden="true" class="pointer-events-none absolute left-[10px] top-1/2 -translate-y-1/2 text-[12px] font-medium text-[#143967]/60">₦</span>
+                  <input id="selling-price" name="sellingPrice" type="number" inputmode="decimal" min="0" step="0.01" required placeholder="Enter selling price" aria-describedby="selling-price-error" class="field-control pl-[30px]" />
+                </div>
+                <p id="selling-price-error" class="field-error hidden"></p>
+              </div>
+
+              <div class="field">
+                <label for="cost-price" class="field-label">Cost price (optional)</label>
+                <div class="relative">
+                  <span aria-hidden="true" class="pointer-events-none absolute left-[10px] top-1/2 -translate-y-1/2 text-[12px] font-medium text-[#143967]/60">₦</span>
+                  <input id="cost-price" name="costPrice" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Enter cost price" aria-describedby="cost-price-error" class="field-control pl-[30px]" />
+                </div>
+                <p id="cost-price-error" class="field-error hidden"></p>
+              </div>
+
+              <div class="field">
+                <label for="stock-quantity" class="field-label">Current stock quantity*</label>
+                <input id="stock-quantity" name="stockQuantity" type="number" inputmode="numeric" min="0" step="1" required placeholder="Enter quantity" aria-describedby="stock-quantity-error" class="field-control" />
+                <p id="stock-quantity-error" class="field-error hidden"></p>
+              </div>
+
+              <div class="field">
+                <label for="reorder-level" class="field-label">Reorder level (optional)</label>
+                <input id="reorder-level" name="reorderLevel" type="number" inputmode="numeric" min="0" step="1" placeholder="Enter reorder level" aria-describedby="reorder-level-error" class="field-control" />
+                <p id="reorder-level-error" class="field-error hidden"></p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ---------- Card 3: Product Details ---------- -->
+          <section class="form-card">
+            <button type="button" class="card-toggle" data-card-toggle aria-expanded="true" aria-controls="card-3-body">
+              <span class="flex items-center gap-[15px] sm:items-start sm:gap-[13px]">
+                <span class="card-badge" aria-hidden="true">3</span>
+                <span>
+                  <span class="card-title block">Product Details</span>
+                  <span class="card-description">Add more information about the product</span>
+                </span>
+              </span>
+              <svg data-chevron class="h-4 w-4 shrink-0 transition-transform sm:mt-[2px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+            </button>
+
+            <div id="card-3-body" data-card-body class="grid grid-cols-2 content-start gap-x-[5px] gap-y-[15px] sm:gap-x-[18px] sm:gap-y-[18px] xl:gap-y-[12px]">
+              <div class="field">
+                <label for="supplier" class="field-label">Supplier (optional)</label>
+                <input id="supplier" name="supplier" type="text" autocomplete="off" placeholder="e.g. ABC Pharm" class="field-control" />
+              </div>
+
+              <div class="field">
+                <label for="batch-number" class="field-label">Batch number (optional)</label>
+                <input id="batch-number" name="batchNumber" type="text" autocomplete="off" placeholder="e.g. BCHN1124" class="field-control" />
+              </div>
+
+              <div class="field">
+                <label for="expiry-date" class="field-label">Expiry date (optional)</label>
+                <div class="relative">
+                  <svg class="pointer-events-none absolute left-[10px] top-1/2 h-4 w-4 -translate-y-1/2 text-[#143967]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18M8 2v4M16 2v4" /></svg>
+                  <input id="expiry-date" name="expiryDate" type="date" class="field-control relative pl-[32px]" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="unit" class="field-label">Unit of measure</label>
+                <div class="relative">
+                  <select id="unit" name="unit" class="field-control pr-8">
+                    <option value="" selected disabled hidden>Select unit</option>
+                    <option value="Piece">Piece</option>
+                    <option value="Pack">Pack</option>
+                    <option value="Box">Box</option>
+                    <option value="Bottle">Bottle</option>
+                    <option value="Carton">Carton</option>
+                    <option value="Kilogram">Kilogram</option>
+                    <option value="Litre">Litre</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <svg class="pointer-events-none absolute right-[10px] top-1/2 h-4 w-4 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+                </div>
+              </div>
+
+              <div class="field col-span-2">
+                <label for="description" class="field-label">Description (optional)</label>
+                <textarea id="description" name="description" placeholder="Enter product description..." class="field-control h-[80px] resize-y px-[15px] py-[10px] sm:h-[89px] xl:h-[56px]"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- ---------- Card 4: Additional Information ---------- -->
+          <section class="form-card">
+            <button type="button" class="card-toggle" data-card-toggle aria-expanded="true" aria-controls="card-4-body">
+              <span class="flex items-center gap-[15px] sm:items-start sm:gap-[13px]">
+                <span class="card-badge" aria-hidden="true">4</span>
+                <span>
+                  <span class="card-title block">Additional Information</span>
+                  <span class="card-description">Add any extra details that may be relevant.</span>
+                </span>
+              </span>
+              <svg data-chevron class="h-4 w-4 shrink-0 transition-transform sm:mt-[2px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+            </button>
+
+            <div id="card-4-body" data-card-body class="flex flex-col content-start gap-[15px] sm:gap-[14px] xl:gap-[10px]">
+              <div class="field">
+                <span id="product-type-label" class="field-label">Product type (optional)</span>
+                <div role="radiogroup" aria-labelledby="product-type-label" class="flex flex-wrap gap-x-[44px]">
+                  <label class="flex cursor-pointer items-center gap-[9px] py-[6px] text-[13px] font-medium">
+                    <input type="radio" name="productType" value="physical" checked class="radio" />
+                    Physical product
+                  </label>
+                  <label class="flex cursor-pointer items-center gap-[9px] py-[6px] text-[13px] font-medium">
+                    <input type="radio" name="productType" value="service" class="radio" />
+                    Service
+                  </label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="status" class="field-label">Product status</label>
+                <div class="relative">
+                  <select id="status" name="status" class="field-control pr-8">
+                    <option value="active" selected>Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="draft">Draft</option>
+                  </select>
+                  <svg class="pointer-events-none absolute right-[10px] top-1/2 h-4 w-4 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7" /></svg>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="tags" class="field-label">Tags (optional)</label>
+                <input id="tags" name="tags" type="text" autocomplete="off" placeholder="Add tags (e.g. pain relief, antibiotic)" class="field-control" />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Success / error / info messages (screen readers are told about changes here) -->
+        <div id="form-status" role="status" aria-live="polite"></div>
+
+        <!-- ---------- Help panel + buttons ---------- -->
+        <!-- Mobile: help box, then Save Product, then Cancel (stacked). Desktop: one grey panel, text left, Cancel + Save Product side by side on the right. -->
+        <div class="mt-[10px] flex flex-col gap-[10px] sm:mt-[27px] sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:rounded-t-[7px] sm:bg-[#E7EBF0] sm:px-[13px] sm:py-[27px] xl:mt-[12px] xl:py-[12px]">
+          <div class="flex items-center gap-[15px] rounded-[7px] bg-[#E7EBF0] p-[15px] sm:gap-[27px] sm:rounded-none sm:bg-transparent sm:p-0">
+            <svg class="h-7 w-7 shrink-0 sm:h-8 sm:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2v.1h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" /><path d="M10.5 13.5l1.5-3 1.5 3" /></svg>
+            <div class="flex flex-col gap-[5px]">
+              <p class="text-[12px] font-bold leading-[15px] sm:text-[12.5px]">Need help?</p>
+              <p class="text-[10px] font-medium leading-[12px] sm:text-[12.5px] sm:leading-[15px]">Make sure all the details are correct before saving.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col-reverse gap-[10px] sm:shrink-0 sm:flex-row sm:flex-nowrap sm:gap-[18px]">
+            <button id="cancel-button" type="button" class="h-[39px] w-full whitespace-nowrap rounded-[5px] border border-[#143967] bg-white px-5 text-[14px] font-bold text-[#143967] hover:bg-[#143967]/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2] sm:h-[35px] sm:w-[124px] sm:text-[13px]">Cancel</button>
+            <button id="save-button" type="submit" class="h-[39px] w-full whitespace-nowrap rounded-[5px] border border-[#143967] bg-[#143967] px-5 text-[14px] font-bold text-white hover:bg-[#173D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#245EC2] sm:h-[35px] sm:w-[124px] sm:text-[13px]">Save Product</button>
+          </div>
+        </div>
+
+        <!-- ---------- Sync status bar (click or press Enter to retry) ---------- -->
+        <button id="sync-button" type="button" class="mt-[10px] flex h-[36px] w-full items-center justify-center gap-[18px] rounded-[5px] bg-[#FFE1E1] px-4 text-[14px] font-bold text-[#C91D24] hover:bg-[#FFD3D3] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C91D24] disabled:cursor-wait disabled:opacity-70 sm:mt-0 sm:rounded-t-none">
+          <svg class="h-[18px] w-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.5" /><circle cx="12" cy="12" r="4.5" fill="currentColor" /></svg>
+          <span id="sync-label">Sync failed • Tap to retry</span>
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <!-- ============ Mobile only: bottom navigation bar ============ -->
+  <nav aria-label="Bottom navigation" class="nav-font fixed inset-x-0 bottom-0 z-30 flex h-[61px] items-center justify-between border-t border-[#6C6C6C]/20 bg-white p-[10px] sm:hidden">
+    <a href="#" aria-current="page" class="flex h-[47px] w-[90px] flex-col items-center justify-center rounded-full bg-[#143967] px-[15px] py-[4px] text-white">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" /></svg>
+      <span class="text-[13.5px] leading-[19px]">Home</span>
+    </a>
+    <a href="product.html" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V3h6v1M8.5 10h1M12 10h3.5M8.5 14h1M12 14h3.5M8.5 17.5h1M12 17.5h3.5" /></svg>
+      <span class="text-[13.5px] leading-[19px]">Inventory</span>
+    </a>
+    <a href="#" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2" /><path d="M8.5 6h7v3h-7z" /><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01M8.5 19.5h.01M12 19.5h.01" stroke-width="2" /></svg>
+      <span class="text-[13.5px] leading-[19px]">Sales</span>
+    </a>
+    <a href="#" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z" /><path d="M10 21a2 2 0 0 0 4 0" /></svg>
+      <span class="text-[13.5px] leading-[19px]">Alerts</span>
+    </a>
+    <!-- "More" opens the sidebar -->
+    <button type="button" data-open-menu class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="1.6" /><circle cx="12" cy="5" r="1.6" /><circle cx="19" cy="5" r="1.6" /><circle cx="5" cy="12" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="19" cy="12" r="1.6" /><circle cx="5" cy="19" r="1.6" /><circle cx="12" cy="19" r="1.6" /><circle cx="19" cy="19" r="1.6" /></svg>
+      <span class="text-[13.5px] leading-[19px]">More</span>
+    </button>
+  </nav>
+
+  <script src="add.js"></script>
+</body>
+</html>

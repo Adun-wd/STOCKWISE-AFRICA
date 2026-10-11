@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Out | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (interface text) + Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (no other CSS file is used) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    /* Hide the up/down arrows on the number input (we draw our own) */
+    input[type='number'] { -moz-appearance: textfield; appearance: textfield; }
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    /* Dropdown: we draw our own chevron */
+    select { -webkit-appearance: none; appearance: none; }
+  </style>
+</head>
+
+<body class="bg-white font-['Inter'] text-[#143967]">
+
+  <!-- Dark overlay behind the sidebar on tablet/mobile -->
+  <div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR ================= -->
+  <!-- Off-screen on tablet/mobile (opened by the menu button or the mobile "More" button), always visible from lg (1024px) up.
+       The scrollbar is hidden, but the sidebar still scrolls naturally (mouse wheel / touch) if the screen is short. -->
+  <aside id="sidebar"
+         class="fixed inset-y-0 left-0 z-50 flex w-[290px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto bg-[linear-gradient(175deg,#143967_0.5%,#173D78_57.5%,#245EC2_99.56%)] px-[22px] py-[36px] text-white transition-transform duration-200 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:w-[260px] lg:translate-x-0 2xl:w-[300px]">
+
+    <!-- Logo -->
+    <div class="flex items-center justify-between">
+      <a href="#" class="flex items-center gap-[12px]" aria-label="Stockwise Africa home">
+        <div class="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-white">
+          <img src="logo.png" alt="Stockwise Africa logo" class="h-[24px] w-[32px] object-contain" />
+        </div>
+        <span class="whitespace-nowrap font-['Space_Grotesk'] text-[20px] font-medium">Stockwise Africa</span>
+      </a>
+      <!-- Close button (tablet/mobile only) -->
+      <button id="closeSidebarButton" type="button" aria-label="Close menu"
+              class="rounded p-1 transition duration-200 hover:bg-white/10 lg:hidden">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <!-- Main navigation -->
+    <nav class="mt-12 flex flex-col gap-[8px] lg:mt-[56px]" aria-label="Main navigation">
+      <a href="#" class="flex h-[52px] items-center gap-[13px] rounded-[5px] px-[13px] text-[17px] font-medium transition duration-200 hover:bg-white/10">
+        <!-- Home icon: outlined house with a doorway, as in the design -->
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+
+      <!-- Active item -->
+      <a href="#" aria-current="page" class="flex h-[52px] items-center gap-[13px] rounded-[5px] bg-white px-[13px] text-[17px] font-medium text-[#143967]">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h1M12 8h4M8 12h1M12 12h4M8 16h1M12 16h4"/></svg>
+        Inventory
+      </a>
+
+      <a href="#" class="flex h-[52px] items-center gap-[13px] rounded-[5px] px-[13px] text-[17px] font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h3l2.5 12h11L21 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        Sales
+      </a>
+
+      <a href="#" class="flex h-[52px] items-center gap-[13px] rounded-[5px] px-[13px] text-[17px] font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+        Alerts
+      </a>
+
+      <a href="#" class="flex h-[52px] items-center gap-[13px] rounded-[5px] px-[13px] text-[17px] font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- Bottom navigation: pushed to the bottom with mt-auto -->
+    <nav class="mt-10 flex flex-col gap-[10px] lg:mt-auto" aria-label="Account navigation">
+      <a href="#" class="flex h-[52px] items-center gap-[13px] rounded-[5px] px-[13px] text-[17px] font-medium transition duration-200 hover:bg-white/10">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z"/><circle cx="12" cy="12" r="3"/></svg>
+        Settings
+      </a>
+      <a href="#" class="flex h-[52px] items-center gap-[13px] rounded-[5px] px-[13px] text-[17px] font-medium text-[#FF4545] transition duration-200 hover:bg-white/10">
+        <svg class="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h5"/><path d="M9 12h12M17 8l4 4-4 4"/></svg>
+        Logout
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="relative h-screen overflow-y-auto px-5 pb-[90px] pt-5 md:px-[26px] md:pb-[24px] md:pt-[24px] lg:ml-[260px] lg:pb-[16px] lg:pt-[18px] 2xl:ml-[300px]">
+    <div class="mx-auto max-w-[1318px] lg:flex lg:min-h-full lg:flex-col">
+
+      <!-- ===== MOBILE header (below 768px): back arrow + title, bell + avatar ===== -->
+      <header class="flex items-center justify-between md:hidden">
+        <div class="flex items-center gap-5">
+          <a href="product.html" aria-label="Back to product details" class="text-black">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>
+          </a>
+          <span class="text-[14px] font-bold leading-[17px] text-black">Inventory</span>
+        </div>
+        <div class="flex items-center gap-[10px]">
+          <button type="button" data-notification aria-label="View notifications" class="text-black">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/><circle cx="19" cy="5" r="2.6" fill="currentColor" stroke="none"/></svg>
+          </button>
+          <svg class="h-9 w-9" viewBox="0 0 24 24" role="img" aria-label="John Doe, Owner"><circle cx="12" cy="12" r="12" fill="#143967"/><circle cx="12" cy="9" r="3.6" fill="#fff"/><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff"/></svg>
+        </div>
+      </header>
+
+      <!-- ===== TABLET + DESKTOP header (768px and up) ===== -->
+      <header class="hidden items-center gap-4 md:flex lg:gap-[30px]">
+        <!-- Menu button (tablet only) -->
+        <button id="menuButton" type="button" data-open-menu aria-label="Open menu" aria-expanded="false"
+                class="shrink-0 rounded-[5px] p-1 transition duration-200 hover:bg-[#143967]/10 lg:hidden">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="flex h-[38px] min-w-0 max-w-[910px] flex-1 items-center gap-[10px] rounded-[5px] border border-[#143967]/50 px-[14px] focus-within:ring-2 focus-within:ring-[#143967]/40">
+          <svg class="h-[18px] w-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <span class="sr-only">Search products, categories or SKU</span>
+          <input id="searchInput" type="text" placeholder="Search products, categories or SKU..."
+                 class="w-full min-w-0 bg-transparent text-sm font-normal text-[#143967] placeholder:text-[#143967] focus:outline-none" />
+        </label>
+
+        <div class="ml-auto flex shrink-0 items-center justify-end gap-4 lg:gap-[26px]">
+          <button id="notificationButton" type="button" data-notification aria-label="View notifications"
+                  class="rounded-full p-0.5 text-[#143967] transition duration-200 hover:bg-[#143967]/10">
+            <svg class="h-[30px] w-[30px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+          </button>
+
+          <!-- Profile + dropdown -->
+          <div class="relative">
+            <button id="profileButton" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open profile menu"
+                    class="flex items-center gap-[9px] rounded-[5px] text-left transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-9 w-9 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#143967"/><circle cx="12" cy="9" r="3.6" fill="#fff"/><path d="M5 19c0-3.6 3-5.8 7-5.8s7 2.2 7 5.8a10 10 0 0 1-14 0z" fill="#fff"/></svg>
+              <span class="hidden flex-col lg:flex">
+                <span class="text-base font-semibold leading-5">John Doe</span>
+                <span class="text-[12.5px] font-semibold leading-[15px]">Owner</span>
+              </span>
+            </button>
+
+            <ul id="profileMenu" class="absolute right-0 top-full z-30 mt-2 hidden w-44 rounded-[5px] border border-[#143967]/20 bg-white py-1 text-sm font-semibold shadow-md">
+              <li class="px-4 py-2 lg:hidden">
+                <span class="block text-base font-semibold">John Doe</span>
+                <span class="block text-xs">Owner</span>
+              </li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-[#143967]/10">Profile</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-[#143967]/10">Settings</a></li>
+              <li><a href="#" class="block px-4 py-2 text-[#E85363] hover:bg-[#143967]/10">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Form column + quick actions column.
+           Quick actions sit under the form below 1280px and beside it from xl. -->
+      <div class="md:mt-[12px] md:grid md:grid-cols-1 md:gap-6 lg:flex-1 lg:grid-cols-[1fr_240px] lg:gap-5 xl:grid-cols-[1fr_260px] xl:gap-6 2xl:grid-cols-[1fr_328px]">
+
+        <div class="min-w-0 lg:flex lg:flex-col">
+
+          <!-- Back + heading (tablet/desktop only; on mobile the title is in the header above) -->
+          <section class="hidden md:block">
+            <a href="product.html" class="inline-flex items-center gap-[10px] rounded text-[15px] font-medium transition duration-200 hover:opacity-70">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>
+              Back to Product details
+            </a>
+            <h1 class="mt-[6px] font-['Space_Grotesk'] text-[30px] font-bold leading-[38px]">Stock Out</h1>
+            <p class="text-[14px] font-medium leading-[18px]">Reduce stock quantity for this product</p>
+          </section>
+
+          <!-- ============ The card (a plain page on mobile, a bordered card from 768px) ============ -->
+          <div class="mt-[10px] md:mt-[10px] md:rounded-[5px] md:border md:border-[#143967]/40 lg:flex lg:flex-1 lg:flex-col">
+
+            <!-- Product summary -->
+            <div class="flex items-center gap-[20px] md:gap-[24px] md:p-[10px]">
+              <div class="relative h-[71px] w-[80px] shrink-0 overflow-hidden rounded-[5px] bg-[#143967]/10 md:h-[88px] md:w-[120px]">
+                <img data-product-image src="pparacetamol.png" alt="Paracetamol 500mg tablets" class="h-full w-full object-cover" />
+                <div data-image-placeholder class="absolute inset-0 hidden items-center justify-center">
+                  <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>
+                </div>
+              </div>
+
+              <div class="min-w-0">
+                <h2 class="font-['Space_Grotesk'] text-[16px] font-bold leading-5 md:text-[28px] md:leading-[36px]">Paracetamol 500mg</h2>
+                <!-- SKU chip: tablet/desktop only -->
+                <span class="mt-[4px] hidden rounded-[7px] bg-[#143967]/10 px-[12px] py-[4px] text-[13px] font-semibold md:inline-block">SKU: SKU001</span>
+                <p class="mt-[10px] text-[12px] font-semibold leading-[15px] md:mt-[8px] md:text-[13px]">
+                  Current Stock: <span class="font-bold"><span id="currentStockLabel">48</span><span class="hidden md:inline"> units</span></span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Quick actions: MOBILE only (a row of four + a full-width outline button). Desktop uses the list on the right. -->
+            <section aria-label="Quick actions" class="mt-[15px] flex flex-col gap-[10px] md:hidden">
+              <div class="flex justify-between gap-[3px]">
+                <button type="button" data-action="Record Sale" class="quick-action flex h-[34px] min-w-0 flex-auto items-center justify-center gap-[3px] whitespace-nowrap rounded-[5px] border border-[#143967] px-[4px] text-[9px] font-bold leading-3 min-[400px]:gap-[5px] min-[400px]:px-[8px] min-[400px]:text-[10px]">
+                  <svg class="h-[10px] w-[10px] shrink-0 min-[400px]:h-3 min-[400px]:w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h3l2.5 12h11L21 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+                  Record Sale
+                </button>
+                <button type="button" data-action="Add Stock" class="quick-action flex h-[34px] min-w-0 flex-auto items-center justify-center gap-[3px] whitespace-nowrap rounded-[5px] border border-[#143967] px-[4px] text-[9px] font-bold leading-3 min-[400px]:gap-[5px] min-[400px]:px-[8px] min-[400px]:text-[10px]">
+                  <svg class="h-[10px] w-[10px] shrink-0 min-[400px]:h-3 min-[400px]:w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v8M8 12h8"/></svg>
+                  Add Stock
+                </button>
+                <!-- Current page -->
+                <button type="button" data-action="Remove Stock" aria-current="page" class="quick-action flex h-[34px] min-w-0 flex-auto items-center justify-center gap-[3px] whitespace-nowrap rounded-[5px] border border-[#143967] px-[4px] text-[9px] font-bold leading-3 min-[400px]:gap-[5px] min-[400px]:px-[8px] min-[400px]:text-[10px] bg-[#143967] text-white">
+                  <svg class="h-[10px] w-[10px] shrink-0 min-[400px]:h-3 min-[400px]:w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12h8"/></svg>
+                  Remove Stock
+                </button>
+                <button type="button" data-action="Edit Product" class="quick-action flex h-[34px] min-w-0 flex-auto items-center justify-center gap-[3px] whitespace-nowrap rounded-[5px] border border-[#143967]/40 px-[4px] text-[9px] font-bold leading-3 min-[400px]:gap-[5px] min-[400px]:px-[8px] min-[400px]:text-[10px]">
+                  <svg class="h-[10px] w-[10px] shrink-0 min-[400px]:h-3 min-[400px]:w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 3 3L8 19z"/><path d="M14 7l3 3"/></svg>
+                  Edit Product
+                </button>
+              </div>
+              <button type="button" data-action="View Stock Inventory" class="quick-action flex h-[34px] w-full items-center justify-center gap-[5px] rounded-[5px] border border-[#143967]/40 p-[10px] text-[10px] font-bold leading-3">
+                <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg>
+                View Stock Inventory
+              </button>
+            </section>
+
+            <!-- Divider (tablet/desktop only) -->
+            <hr class="hidden border-[#143967]/20 md:block" />
+
+            <!-- ============ The form ============ -->
+            <form id="stockOutForm" novalidate class="mt-[20px] flex flex-col gap-[15px] md:mt-0 md:gap-[12px] md:p-[10px] md:pb-[14px] lg:flex-1">
+
+              <!-- Quantity + reason: stacked on mobile, side by side from 768px -->
+              <div class="flex flex-col gap-[15px] md:grid md:grid-cols-2 md:gap-[24px]">
+
+                <!-- Quantity to remove -->
+                <div class="flex flex-col gap-[10px] md:gap-[6px]">
+                  <label for="quantity" class="text-[12px] font-semibold leading-[15px] md:text-[14px] md:leading-5">Quantity to remove</label>
+                  <div class="flex h-[71px] items-center justify-between gap-3 rounded-[10px] border border-[#143967]/20 px-[15px] focus-within:shadow-[inset_0_0_0_0.5px_#143967] md:h-[44px] md:rounded-[5px] md:border-[#143967] md:px-[14px]">
+                    <input id="quantity" name="quantity" type="number" inputmode="numeric" min="1" step="1" value="10" required aria-describedby="quantityError"
+                           class="min-w-0 flex-1 bg-transparent font-['Inter'] text-[24px] font-bold leading-[29px] text-[#143967] focus:outline-none md:text-[14px] md:font-semibold md:leading-normal" />
+                    <!-- Mobile: minus / plus buttons -->
+                    <div class="flex items-center gap-[10px] md:hidden">
+                      <button type="button" id="decreaseButton" aria-label="Decrease quantity" class="flex h-[26px] w-[30px] items-center justify-center rounded-[5px] border border-[#143967]/40">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+                      </button>
+                      <button type="button" id="increaseButton" aria-label="Increase quantity" class="flex h-[26px] w-[30px] items-center justify-center rounded-[5px] border border-[#143967]/40">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                      </button>
+                    </div>
+                    <!-- Tablet/desktop: separate up and down arrow buttons -->
+                    <div class="hidden shrink-0 flex-col items-center gap-[6px] md:flex">
+                      <button type="button" id="stepUpButton" aria-label="Increase quantity" class="flex h-[15px] w-4 items-center justify-center rounded hover:bg-[#143967]/10">
+                        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+                      </button>
+                      <button type="button" id="stepDownButton" aria-label="Decrease quantity" class="flex h-[15px] w-4 items-center justify-center rounded hover:bg-[#143967]/10">
+                        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                  <p id="quantityError" class="hidden text-[12px] font-semibold text-[#C91D24]"></p>
+                </div>
+
+                <!-- Reason -->
+                <div class="flex flex-col gap-[10px] md:gap-[6px]">
+                  <label for="reason" class="text-[12px] font-semibold leading-[15px] md:text-[14px] md:leading-5">Reason (Optional)</label>
+                  <div class="relative">
+                    <select id="reason" name="reason"
+                            class="block h-[48px] w-full rounded-[5px] border border-[#143967]/20 bg-white px-[15px] pr-10 text-[12px] font-semibold text-[#143967] focus:shadow-[inset_0_0_0_0.5px_#143967] focus:outline-none md:h-[44px] md:rounded-[5px] md:border-[#143967] md:px-[14px] md:text-[14px]">
+                      <option value="Expired product" selected>Expired product</option>
+                      <option value="Damaged goods">Damaged goods</option>
+                      <option value="Lost or stolen">Lost or stolen</option>
+                      <option value="Returned to supplier">Returned to supplier</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <svg class="pointer-events-none absolute right-[15px] top-1/2 h-4 w-4 -translate-y-1/2 md:right-[14px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Note -->
+              <div class="order-1 flex flex-col gap-[5px] md:order-2 lg:flex-1">
+                <label for="note" class="text-[12px] font-semibold leading-[15px] md:text-[14px] md:leading-5">Note (optional)</label>
+                <textarea id="note" name="note" placeholder="e.g. damaged goods, expired etc."
+                          class="block h-[91px] w-full resize-y rounded-[7px] border border-[#143967]/20 px-[15px] py-[10px] text-[12px] font-medium text-[#143967] placeholder:text-[#143967]/60 focus:shadow-[inset_0_0_0_0.5px_#143967] focus:outline-none md:h-[130px] md:text-[14px] md:placeholder:text-[#7088A9] lg:h-auto lg:min-h-[70px] lg:flex-1 lg:resize-none"></textarea>
+              </div>
+
+              <!-- New stock quantity: a big box on mobile, a slim bar on tablet/desktop.
+                   On mobile it appears after the note (order-1 / order-2), on desktop before it. -->
+              <div id="newStockBox" class="order-2 flex items-center gap-[15px] rounded-[7px] bg-[#E7EBF0] px-[15px] py-[20px] md:order-1 md:gap-[10px] md:rounded-[7px] md:px-[15px] md:py-[9px]">
+                <svg class="h-[30px] w-[30px] shrink-0 md:h-4 md:w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.01"/></svg>
+                <!-- Mobile text -->
+                <div class="md:hidden">
+                  <p class="text-[14px] font-semibold leading-[17px]">New stock quantity</p>
+                  <p class="mt-[10px] text-[20px] font-bold leading-6" data-new-stock>38</p>
+                </div>
+                <!-- Tablet/desktop text -->
+                <p class="hidden text-[13px] font-semibold md:block">New stock quantity will be <span class="font-bold"><span data-new-stock>38</span> units</span></p>
+              </div>
+
+              <!-- Status message (read out by screen readers) -->
+              <div id="formStatus" role="status" aria-live="polite" class="order-3 empty:hidden"></div>
+
+              <!-- Buttons: Confirm only on mobile; Cancel + Confirm Stock Out on the right from 768px -->
+              <div class="order-4 flex md:mt-[2px] md:justify-end md:gap-[10px]">
+                <button id="cancelButton" type="button" class="hidden h-[44px] w-[130px] items-center justify-center rounded-[5px] border border-[#143967] bg-white text-[14px] font-bold text-[#143967] transition duration-200 hover:bg-[#143967]/5 md:flex">Cancel</button>
+                <button id="confirmButton" type="submit" class="h-[49px] w-full rounded-[5px] border border-[#143967] bg-[#143967] text-[14px] font-bold text-white transition duration-200 hover:bg-[#173D78] md:h-[44px] md:w-[170px] md:rounded-[5px] md:text-[14px]">
+                  <span class="md:hidden">Confirm</span><span class="hidden md:inline">Confirm Stock Out</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Quick actions: TABLET + DESKTOP -->
+        <section aria-labelledby="quickActionsHeading" class="mt-6 hidden w-full flex-col gap-[12px] md:mt-0 md:flex lg:mt-[58px] lg:self-start">
+          <h2 id="quickActionsHeading" class="font-['Space_Grotesk'] text-[17px] font-bold leading-[22px]">Quick actions</h2>
+
+          <div class="grid grid-cols-1 gap-[8px] sm:grid-cols-2 lg:grid-cols-1">
+            <button type="button" data-action="Record Sale" class="quick-action flex h-[46px] w-full items-center gap-3 rounded-[5px] border border-[#143967]/40 px-3 text-[14px] font-bold xl:gap-4 xl:px-4 xl:text-[15px] transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h3l2.5 12h11L21 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+              Record Sale
+            </button>
+            <button type="button" data-action="Add Stock" class="quick-action flex h-[46px] w-full items-center gap-3 rounded-[5px] border border-[#143967]/40 px-3 text-[14px] font-bold xl:gap-4 xl:px-4 xl:text-[15px] transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v8M8 12h8"/></svg>
+              Add Stock
+            </button>
+            <!-- Current page -->
+            <button type="button" data-action="Remove Stock" aria-current="page" class="quick-action flex h-[46px] w-full items-center gap-3 rounded-[5px] border border-[#143967] bg-[#143967] px-3 text-[14px] font-bold xl:gap-4 xl:px-4 xl:text-[15px] text-white">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12h8"/></svg>
+              Remove Stock
+            </button>
+            <button type="button" data-action="Edit Product" class="quick-action flex h-[46px] w-full items-center gap-3 rounded-[5px] border border-[#143967]/40 px-3 text-[14px] font-bold xl:gap-4 xl:px-4 xl:text-[15px] transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 3 3L8 19z"/><path d="M14 7l3 3"/></svg>
+              Edit Product
+            </button>
+            <button type="button" data-action="View Stock Inventory" class="quick-action flex h-[46px] w-full items-center gap-3 rounded-[5px] border border-[#143967]/40 px-3 text-[14px] font-bold xl:gap-4 xl:px-4 xl:text-[15px] transition duration-200 hover:bg-[#143967]/5">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg>
+              View Stock Inventory
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ Mobile only: bottom navigation bar ("More" opens the sidebar) ============ -->
+  <nav aria-label="Bottom navigation" class="fixed inset-x-0 bottom-0 z-30 flex h-[61px] items-center justify-between border-t border-[#6C6C6C]/20 bg-white p-[10px] [font-family:'SF_Pro',-apple-system,Inter,sans-serif] md:hidden">
+    <a href="#" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+      <span class="text-[13.5px] leading-[19px]">Home</span>
+    </a>
+    <a href="#" aria-current="page" class="flex h-[47px] w-[90px] flex-col items-center justify-center rounded-full bg-[#143967] py-[4px] text-white">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h1M12 8h3M9 12h1M12 12h3M9 16h1M12 16h3"/></svg>
+      <span class="text-[13.5px] leading-[19px]">Inventory</span>
+    </a>
+    <a href="#" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8.5 6h7v3h-7z"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01M8.5 19.5h.01M12 19.5h.01" stroke-width="2"/></svg>
+      <span class="text-[13.5px] leading-[19px]">Sales</span>
+    </a>
+    <a href="#" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+      <span class="text-[13.5px] leading-[19px]">Alerts</span>
+    </a>
+    <!-- "More" opens the sidebar -->
+    <button id="moreButton" type="button" data-open-menu aria-label="More: open menu" aria-expanded="false" class="flex h-[47px] w-[60px] flex-col items-center justify-center text-[#143967]">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="1.6"/><circle cx="12" cy="5" r="1.6"/><circle cx="19" cy="5" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/><circle cx="5" cy="19" r="1.6"/><circle cx="12" cy="19" r="1.6"/><circle cx="19" cy="19" r="1.6"/></svg>
+      <span class="text-[13.5px] leading-[19px]">More</span>
+    </button>
+  </nav>
+
+  <script src="stock.js"></script>
+</body>
+</html>

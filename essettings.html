@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teams &amp; Roles | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (body) and Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v4 browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Design tokens: they become classes like bg-navy, text-navy, bg-panel, font-grotesk -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy: #143967;
+      --color-accent-red: #e85363;
+      --color-panel: #eff4ff;
+      --font-sans: "Inter", sans-serif;
+      --font-grotesk: "Space Grotesk", sans-serif;
+    }
+  </style>
+
+  <!-- The only custom CSS: the sidebar gradient from the design file.
+       (The other pages keep this in their own <style> block too, so there is no shared style.css.) -->
+  <style>
+    .sidebar-gradient {
+      background:
+        radial-gradient(50% 50% at 50% 50%, rgba(20, 57, 103, 0.068) 0%, rgba(20, 57, 103, 0) 100%),
+        linear-gradient(175.26deg, #143967 3.03%, #173d78 57.62%, #245ec2 97.33%);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-navy bg-white">
+
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= PRIMARY SIDEBAR (Settings is active) ================= -->
+  <aside id="sidebar"
+    class="sidebar-gradient fixed inset-y-0 left-0 z-40 flex w-[300px] -translate-x-full flex-col px-[30px] py-[50px] text-white transition-transform lg:w-[280px] lg:translate-x-0 lg:px-5 lg:py-8">
+
+    <div class="flex items-center gap-[15px] lg:gap-3">
+      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+        <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+      </div>
+      <span class="font-grotesk text-2xl font-medium lg:text-xl">Stockwise Africa</span>
+    </div>
+
+    <nav aria-label="Main" class="mt-[90px] flex flex-col gap-2.5 lg:mt-[clamp(32px,8vh,70px)] lg:gap-1.5">
+      <a href="#" data-page="Home" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+      <a href="index.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M13 8h3M8 12h2M13 12h3M8 16h2M13 16h3"/></svg>
+        Inventory
+      </a>
+      <a href="sales.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <!-- Cart icon from the design file -->
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 29 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.9281 17.8719H8.31875L9.25312 15.9688L24.7781 15.9406C25.3031 15.9406 25.7531 15.5656 25.8469 15.0469L27.9969 3.0125C28.0531 2.69687 27.9687 2.37188 27.7625 2.125C27.6606 2.0035 27.5334 1.90563 27.3899 1.83818C27.2463 1.77073 27.0898 1.73531 26.9312 1.73438L7.18125 1.66875L7.0125 0.875C6.90625 0.36875 6.45 0 5.93125 0H1.10312C0.810558 0 0.529974 0.116222 0.323098 0.323098C0.116222 0.529974 0 0.810558 0 1.10313C0 1.39569 0.116222 1.67628 0.323098 1.88315C0.529974 2.09003 0.810558 2.20625 1.10312 2.20625H5.0375L5.775 5.7125L7.59063 14.5031L5.25313 18.3188C5.13174 18.4826 5.05862 18.6771 5.04205 18.8804C5.02548 19.0836 5.06612 19.2874 5.15938 19.4688C5.34688 19.8406 5.725 20.075 6.14375 20.075H8.10625C7.68787 20.6307 7.46189 21.3075 7.4625 22.0031C7.4625 23.7719 8.9 25.2094 10.6687 25.2094C12.4375 25.2094 13.875 23.7719 13.875 22.0031C13.875 21.3062 13.6438 20.6281 13.2312 20.075H18.2656C17.8472 20.6307 17.6213 21.3075 17.6219 22.0031C17.6219 23.7719 19.0594 25.2094 20.8281 25.2094C22.5969 25.2094 24.0344 23.7719 24.0344 22.0031C24.0344 21.3062 23.8031 20.6281 23.3906 20.075H26.9312C27.5375 20.075 28.0344 19.5812 28.0344 18.9719C28.0326 18.6796 27.9152 18.3999 27.708 18.1939C27.5007 17.9878 27.2204 17.872 26.9281 17.8719ZM7.64063 3.84375L25.6344 3.90312L23.8719 13.7719L9.7375 13.7969L7.64063 3.84375ZM10.6687 22.9906C10.125 22.9906 9.68125 22.5469 9.68125 22.0031C9.68125 21.4594 10.125 21.0156 10.6687 21.0156C11.2125 21.0156 11.6562 21.4594 11.6562 22.0031C11.6562 22.265 11.5522 22.5162 11.367 22.7014C11.1818 22.8866 10.9307 22.9906 10.6687 22.9906ZM20.8281 22.9906C20.2844 22.9906 19.8406 22.5469 19.8406 22.0031C19.8406 21.4594 20.2844 21.0156 20.8281 21.0156C21.3719 21.0156 21.8156 21.4594 21.8156 22.0031C21.8156 22.265 21.7116 22.5162 21.5264 22.7014C21.3412 22.8866 21.09 22.9906 20.8281 22.9906Z"/></svg>
+        Sales
+      </a>
+      <a href="alerts.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+        Alerts
+      </a>
+      <a href="reports.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- mt-auto pushes Settings and Logout to the bottom -->
+    <div class="mt-auto flex flex-col gap-2.5 lg:gap-1.5">
+      <a href="teams.html" aria-current="page" class="nav-link flex items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-navy focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M10.16 4.63 L10.44 2.12 L13.56 2.12 L13.84 4.63 L15.91 5.49 L17.88 3.91 L20.09 6.12 L18.51 8.09 L19.37 10.16 L21.88 10.44 L21.88 13.56 L19.37 13.84 L18.51 15.91 L20.09 17.88 L17.88 20.09 L15.91 18.51 L13.84 19.37 L13.56 21.88 L10.44 21.88 L10.16 19.37 L8.09 18.51 L6.12 20.09 L3.91 17.88 L5.49 15.91 L4.63 13.84 L2.12 13.56 L2.12 10.44 L4.63 10.16 L5.49 8.09 L3.91 6.12 L6.12 3.91 L8.09 5.49Z"/></svg>
+        Settings
+      </a>
+      <button id="logout-button" type="button" class="flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-accent-red hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M10 12h11M17 8l4 4-4 4"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN AREA ================= -->
+  <!-- lg:h-screen keeps the page inside the browser window; only this area scrolls if content gets taller -->
+  <main class="flex min-h-screen flex-col lg:h-screen lg:min-h-0 lg:overflow-y-auto lg:pl-[280px]">
+
+    <!-- Top part: search/profile row and page heading -->
+    <div class="px-4 pt-6 lg:pl-5 lg:pr-6 lg:pt-5">
+
+      <header class="flex flex-wrap items-center gap-4 lg:flex-nowrap lg:items-start">
+        <button id="menu-button" type="button" aria-label="Open menu" class="rounded-[5px] border border-navy/50 p-2 hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:hidden">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="order-last flex h-[42px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy lg:order-none lg:max-w-[910px] lg:flex-1">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search</span>
+          <input id="top-search" type="search" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <div class="relative ml-auto flex items-center gap-[30px] lg:gap-5">
+          <button id="notification-button" type="button" aria-label="Notifications" aria-expanded="false" class="rounded-full p-1 hover:bg-navy/10 focus-visible:outline-2 focus-visible:outline-navy">
+            <svg class="size-[35px] lg:size-[30px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+          </button>
+          <div class="flex items-center gap-2.5">
+            <svg class="size-10 lg:size-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 14a8 8 0 0 1-6-2.7C6.2 15.6 9 15 12 15s5.8.6 6 2.3A8 8 0 0 1 12 20z"/></svg>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold lg:text-base">John Doe</p>
+              <p class="text-sm font-semibold">Owner</p>
+            </div>
+          </div>
+          <div id="notification-panel" class="absolute right-0 top-14 z-20 hidden w-72 max-w-[calc(100vw-2rem)] rounded-[5px] border border-navy/20 bg-white p-4 text-sm shadow-lg">
+            <p class="font-semibold">Notifications</p>
+            <p class="mt-2">You have no new notifications.</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page heading + Invite Team Member button -->
+      <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between lg:mt-3">
+        <div>
+          <h1 class="font-grotesk text-[32px] font-bold leading-[42px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">Teams &amp; Roles</h1>
+          <p class="text-sm font-medium">Manage your team members, assign roles and control access to different features</p>
+        </div>
+        <button type="button" data-open-invite class="flex h-10 w-full shrink-0 items-center justify-center gap-[5px] whitespace-nowrap rounded-[5px] bg-navy px-[15px] text-sm font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:w-[193px]">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="7.5" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 10.5-5"/><path d="M18 14.5v6M15 17.5h6"/></svg>
+          Invite Team Member
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom part: secondary Settings menu on the left, content on the right.
+         Stacks vertically on small screens; the menu becomes a scrollable row. -->
+    <div class="mt-5 flex flex-1 flex-col px-4 lg:mt-4 lg:flex-row lg:pl-4 lg:pr-6">
+
+      <!-- ===== SECONDARY SETTINGS MENU ===== -->
+      <aside class="shrink-0 rounded-[10px] bg-panel px-2.5 py-3 lg:w-[270px] lg:rounded-b-none lg:py-4">
+        <nav aria-label="Settings" class="flex gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:gap-[18px] lg:overflow-visible">
+
+          <a href="#" data-section="Business Info" class="settings-link flex min-h-9 items-center gap-[15px] whitespace-nowrap border-b-4 border-b-transparent px-[15px] py-0.5 text-xl font-medium hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:gap-3 lg:border-b-0 lg:border-l-4 lg:border-l-transparent lg:px-3 lg:text-base">
+            <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 21V6.5l8-3.5V21M11.5 8.5h8v12.5M2.5 21h19"/><path d="M6.5 8.5h2M6.5 12h2M6.5 15.5h2M14.5 12h2M14.5 15.5h2" stroke-linecap="round"/></svg>
+            Business Info
+          </a>
+
+          <a href="#" data-section="Profile" class="settings-link flex min-h-9 items-center gap-[15px] whitespace-nowrap border-b-4 border-b-transparent px-[15px] py-0.5 text-xl font-medium hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:gap-3 lg:border-b-0 lg:border-l-4 lg:border-l-transparent lg:px-3 lg:text-base">
+            <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="9.5" r="3"/><path d="M6.5 18.5c1.2-2.3 3-3.5 5.5-3.5s4.3 1.2 5.5 3.5"/></svg>
+            Profile
+          </a>
+
+          <!-- Active item: left border (bottom border on mobile), badge and aria-current -->
+          <a href="teams.html" aria-current="page" class="flex min-h-9 items-center justify-between gap-[15px] whitespace-nowrap border-b-4 border-b-navy px-[15px] py-0.5 text-xl font-medium focus-visible:outline-2 focus-visible:outline-navy lg:gap-3 lg:border-b-0 lg:border-l-4 lg:border-l-navy lg:px-3 lg:text-base">
+            <span class="flex items-center gap-[15px] lg:gap-3">
+              <!-- Teams & Roles icon from the design file -->
+              <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 90 81" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M57.393 31.5C61.74 31.5 65.268 35.028 65.268 39.375V60.7455C65.268 66.1173 63.1341 71.2691 59.3356 75.0676C55.5371 78.8661 50.3853 81 45.0135 81C39.6417 81 34.4899 78.8661 30.6914 75.0676C26.893 71.2691 24.759 66.1173 24.759 60.7455V39.375C24.759 35.028 28.2825 31.5 32.634 31.5H57.393ZM57.393 38.25H32.634C32.3356 38.25 32.0495 38.3685 31.8385 38.5795C31.6275 38.7905 31.509 39.0766 31.509 39.375V60.7455C31.509 64.3271 32.9318 67.762 35.4644 70.2946C37.997 72.8272 41.4319 74.25 45.0135 74.25C48.5951 74.25 52.03 72.8272 54.5626 70.2946C57.0952 67.762 58.518 64.3271 58.518 60.7455V39.375C58.518 39.0766 58.3995 38.7905 58.1885 38.5795C57.9775 38.3685 57.6914 38.25 57.393 38.25ZM7.875 31.5H23.0895C21.5024 33.4177 20.5329 35.7709 20.3085 38.25H7.875C7.57663 38.25 7.29048 38.3685 7.07951 38.5795C6.86853 38.7905 6.75 39.0766 6.75 39.375V53.9955C6.74885 55.6963 7.13333 57.3751 7.87453 58.9059C8.61573 60.4366 9.69435 61.7794 11.0293 62.8332C12.3642 63.8871 13.9207 64.6245 15.5817 64.9901C17.2427 65.3557 18.965 65.3399 20.619 64.944C21.0015 67.212 21.699 69.3765 22.6575 71.388C21.1695 71.793 19.617 71.997 18 72C15.6358 72 13.2948 71.5343 11.1107 70.6294C8.92651 69.7245 6.942 68.3983 5.27049 66.7263C3.59897 65.0544 2.2732 63.0696 1.36888 60.8852C0.464558 58.7008 -0.000590481 56.3597 5.62551e-07 53.9955V39.375C5.62551e-07 35.028 3.528 31.5 7.875 31.5ZM66.9375 31.5H82.125C86.472 31.5 90 35.028 90 39.375V54C90.0006 56.7592 89.3669 59.4817 88.1478 61.957C86.9286 64.4323 85.1568 66.5942 82.969 68.2757C80.7813 69.9571 78.2363 71.1131 75.5307 71.6543C72.825 72.1955 70.0312 72.1075 67.365 71.397C68.328 69.381 69.0255 67.2165 69.4125 64.9485C70.2435 65.1465 71.106 65.247 72 65.25C74.9837 65.25 77.8452 64.0647 79.9549 61.955C82.0647 59.8452 83.25 56.9837 83.25 54V39.375C83.25 39.0766 83.1315 38.7905 82.9205 38.5795C82.7095 38.3685 82.4234 38.25 82.125 38.25H69.7185C69.4941 35.7709 68.5246 33.4177 66.9375 31.5ZM45 0C48.5804 0 52.0142 1.42232 54.5459 3.95406C57.0777 6.4858 58.5 9.91958 58.5 13.5C58.5 17.0804 57.0777 20.5142 54.5459 23.0459C52.0142 25.5777 48.5804 27 45 27C41.4196 27 37.9858 25.5777 35.4541 23.0459C32.9223 20.5142 31.5 17.0804 31.5 13.5C31.5 9.91958 32.9223 6.4858 35.4541 3.95406C37.9858 1.42232 41.4196 0 45 0ZM74.25 4.5C77.2337 4.5 80.0952 5.68526 82.2049 7.79505C84.3147 9.90483 85.5 12.7663 85.5 15.75C85.5 18.7337 84.3147 21.5952 82.2049 23.705C80.0952 25.8147 77.2337 27 74.25 27C71.2663 27 68.4048 25.8147 66.2951 23.705C64.1853 21.5952 63 18.7337 63 15.75C63 12.7663 64.1853 9.90483 66.2951 7.79505C68.4048 5.68526 71.2663 4.5 74.25 4.5ZM15.75 4.5C18.7337 4.5 21.5952 5.68526 23.705 7.79505C25.8147 9.90483 27 12.7663 27 15.75C27 18.7337 25.8147 21.5952 23.705 23.705C21.5952 25.8147 18.7337 27 15.75 27C12.7663 27 9.90483 25.8147 7.79505 23.705C5.68527 21.5952 4.5 18.7337 4.5 15.75C4.5 12.7663 5.68527 9.90483 7.79505 7.79505C9.90483 5.68526 12.7663 4.5 15.75 4.5ZM45 6.75C43.2098 6.75 41.4929 7.46116 40.227 8.72703C38.9612 9.9929 38.25 11.7098 38.25 13.5C38.25 15.2902 38.9612 17.0071 40.227 18.273C41.4929 19.5388 43.2098 20.25 45 20.25C46.7902 20.25 48.5071 19.5388 49.773 18.273C51.0388 17.0071 51.75 15.2902 51.75 13.5C51.75 11.7098 51.0388 9.9929 49.773 8.72703C48.5071 7.46116 46.7902 6.75 45 6.75ZM74.25 11.25C73.0565 11.25 71.9119 11.7241 71.068 12.568C70.2241 13.4119 69.75 14.5565 69.75 15.75C69.75 16.9435 70.2241 18.0881 71.068 18.932C71.9119 19.7759 73.0565 20.25 74.25 20.25C75.4435 20.25 76.5881 19.7759 77.432 18.932C78.2759 18.0881 78.75 16.9435 78.75 15.75C78.75 14.5565 78.2759 13.4119 77.432 12.568C76.5881 11.7241 75.4435 11.25 74.25 11.25ZM15.75 11.25C14.5565 11.25 13.4119 11.7241 12.568 12.568C11.7241 13.4119 11.25 14.5565 11.25 15.75C11.25 16.9435 11.7241 18.0881 12.568 18.932C13.4119 19.7759 14.5565 20.25 15.75 20.25C16.9435 20.25 18.0881 19.7759 18.932 18.932C19.7759 18.0881 20.25 16.9435 20.25 15.75C20.25 14.5565 19.7759 13.4119 18.932 12.568C18.0881 11.7241 16.9435 11.25 15.75 11.25Z"/></svg>
+              Teams &amp; Roles
+            </span>
+            <span class="flex size-[30px] shrink-0 items-center justify-center rounded-full bg-navy text-lg font-medium text-white lg:size-6 lg:text-base">3</span>
+          </a>
+
+          <a href="#" data-section="Notifications" class="settings-link flex min-h-9 items-center gap-[15px] whitespace-nowrap border-b-4 border-b-transparent px-[15px] py-0.5 text-xl font-medium hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:gap-3 lg:border-b-0 lg:border-l-4 lg:border-l-transparent lg:px-3 lg:text-base">
+            <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4H6.5A2.500 2.500 0 0 0 4 6.500v11A2.500 2.500 0 0 0 6.500 20h11a2.500 2.500 0 0 0 2.500-2.500V10.500"/><circle cx="18" cy="6" r="2.500"/></svg>
+            Notifications
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ===== EMPTY STATE (centered in the space right of the menu) ===== -->
+      <section id="empty-state" class="flex flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center lg:gap-4 lg:px-6 lg:py-4">
+        <div class="flex size-[180px] items-center justify-center rounded-full bg-navy/10 sm:size-[250px] lg:size-[clamp(150px,26vh,210px)]">
+          <!-- Teams & Roles icon from the design file -->
+          <svg class="h-[58px] w-[64px] sm:h-[81px] sm:w-[90px] lg:h-[66px] lg:w-[73px]" viewBox="0 0 90 81" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M57.393 31.5C61.74 31.5 65.268 35.028 65.268 39.375V60.7455C65.268 66.1173 63.1341 71.2691 59.3356 75.0676C55.5371 78.8661 50.3853 81 45.0135 81C39.6417 81 34.4899 78.8661 30.6914 75.0676C26.893 71.2691 24.759 66.1173 24.759 60.7455V39.375C24.759 35.028 28.2825 31.5 32.634 31.5H57.393ZM57.393 38.25H32.634C32.3356 38.25 32.0495 38.3685 31.8385 38.5795C31.6275 38.7905 31.509 39.0766 31.509 39.375V60.7455C31.509 64.3271 32.9318 67.762 35.4644 70.2946C37.997 72.8272 41.4319 74.25 45.0135 74.25C48.5951 74.25 52.03 72.8272 54.5626 70.2946C57.0952 67.762 58.518 64.3271 58.518 60.7455V39.375C58.518 39.0766 58.3995 38.7905 58.1885 38.5795C57.9775 38.3685 57.6914 38.25 57.393 38.25ZM7.875 31.5H23.0895C21.5024 33.4177 20.5329 35.7709 20.3085 38.25H7.875C7.57663 38.25 7.29048 38.3685 7.07951 38.5795C6.86853 38.7905 6.75 39.0766 6.75 39.375V53.9955C6.74885 55.6963 7.13333 57.3751 7.87453 58.9059C8.61573 60.4366 9.69435 61.7794 11.0293 62.8332C12.3642 63.8871 13.9207 64.6245 15.5817 64.9901C17.2427 65.3557 18.965 65.3399 20.619 64.944C21.0015 67.212 21.699 69.3765 22.6575 71.388C21.1695 71.793 19.617 71.997 18 72C15.6358 72 13.2948 71.5343 11.1107 70.6294C8.92651 69.7245 6.942 68.3983 5.27049 66.7263C3.59897 65.0544 2.2732 63.0696 1.36888 60.8852C0.464558 58.7008 -0.000590481 56.3597 5.62551e-07 53.9955V39.375C5.62551e-07 35.028 3.528 31.5 7.875 31.5ZM66.9375 31.5H82.125C86.472 31.5 90 35.028 90 39.375V54C90.0006 56.7592 89.3669 59.4817 88.1478 61.957C86.9286 64.4323 85.1568 66.5942 82.969 68.2757C80.7813 69.9571 78.2363 71.1131 75.5307 71.6543C72.825 72.1955 70.0312 72.1075 67.365 71.397C68.328 69.381 69.0255 67.2165 69.4125 64.9485C70.2435 65.1465 71.106 65.247 72 65.25C74.9837 65.25 77.8452 64.0647 79.9549 61.955C82.0647 59.8452 83.25 56.9837 83.25 54V39.375C83.25 39.0766 83.1315 38.7905 82.9205 38.5795C82.7095 38.3685 82.4234 38.25 82.125 38.25H69.7185C69.4941 35.7709 68.5246 33.4177 66.9375 31.5ZM45 0C48.5804 0 52.0142 1.42232 54.5459 3.95406C57.0777 6.4858 58.5 9.91958 58.5 13.5C58.5 17.0804 57.0777 20.5142 54.5459 23.0459C52.0142 25.5777 48.5804 27 45 27C41.4196 27 37.9858 25.5777 35.4541 23.0459C32.9223 20.5142 31.5 17.0804 31.5 13.5C31.5 9.91958 32.9223 6.4858 35.4541 3.95406C37.9858 1.42232 41.4196 0 45 0ZM74.25 4.5C77.2337 4.5 80.0952 5.68526 82.2049 7.79505C84.3147 9.90483 85.5 12.7663 85.5 15.75C85.5 18.7337 84.3147 21.5952 82.2049 23.705C80.0952 25.8147 77.2337 27 74.25 27C71.2663 27 68.4048 25.8147 66.2951 23.705C64.1853 21.5952 63 18.7337 63 15.75C63 12.7663 64.1853 9.90483 66.2951 7.79505C68.4048 5.68526 71.2663 4.5 74.25 4.5ZM15.75 4.5C18.7337 4.5 21.5952 5.68526 23.705 7.79505C25.8147 9.90483 27 12.7663 27 15.75C27 18.7337 25.8147 21.5952 23.705 23.705C21.5952 25.8147 18.7337 27 15.75 27C12.7663 27 9.90483 25.8147 7.79505 23.705C5.68527 21.5952 4.5 18.7337 4.5 15.75C4.5 12.7663 5.68527 9.90483 7.79505 7.79505C9.90483 5.68526 12.7663 4.5 15.75 4.5ZM45 6.75C43.2098 6.75 41.4929 7.46116 40.227 8.72703C38.9612 9.9929 38.25 11.7098 38.25 13.5C38.25 15.2902 38.9612 17.0071 40.227 18.273C41.4929 19.5388 43.2098 20.25 45 20.25C46.7902 20.25 48.5071 19.5388 49.773 18.273C51.0388 17.0071 51.75 15.2902 51.75 13.5C51.75 11.7098 51.0388 9.9929 49.773 8.72703C48.5071 7.46116 46.7902 6.75 45 6.75ZM74.25 11.25C73.0565 11.25 71.9119 11.7241 71.068 12.568C70.2241 13.4119 69.75 14.5565 69.75 15.75C69.75 16.9435 70.2241 18.0881 71.068 18.932C71.9119 19.7759 73.0565 20.25 74.25 20.25C75.4435 20.25 76.5881 19.7759 77.432 18.932C78.2759 18.0881 78.75 16.9435 78.75 15.75C78.75 14.5565 78.2759 13.4119 77.432 12.568C76.5881 11.7241 75.4435 11.25 74.25 11.25ZM15.75 11.25C14.5565 11.25 13.4119 11.7241 12.568 12.568C11.7241 13.4119 11.25 14.5565 11.25 15.75C11.25 16.9435 11.7241 18.0881 12.568 18.932C13.4119 19.7759 14.5565 20.25 15.75 20.25C16.9435 20.25 18.0881 19.7759 18.932 18.932C19.7759 18.0881 20.25 16.9435 20.25 15.75C20.25 14.5565 19.7759 13.4119 18.932 12.568C18.0881 11.7241 16.9435 11.25 15.75 11.25Z"/></svg>
+        </div>
+        <div class="flex max-w-[579px] flex-col items-center gap-5 lg:gap-2">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">No team members yet</h2>
+          <p class="text-base font-medium sm:text-xl sm:leading-[30px] lg:text-lg lg:leading-7">Invite your first team member to help manage your business.</p>
+        </div>
+        <button type="button" data-open-invite class="flex h-16 items-center justify-center gap-[5px] whitespace-nowrap rounded-[5px] bg-navy px-5 text-[22px] font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:w-[296px] lg:h-14 lg:text-xl">
+          <svg class="size-[34px] shrink-0 lg:size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="7.5" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 10.5-5"/><path d="M18 14.5v6M15 17.5h6"/></svg>
+          Invite Team Member
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= INVITE DIALOG ================= -->
+  <dialog id="invite-dialog" aria-labelledby="invite-title" class="m-auto w-[calc(100%-2rem)] max-w-md rounded-[7px] p-6 text-navy backdrop:bg-black/40">
+    <div class="flex items-start justify-between gap-4">
+      <h2 id="invite-title" class="font-grotesk text-2xl font-bold">Invite Team Member</h2>
+      <button id="invite-close" type="button" aria-label="Close" class="rounded-[5px] p-1 hover:bg-navy/10 focus-visible:outline-2 focus-visible:outline-navy">
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+
+    <form id="invite-form" novalidate class="mt-4 flex flex-col gap-3">
+      <div>
+        <label for="invite-email" class="text-sm font-semibold">Email address</label>
+        <input id="invite-email" type="email" autocomplete="off" aria-describedby="invite-error" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+        <p id="invite-error" role="alert" class="mt-1 hidden text-xs text-accent-red"></p>
+      </div>
+      <div>
+        <label for="invite-role" class="text-sm font-semibold">Role</label>
+        <select id="invite-role" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 bg-white px-2 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+          <option value="Admin">Admin</option>
+          <option value="Manager">Manager</option>
+          <option value="Staff" selected>Staff</option>
+        </select>
+      </div>
+
+      <p id="invite-success" role="status" class="hidden rounded-[5px] bg-panel p-3 text-sm font-medium"></p>
+
+      <div class="mt-2 flex justify-end gap-3">
+        <button id="invite-cancel" type="button" class="h-10 rounded-[5px] border border-navy/50 px-4 text-sm font-semibold hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy">Cancel</button>
+        <button type="submit" class="h-10 rounded-[5px] bg-navy px-4 text-sm font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Send Invitation</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Floating message (fixed position, so it never shifts the layout) -->
+  <p id="status-message" role="status" class="pointer-events-none fixed bottom-6 left-1/2 z-50 hidden max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-[5px] bg-navy px-4 py-2 text-sm font-medium text-white shadow-lg lg:ml-[140px]"></p>
+
+  <script src="essettings.js"></script>
+</body>
+</html>

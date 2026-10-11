@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notifications | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (body) and Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v4 browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Design tokens: they become classes like bg-navy, text-navy, font-grotesk -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy: #143967;
+      --color-accent-red: #e85363;
+      --font-sans: "Inter", sans-serif;
+      --font-grotesk: "Space Grotesk", sans-serif;
+    }
+  </style>
+
+  <!-- The only custom CSS: the sidebar gradient from the design file -->
+  <style>
+    .sidebar-gradient {
+      background:
+        radial-gradient(50% 50% at 50% 50%, rgba(20, 57, 103, 0.068) 0%, rgba(20, 57, 103, 0) 100%),
+        linear-gradient(175.65deg, #143967 5.21%, #173d78 59.25%, #245ec2 99.08%);
+    }
+  </style>
+</head>
+
+<body class="font-sans text-navy bg-white">
+
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR (Home is highlighted, as in the design) ================= -->
+  <aside id="sidebar"
+    class="sidebar-gradient fixed inset-y-0 left-0 z-40 flex w-[300px] -translate-x-full flex-col px-[30px] py-[50px] text-white transition-transform lg:w-[280px] lg:translate-x-0 lg:px-5 lg:py-8">
+
+    <div class="flex items-center gap-[15px] lg:gap-3">
+      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+        <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+      </div>
+      <span class="font-grotesk text-2xl font-medium lg:text-xl">Stockwise Africa</span>
+    </div>
+
+    <nav aria-label="Main" class="mt-[90px] flex flex-col gap-2.5 lg:mt-[clamp(32px,8vh,70px)] lg:gap-1.5">
+      <a href="#" data-page="Home" aria-current="page" class="nav-link flex items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-navy focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+      <a href="index.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M13 8h3M8 12h2M13 12h3M8 16h2M13 16h3"/></svg>
+        Inventory
+      </a>
+      <a href="sales.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <!-- Cart icon from the design file -->
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 29 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.9281 17.8719H8.31875L9.25312 15.9688L24.7781 15.9406C25.3031 15.9406 25.7531 15.5656 25.8469 15.0469L27.9969 3.0125C28.0531 2.69687 27.9687 2.37188 27.7625 2.125C27.6606 2.0035 27.5334 1.90563 27.3899 1.83818C27.2463 1.77073 27.0898 1.73531 26.9312 1.73438L7.18125 1.66875L7.0125 0.875C6.90625 0.36875 6.45 0 5.93125 0H1.10312C0.810558 0 0.529974 0.116222 0.323098 0.323098C0.116222 0.529974 0 0.810558 0 1.10313C0 1.39569 0.116222 1.67628 0.323098 1.88315C0.529974 2.09003 0.810558 2.20625 1.10312 2.20625H5.0375L5.775 5.7125L7.59063 14.5031L5.25313 18.3188C5.13174 18.4826 5.05862 18.6771 5.04205 18.8804C5.02548 19.0836 5.06612 19.2874 5.15938 19.4688C5.34688 19.8406 5.725 20.075 6.14375 20.075H8.10625C7.68787 20.6307 7.46189 21.3075 7.4625 22.0031C7.4625 23.7719 8.9 25.2094 10.6687 25.2094C12.4375 25.2094 13.875 23.7719 13.875 22.0031C13.875 21.3062 13.6438 20.6281 13.2312 20.075H18.2656C17.8472 20.6307 17.6213 21.3075 17.6219 22.0031C17.6219 23.7719 19.0594 25.2094 20.8281 25.2094C22.5969 25.2094 24.0344 23.7719 24.0344 22.0031C24.0344 21.3062 23.8031 20.6281 23.3906 20.075H26.9312C27.5375 20.075 28.0344 19.5812 28.0344 18.9719C28.0326 18.6796 27.9152 18.3999 27.708 18.1939C27.5007 17.9878 27.2204 17.872 26.9281 17.8719ZM7.64063 3.84375L25.6344 3.90312L23.8719 13.7719L9.7375 13.7969L7.64063 3.84375ZM10.6687 22.9906C10.125 22.9906 9.68125 22.5469 9.68125 22.0031C9.68125 21.4594 10.125 21.0156 10.6687 21.0156C11.2125 21.0156 11.6562 21.4594 11.6562 22.0031C11.6562 22.265 11.5522 22.5162 11.367 22.7014C11.1818 22.8866 10.9307 22.9906 10.6687 22.9906ZM20.8281 22.9906C20.2844 22.9906 19.8406 22.5469 19.8406 22.0031C19.8406 21.4594 20.2844 21.0156 20.8281 21.0156C21.3719 21.0156 21.8156 21.4594 21.8156 22.0031C21.8156 22.265 21.7116 22.5162 21.5264 22.7014C21.3412 22.8866 21.09 22.9906 20.8281 22.9906Z"/></svg>
+        Sales
+      </a>
+      <a href="alerts.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+        Alerts
+      </a>
+      <a href="reports.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- mt-auto pushes Settings and Logout to the bottom -->
+    <div class="mt-auto flex flex-col gap-2.5 lg:gap-1.5">
+      <a href="teams.html" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M10.16 4.63 L10.44 2.12 L13.56 2.12 L13.84 4.63 L15.91 5.49 L17.88 3.91 L20.09 6.12 L18.51 8.09 L19.37 10.16 L21.88 10.44 L21.88 13.56 L19.37 13.84 L18.51 15.91 L20.09 17.88 L17.88 20.09 L15.91 18.51 L13.84 19.37 L13.56 21.88 L10.44 21.88 L10.16 19.37 L8.09 18.51 L6.12 20.09 L3.91 17.88 L5.49 15.91 L4.63 13.84 L2.12 13.56 L2.12 10.44 L4.63 10.16 L5.49 8.09 L3.91 6.12 L6.12 3.91 L8.09 5.49Z"/></svg>
+        Settings
+      </a>
+      <button id="logout-button" type="button" class="flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-accent-red hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M10 12h11M17 8l4 4-4 4"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <!-- lg:h-screen keeps the page inside the browser window; only this area scrolls if the list appears -->
+  <main class="flex min-h-screen flex-col px-4 py-6 lg:h-screen lg:min-h-0 lg:overflow-y-auto lg:pl-[280px] lg:pr-6 lg:py-5">
+    <div class="flex flex-1 flex-col lg:ml-5">
+
+      <header class="flex flex-wrap items-center gap-4 lg:flex-nowrap lg:items-start">
+        <button id="menu-button" type="button" aria-label="Open menu" class="rounded-[5px] border border-navy/50 p-2 hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy lg:hidden">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <label class="order-last flex h-[42px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy lg:order-none lg:max-w-[910px] lg:flex-1">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search</span>
+          <input id="top-search" type="search" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <div class="relative ml-auto flex items-center gap-[30px] lg:gap-5">
+          <button id="notification-button" type="button" aria-label="Notifications" aria-expanded="false" class="rounded-full p-1 hover:bg-navy/10 focus-visible:outline-2 focus-visible:outline-navy">
+            <svg class="size-[35px] lg:size-[30px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 15.5V10.5a5.5 5.5 0 0 1 11 0v5l1.3 2.7H5.2z"/><path d="M10.2 19.8a1.8 1.8 0 0 0 3.6 0"/></svg>
+          </button>
+          <div class="flex items-center gap-2.5">
+            <svg class="size-10 lg:size-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 14a8 8 0 0 1-6-2.7C6.2 15.6 9 15 12 15s5.8.6 6 2.3A8 8 0 0 1 12 20z"/></svg>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold lg:text-base">John Doe</p>
+              <p class="text-sm font-semibold">Owner</p>
+            </div>
+          </div>
+          <div id="notification-panel" class="absolute right-0 top-14 z-20 hidden w-72 max-w-[calc(100vw-2rem)] rounded-[5px] border border-navy/20 bg-white p-4 text-sm shadow-lg">
+            <p class="font-semibold">Notifications</p>
+            <p id="notification-panel-message" class="mt-2">You have no new notifications.</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page heading + Mark all as read -->
+      <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between lg:mt-3">
+        <div>
+          <h1 class="font-grotesk text-[32px] font-bold leading-[42px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">Notifications</h1>
+          <p class="text-sm font-medium">Stay updated with important alerts and activities from your store.</p>
+        </div>
+        <!-- whitespace-nowrap + shrink-0 keep the label on one line -->
+        <button id="mark-all-button" type="button" class="flex h-[39px] min-w-[176px] shrink-0 items-center justify-center gap-2.5 whitespace-nowrap rounded-[5px] border border-navy bg-white px-5 text-sm font-bold hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+          <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          <span>Mark all as read</span>
+        </button>
+      </div>
+
+      <!-- Notification list: only shown when the notifications array has items -->
+      <section id="notification-list-section" class="mt-8 hidden lg:mt-5" aria-label="Notification list">
+        <ul id="notification-list" class="flex flex-col gap-3"></ul>
+      </section>
+
+      <!-- Empty state: centered in the space left below the heading -->
+      <section id="empty-state" class="flex flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center lg:gap-5 lg:py-4">
+        <div class="flex size-[180px] items-center justify-center rounded-full bg-navy/10 sm:h-[243px] sm:w-[250px] lg:size-[clamp(160px,28vh,220px)]">
+          <!-- Bell icon from the design file -->
+          <svg class="h-[60px] w-[73px] sm:h-[90px] sm:w-[109px] lg:h-[70px] lg:w-[85px]" viewBox="0 0 109 90" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3.9785 1.67542C4.47817 0.847103 5.25622 0.271168 6.14155 0.0742701C7.02688 -0.122627 7.94699 0.0756344 8.69956 0.625458L18.9183 8.13271C19.6411 8.69694 20.1358 9.54905 20.2973 10.5082C20.4588 11.4673 20.2744 12.458 19.7833 13.27C19.2922 14.0819 18.533 14.6513 17.6669 14.8571C16.8007 15.0629 15.8958 14.8891 15.1442 14.3725L4.92544 6.87275C4.17413 6.3215 3.65236 5.46442 3.4748 4.48986C3.29724 3.5153 3.47841 2.503 3.9785 1.67542ZM54.5 0.00297938C46.3695 0.00297938 38.5719 3.55865 32.8228 9.8878C27.0736 16.2169 23.8438 24.8011 23.8438 33.7519V51.7588L17.2765 69.8557C17.0694 70.4246 16.9921 71.0408 17.0514 71.6502C17.1108 72.2597 17.3049 72.8438 17.6168 73.3515C17.9288 73.8592 18.349 74.275 18.8407 74.5625C19.3325 74.85 19.8807 75.0004 20.4375 75.0005H40.875C40.875 83.3102 46.9517 90 54.5 90C62.0483 90 68.125 83.3102 68.125 75.0005H88.5625C89.1184 74.9999 89.6657 74.8495 90.1567 74.5624C90.6477 74.2753 91.0674 73.8603 91.3792 73.3536C91.6909 72.8469 91.8853 72.2639 91.9453 71.6555C92.0053 71.0471 91.9292 70.4317 91.7235 69.8632L85.1562 51.7513V33.7519C85.1562 24.8011 81.9264 16.2169 76.1772 9.8878C70.4281 3.55865 62.6305 0.00297938 54.5 0.00297938ZM61.3125 75.0005C61.3125 79.1704 58.2878 82.5003 54.5 82.5003C50.7122 82.5003 47.6875 79.1704 47.6875 75.0005H61.3125ZM30.6562 33.7519C30.6562 26.7902 33.1684 20.1136 37.6399 15.1909C42.1115 10.2683 48.1762 7.50273 54.5 7.50273C60.8238 7.50273 66.8885 10.2683 71.3601 15.1909C75.8316 20.1136 78.3438 26.7902 78.3438 33.7519V52.4862C78.3449 52.9617 78.4281 53.4325 78.589 53.8737L83.5349 67.5007H25.4651L30.411 53.8737C30.5719 53.4325 30.6551 52.9617 30.6562 52.4862V33.7519ZM100.3 0.632959C101.052 0.116351 101.957 -0.0574781 102.823 0.148366C103.689 0.354211 104.448 0.923525 104.94 1.73548C105.431 2.54743 105.615 3.53811 105.454 4.49726C105.292 5.45641 104.797 6.30852 104.075 6.87275L93.8558 14.3725C93.1042 14.8891 92.1993 15.0629 91.3331 14.8571C90.467 14.6513 89.7078 14.0819 89.2167 13.27C88.7256 12.458 88.5412 11.4673 88.7027 10.5082C88.8642 9.54905 89.3589 8.69694 90.0817 8.13271L100.3 0.632959ZM0 33.7519C0 32.7573 0.358872 31.8035 0.997668 31.1003C1.63646 30.3971 2.50286 30.002 3.40625 30.002H13.625C14.5284 30.002 15.3948 30.3971 16.0336 31.1003C16.6724 31.8035 17.0312 32.7573 17.0312 33.7519C17.0312 34.7464 16.6724 35.7002 16.0336 36.4034C15.3948 37.1067 14.5284 37.5017 13.625 37.5017H3.40625C2.50286 37.5017 1.63646 37.1067 0.997668 36.4034C0.358872 35.7002 0 34.7464 0 33.7519ZM105.594 30.002C106.497 30.002 107.364 30.3971 108.002 31.1003C108.641 31.8035 109 32.7573 109 33.7519C109 34.7464 108.641 35.7002 108.002 36.4034C107.364 37.1067 106.497 37.5017 105.594 37.5017H95.375C94.4716 37.5017 93.6052 37.1067 92.9664 36.4034C92.3276 35.7002 91.9688 34.7464 91.9688 33.7519C91.9688 32.7573 92.3276 31.8035 92.9664 31.1003C93.6052 30.3971 94.4716 30.002 95.375 30.002H105.594Z"/></svg>
+        </div>
+        <div class="flex flex-col items-center gap-2.5 lg:gap-2">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">No notification yet</h2>
+          <!-- max-w keeps the line break after "here", like the design -->
+          <p class="max-w-[450px] text-base font-medium sm:text-xl sm:leading-[30px] lg:text-lg lg:leading-7">You’ll see important alerts and updates here when they became available</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Floating status message (aria-live), fixed so it never shifts the layout -->
+  <p id="status-message" role="status" aria-live="polite" class="pointer-events-none fixed bottom-6 left-1/2 z-50 hidden max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-[5px] bg-navy px-4 py-2 text-sm font-medium text-white shadow-lg lg:ml-[140px]"></p>
+
+  <script src="esnotification.js"></script>
+</body>
+</html>

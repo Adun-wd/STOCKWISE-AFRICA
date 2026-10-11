@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory - Search | Stockwise Africa</title>
+
+  <!-- Google Fonts: Inter (body) and Space Grotesk (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v4 browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Design tokens: they become classes like bg-navy, text-navy, font-grotesk -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy: #143967;
+      --color-accent-red: #e85363;
+      --color-circle: #e8edf2;
+      --font-sans: "Inter", sans-serif;
+      --font-grotesk: "Space Grotesk", sans-serif;
+    }
+  </style>
+
+  <!-- The only custom CSS: the sidebar gradient -->
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(175deg, #143967 0.5%, #173d78 57.5%, #245ec2 99.56%);
+    }
+  </style>
+</head>
+
+<body data-demo="no-results" class="font-sans text-navy bg-white">
+
+  <!-- Dark overlay behind the mobile menu -->
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside id="sidebar"
+    class="sidebar-gradient fixed inset-y-0 left-0 z-40 flex w-[300px] -translate-x-full flex-col px-[30px] py-[50px] text-white transition-transform lg:w-[280px] lg:translate-x-0 lg:px-5 lg:py-8">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-[15px] lg:gap-3">
+      <div class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-white">
+        <img src="logo.png" alt="Stockwise Africa logo" class="h-[26px] w-[35px] object-contain" />
+      </div>
+      <span class="font-grotesk text-2xl font-medium lg:text-xl">Stockwise Africa</span>
+    </div>
+
+    <!-- Main navigation (data-page is just a label for JavaScript) -->
+    <nav aria-label="Main" class="mt-[90px] flex flex-col gap-2.5 lg:mt-[clamp(32px,8vh,70px)] lg:gap-1.5">
+      <a href="#" data-page="Home" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+        Home
+      </a>
+      <a href="#" data-page="Inventory" aria-current="page" class="nav-link flex items-center gap-[15px] rounded-[5px] bg-white p-[15px] text-xl font-medium text-navy focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h2M13 8h3M8 12h2M13 12h3M8 16h2M13 16h3"/></svg>
+        Inventory
+      </a>
+      <a href="sales.html" data-page="Sales" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <!-- Cart icon from the design file -->
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 29 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.9281 17.8719H8.31875L9.25312 15.9688L24.7781 15.9406C25.3031 15.9406 25.7531 15.5656 25.8469 15.0469L27.9969 3.0125C28.0531 2.69687 27.9687 2.37188 27.7625 2.125C27.6606 2.0035 27.5334 1.90563 27.3899 1.83818C27.2463 1.77073 27.0898 1.73531 26.9312 1.73438L7.18125 1.66875L7.0125 0.875C6.90625 0.36875 6.45 0 5.93125 0H1.10312C0.810558 0 0.529974 0.116222 0.323098 0.323098C0.116222 0.529974 0 0.810558 0 1.10313C0 1.39569 0.116222 1.67628 0.323098 1.88315C0.529974 2.09003 0.810558 2.20625 1.10312 2.20625H5.0375L5.775 5.7125L7.59063 14.5031L5.25313 18.3188C5.13174 18.4826 5.05862 18.6771 5.04205 18.8804C5.02548 19.0836 5.06612 19.2874 5.15938 19.4688C5.34688 19.8406 5.725 20.075 6.14375 20.075H8.10625C7.68787 20.6307 7.46189 21.3075 7.4625 22.0031C7.4625 23.7719 8.9 25.2094 10.6687 25.2094C12.4375 25.2094 13.875 23.7719 13.875 22.0031C13.875 21.3062 13.6438 20.6281 13.2312 20.075H18.2656C17.8472 20.6307 17.6213 21.3075 17.6219 22.0031C17.6219 23.7719 19.0594 25.2094 20.8281 25.2094C22.5969 25.2094 24.0344 23.7719 24.0344 22.0031C24.0344 21.3062 23.8031 20.6281 23.3906 20.075H26.9312C27.5375 20.075 28.0344 19.5812 28.0344 18.9719C28.0326 18.6796 27.9152 18.3999 27.708 18.1939C27.5007 17.9878 27.2204 17.872 26.9281 17.8719ZM7.64063 3.84375L25.6344 3.90312L23.8719 13.7719L9.7375 13.7969L7.64063 3.84375ZM10.6687 22.9906C10.125 22.9906 9.68125 22.5469 9.68125 22.0031C9.68125 21.4594 10.125 21.0156 10.6687 21.0156C11.2125 21.0156 11.6562 21.4594 11.6562 22.0031C11.6562 22.265 11.5522 22.5162 11.367 22.7014C11.1818 22.8866 10.9307 22.9906 10.6687 22.9906ZM20.8281 22.9906C20.2844 22.9906 19.8406 22.5469 19.8406 22.0031C19.8406 21.4594 20.2844 21.0156 20.8281 21.0156C21.3719 21.0156 21.8156 21.4594 21.8156 22.0031C21.8156 22.265 21.7116 22.5162 21.5264 22.7014C21.3412 22.8866 21.09 22.9906 20.8281 22.9906Z"/></svg>
+        Sales
+      </a>
+      <a href="#" data-page="Alerts" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21a2 2 0 0 0 4 0"/></svg>
+        Alerts
+      </a>
+      <a href="#" data-page="Reports" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg>
+        Reports
+      </a>
+    </nav>
+
+    <!-- Bottom links: pushed down with mt-auto -->
+    <div class="mt-auto flex flex-col gap-2.5 lg:gap-1.5">
+      <a href="#" data-page="Settings" class="nav-link flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M10.16 4.63 L10.44 2.12 L13.56 2.12 L13.84 4.63 L15.91 5.49 L17.88 3.91 L20.09 6.12 L18.51 8.09 L19.37 10.16 L21.88 10.44 L21.88 13.56 L19.37 13.84 L18.51 15.91 L20.09 17.88 L17.88 20.09 L15.91 18.51 L13.84 19.37 L13.56 21.88 L10.44 21.88 L10.16 19.37 L8.09 18.51 L6.12 20.09 L3.91 17.88 L5.49 15.91 L4.63 13.84 L2.12 13.56 L2.12 10.44 L4.63 10.16 L5.49 8.09 L3.91 6.12 L6.12 3.91 L8.09 5.49Z"/></svg>
+        Settings
+      </a>
+      <button id="logout-button" type="button" class="flex items-center gap-[15px] rounded-[5px] p-[15px] text-xl font-medium text-accent-red hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white lg:gap-3 lg:p-3 lg:text-base">
+        <svg class="size-8 shrink-0 lg:size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M10 12h11M17 8l4 4-4 4"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <!-- lg:h-screen keeps the page inside the browser window; only this area scrolls if the table appears -->
+  <main class="flex min-h-screen flex-col px-4 py-6 lg:h-screen lg:min-h-0 lg:overflow-y-auto lg:pl-[280px] lg:pr-6 lg:py-5">
+    <div class="flex flex-1 flex-col lg:ml-5">
+
+      <!-- Top bar: menu button, search, notifications, profile -->
+      <header class="flex flex-wrap items-center gap-4 lg:flex-nowrap lg:items-start">
+        <button id="menu-button" type="button" aria-label="Open menu" class="rounded-[5px] border border-navy/50 p-2 hover:bg-navy/5 lg:hidden">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <!-- Order classes put the search on its own row on small screens -->
+        <label class="order-last flex h-[42px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy lg:order-none lg:max-w-[910px] lg:flex-1">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search products, categories or SKU</span>
+          <input id="top-search" type="search" value="Panadol extra" placeholder="Search products, categories or SKU..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <div class="relative ml-auto flex items-center gap-[30px] lg:gap-5">
+          <button id="notification-button" type="button" aria-label="Notifications" aria-expanded="false" class="rounded-full p-1 hover:bg-navy/10">
+            <svg class="size-[35px] lg:size-[30px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21a2 2 0 0 0 4 0"/></svg>
+          </button>
+
+          <div class="flex items-center gap-2.5">
+            <svg class="size-10 lg:size-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 14a8 8 0 0 1-6-2.7C6.2 15.600 9 15 12 15s5.800.6 6 2.300A8 8 0 0 1 12 20z"/></svg>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold lg:text-base">John Doe</p>
+              <p class="text-sm font-semibold">Owner</p>
+            </div>
+          </div>
+
+          <!-- Notification panel (hidden until the bell is clicked) -->
+          <div id="notification-panel" class="absolute right-0 top-14 z-20 hidden w-72 rounded-[5px] border border-navy/20 bg-white p-4 text-sm shadow-lg">
+            <p class="font-semibold">Notifications</p>
+            <p id="notification-message" class="mt-2"></p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Title + Add Product button -->
+      <div class="mt-4 flex items-start justify-between gap-4 lg:mt-3">
+        <h1 class="font-grotesk text-[36px] font-bold leading-[46px] lg:text-[30px] lg:leading-[38px]">Inventory</h1>
+        <button type="button" data-open-add-dialog class="flex h-10 items-center justify-center gap-[5px] rounded-[5px] bg-navy px-[15px] text-sm font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy lg:mt-[2px]">
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Add Product
+        </button>
+      </div>
+
+      <!-- Filters: wrap on small screens -->
+      <div class="mt-3 flex flex-wrap gap-2.5 lg:max-w-[910px]">
+        <label class="flex h-[39px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-[15px] focus-within:border-navy focus-within:ring-1 focus-within:ring-navy sm:w-[250px]">
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+          <span class="sr-only">Search products by name or SKU</span>
+          <input id="inventory-search" type="search" placeholder="Search products..." class="w-full bg-transparent text-sm outline-none placeholder:text-navy" />
+        </label>
+
+        <!-- Native <select> keeps keyboard + screen reader support; the chevron is drawn on top -->
+        <div class="relative w-full sm:w-[200px]">
+          <label class="sr-only" for="category-filter">Filter by category</label>
+          <select id="category-filter" class="h-[39px] w-full appearance-none rounded-[5px] border border-navy/50 bg-white pl-[15px] pr-9 text-sm text-navy outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+            <option value="all">All Category</option>
+          </select>
+          <svg class="pointer-events-none absolute right-[15px] top-[17px] w-[10px]" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+        </div>
+
+        <div class="relative w-full sm:w-[200px]">
+          <label class="sr-only" for="status-filter">Filter by stock status</label>
+          <select id="status-filter" class="h-[39px] w-full appearance-none rounded-[5px] border border-navy/50 bg-white pl-[15px] pr-9 text-sm text-navy outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+            <option value="all">All Stock Status</option>
+            <option value="In Stock">In Stock</option>
+            <option value="Low Stock">Low Stock</option>
+            <option value="Out of Stock">Out of Stock</option>
+          </select>
+          <svg class="pointer-events-none absolute right-[15px] top-[17px] w-[10px]" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+        </div>
+
+        <button id="date-button" type="button" class="flex h-[39px] w-full items-center gap-2.5 rounded-[5px] border border-navy/50 px-2.5 text-sm hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-navy sm:w-[230px]">
+          <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          <span id="date-label" class="w-full text-center">Apr 1, 2026 - Sep 29, 2026</span>
+        </button>
+      </div>
+
+      <!-- Product table (hidden while the inventory is empty) -->
+      <section id="product-section" class="mt-8 hidden lg:mt-5" aria-label="Product list">
+        <div class="overflow-x-auto rounded-[5px] border border-navy/20">
+          <table class="w-full min-w-[760px] text-left text-sm">
+            <thead class="bg-navy/5 font-semibold">
+              <tr>
+                <th class="px-4 py-3">Product</th>
+                <th class="px-4 py-3">SKU</th>
+                <th class="px-4 py-3">Category</th>
+                <th class="px-4 py-3">Qty</th>
+                <th class="px-4 py-3">Unit price</th>
+                <th class="px-4 py-3">Status</th>
+                <th class="px-4 py-3">Added</th>
+                <th class="px-4 py-3"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="product-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- No results state: shown when products exist but the search/filters match none -->
+      <section id="search-empty-state" class="hidden flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center lg:gap-4 lg:py-4">
+        <div class="flex size-[180px] items-center justify-center rounded-full bg-navy/10 sm:h-[243px] sm:w-[250px] lg:size-[clamp(150px,26vh,210px)]">
+          <!-- Search icon from the design file -->
+          <svg class="size-16 sm:size-[90px] lg:size-[70px]" viewBox="0 0 90 90" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M56.6484 62.129C49.6841 67.6938 40.8534 70.3805 31.9701 69.6374C23.0868 68.8943 14.8252 64.7777 8.88214 58.1332C2.93903 51.4887 -0.234438 42.8206 0.0135074 33.9093C0.261452 24.9979 3.91199 16.5197 10.2154 10.2159C16.5187 3.91221 24.9964 0.261468 33.9073 0.0135081C42.8182 -0.234451 51.4858 2.9392 58.1299 8.88265C64.774 14.8261 68.8903 23.0882 69.6334 31.972C70.3765 40.8558 67.6899 49.6869 62.1254 56.6516L88.7666 83.2892C89.1473 83.644 89.4527 84.0718 89.6645 84.5472C89.8763 85.0226 89.9902 85.5358 89.9994 86.0561C90.0086 86.5765 89.9128 87.0934 89.7179 87.5759C89.523 88.0585 89.2329 88.4969 88.865 88.8649C88.497 89.2329 88.0586 89.523 87.5761 89.7179C87.0936 89.9128 86.5767 90.0086 86.0564 89.9994C85.536 89.9902 85.0229 89.8763 84.5475 89.6645C84.0722 89.4527 83.6443 89.1473 83.2896 88.7665L56.6484 62.129ZM15.6946 54.0577C11.9022 50.2647 9.31929 45.4325 8.27224 40.1719C7.22519 34.9113 7.76102 29.4583 9.81201 24.5022C11.863 19.546 15.3371 15.3091 19.7952 12.3269C24.2533 9.34476 29.4954 7.75117 34.8589 7.74756C40.2224 7.74395 45.4666 9.33049 49.9288 12.3067C54.3909 15.2828 57.8707 19.515 59.9284 24.4684C61.986 29.4218 62.5292 34.8741 61.4892 40.1361C60.4492 45.3981 57.8728 50.2337 54.0855 54.0318L54.0597 54.0577L54.0339 54.0783C48.9448 59.1558 42.0486 62.0057 34.86 62.0018C27.6713 61.9979 20.7782 59.1407 15.6946 54.0577Z"/></svg>
+        </div>
+        <div class="flex max-w-[630px] flex-col gap-5 lg:gap-2">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[46px] lg:text-[30px] lg:leading-[38px]">No results found</h2>
+          <p id="search-empty-message" class="break-words text-base font-medium sm:text-xl sm:leading-[30px] lg:text-lg lg:leading-7"></p>
+        </div>
+        <button id="clear-search-button" type="button" class="flex h-[59px] w-[177px] items-center justify-center whitespace-nowrap rounded-[7px] border border-navy bg-white px-5 text-[22px] font-semibold text-navy hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy lg:h-12 lg:w-[150px] lg:text-xl">Clear search</button>
+      </section>
+
+      <!-- Empty state: centered in the remaining space -->
+      <section id="empty-state" class="hidden flex-1 flex-col items-center justify-center gap-[30px] py-12 text-center lg:gap-4 lg:py-4">
+        <div class="flex size-[200px] items-center justify-center rounded-full bg-circle sm:size-[250px] lg:size-[clamp(150px,26vh,210px)]">
+          <svg class="size-24 sm:size-[110px] lg:size-[84px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.500l8.500 4.300v10.400L12 21.500l-8.500-4.300V6.800z"/><path d="M3.500 6.800L12 11l8.500-4.200M12 11v10.500M7.800 4.600l8.500 4.300"/></svg>
+        </div>
+        <div class="flex flex-col gap-5 lg:gap-2">
+          <h2 class="font-grotesk text-[28px] font-bold leading-[46px] sm:text-[36px] lg:text-[30px] lg:leading-[38px]">No Products yet</h2>
+          <p class="max-w-[640px] text-base font-medium sm:text-xl sm:leading-[30px] lg:text-lg lg:leading-7">Your inventory list is empty. Add your first product to get started.</p>
+        </div>
+        <button type="button" data-open-add-dialog class="flex h-16 items-center justify-center gap-[5px] rounded-[7px] bg-navy px-5 text-[22px] font-semibold text-white hover:bg-[#1b4a85] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy lg:h-14 lg:text-xl">
+          <svg class="size-[34px] lg:size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Add Product
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= ADD PRODUCT DIALOG ================= -->
+  <dialog id="add-dialog" aria-labelledby="add-dialog-title" class="m-auto w-[calc(100%-2rem)] max-w-md rounded-[7px] p-6 text-navy backdrop:bg-black/40">
+    <h2 id="add-dialog-title" class="font-grotesk text-2xl font-bold">Add Product</h2>
+    <form id="add-form" novalidate class="mt-4 flex flex-col gap-3">
+      <div>
+        <label for="product-name" class="text-sm font-semibold">Product name</label>
+        <input id="product-name" name="name" type="text" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+        <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="name"></p>
+      </div>
+      <div>
+        <label for="product-sku" class="text-sm font-semibold">SKU</label>
+        <input id="product-sku" name="sku" type="text" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+        <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="sku"></p>
+      </div>
+      <div>
+        <label for="product-category" class="text-sm font-semibold">Category</label>
+        <select id="product-category" name="category" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 bg-white px-2 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+          <option value="">Select a category</option>
+        </select>
+        <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="category"></p>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label for="product-quantity" class="text-sm font-semibold">Quantity</label>
+          <input id="product-quantity" name="quantity" type="number" min="0" step="1" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+          <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="quantity"></p>
+        </div>
+        <div>
+          <label for="product-price" class="text-sm font-semibold">Unit price (₦)</label>
+          <input id="product-price" name="price" type="number" min="0" step="0.01" class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+          <p class="field-error mt-1 hidden text-xs text-accent-red" data-error-for="price"></p>
+        </div>
+      </div>
+      <p class="text-xs">Stock status is set automatically: 0 = Out of Stock, 1–10 = Low Stock, above 10 = In Stock.</p>
+      <div class="mt-2 flex justify-end gap-3">
+        <button id="cancel-add" type="button" class="h-10 rounded-[5px] border border-navy/50 px-4 text-sm font-semibold hover:bg-navy/5">Cancel</button>
+        <button type="submit" class="h-10 rounded-[5px] bg-navy px-4 text-sm font-semibold text-white hover:bg-[#1b4a85]">Save Product</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= DATE RANGE DIALOG ================= -->
+  <dialog id="date-dialog" aria-labelledby="date-dialog-title" class="m-auto w-[calc(100%-2rem)] max-w-sm rounded-[7px] p-6 text-navy backdrop:bg-black/40">
+    <h2 id="date-dialog-title" class="font-grotesk text-xl font-bold">Filter by date added</h2>
+    <form id="date-form" class="mt-4 flex flex-col gap-3">
+      <div>
+        <label for="date-start" class="text-sm font-semibold">From</label>
+        <input id="date-start" type="date" required class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm" />
+      </div>
+      <div>
+        <label for="date-end" class="text-sm font-semibold">To</label>
+        <input id="date-end" type="date" required class="mt-1 h-[39px] w-full rounded-[5px] border border-navy/50 px-3 text-sm" />
+      </div>
+      <p id="date-error" class="hidden text-xs text-accent-red">The start date must be before the end date.</p>
+      <div class="mt-2 flex justify-end gap-3">
+        <button id="date-clear" type="button" class="h-10 rounded-[5px] border border-navy/50 px-4 text-sm font-semibold hover:bg-navy/5">Reset</button>
+        <button type="submit" class="h-10 rounded-[5px] bg-navy px-4 text-sm font-semibold text-white hover:bg-[#1b4a85]">Apply</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- All behaviour lives in esinvsearch.js -->
+  <script src="esinvsearch.js"></script>
+</body>
+</html>
